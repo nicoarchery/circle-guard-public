@@ -148,9 +148,9 @@ pipeline {
 
         stage('Deploy to stage') {
             when {
-                branch 'stage'
                 expression {
-                    fileExists('k8s/stage')
+                    def branchName = env.BRANCH_NAME ?: env.GIT_BRANCH ?: ''
+                    (branchName == 'stage' || branchName.endsWith('/stage')) && fileExists('k8s/stage')
                 }
             }
             steps {
@@ -174,9 +174,9 @@ pipeline {
 
         stage('Deploy to master') {
             when {
-                branch 'master'
                 expression {
-                    fileExists('k8s/prod')
+                    def branchName = env.BRANCH_NAME ?: env.GIT_BRANCH ?: ''
+                    (branchName == 'master' || branchName.endsWith('/master')) && fileExists('k8s/prod')
                 }
             }
             steps {
@@ -200,7 +200,10 @@ pipeline {
 
         stage('Generate Release Notes') {
             when {
-                branch 'master'
+                expression {
+                    def branchName = env.BRANCH_NAME ?: env.GIT_BRANCH ?: ''
+                    branchName == 'master' || branchName.endsWith('/master')
+                }
             }
             steps {
                 sh '''#!/usr/bin/env bash
