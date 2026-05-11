@@ -16,6 +16,19 @@ pipeline {
     }
 
     stages {
+                stage('Start local infra') {
+                        steps {
+                                sh '''#!/usr/bin/env bash
+                                        set -euo pipefail
+                                        if [ -f docker-compose.dev.yml ]; then
+                                            docker-compose -f docker-compose.dev.yml up -d
+                                            ./scripts/wait-for-services.sh
+                                        else
+                                            echo "docker-compose.dev.yml not found, skipping infra startup"
+                                        fi
+                                '''
+                        }
+                }
         stage('Checkout') {
             steps {
                 checkout scm
@@ -32,7 +45,11 @@ pipeline {
 
         stage('Unit and integration tests') {
             steps {
-                sh './gradlew clean test -x :services:circleguard-promotion-service:test'
+                sh '''#!/usr/bin/env bash
+                    set -euo pipefail
+                    export JWT_SECRET="my-super-secret-test-key-32-chars-long-012345"
+                    ./gradlew clean test -x :services:circleguard-promotion-service:test
+                '''
             }
         }
 
@@ -192,6 +209,12 @@ EOF
     post {
         always {
             archiveArtifacts artifacts: 'services/**/build/libs/*.jar,build/release-notes/**', fingerprint: true, allowEmptyArchive: true
+            sh '''#!/usr/bin/env bash
+                set -euo pipefail
+                if [ -f docker-compose.dev.yml ]; then
+                  docker-compose -f docker-compose.dev.yml down
+                fi
+            '''
         }
     }
 }
