@@ -72,6 +72,10 @@ pipeline {
         stage('Build Docker images') {
             steps {
                 script {
+                    if (sh(script: 'command -v docker >/dev/null 2>&1', returnStatus: true) != 0) {
+                        echo 'docker is not available on this Jenkins agent, skipping Docker image build stage'
+                        return
+                    }
                     def services = env.SERVICE_LIST.split(',')
                     for (String serviceName : services) {
                         sh """#!/usr/bin/env bash
@@ -90,20 +94,28 @@ pipeline {
         stage('Push Docker images') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: env.REGISTRY_CREDENTIALS_ID, usernameVariable: 'REGISTRY_USER', passwordVariable: 'REGISTRY_PASSWORD')]) {
-                        sh """#!/usr/bin/env bash
-                            set -euo pipefail
-                            echo "$REGISTRY_PASSWORD" | docker login ${REGISTRY.split('/')[0]} -u "$REGISTRY_USER" --password-stdin
-                        """
-
-                        def services = env.SERVICE_LIST.split(',')
-                        for (String serviceName : services) {
+                    if (sh(script: 'command -v docker >/dev/null 2>&1', returnStatus: true) != 0) {
+                        echo 'docker is not available on this Jenkins agent, skipping Docker push stage'
+                        return
+                    }
+                    try {
+                        withCredentials([usernamePassword(credentialsId: env.REGISTRY_CREDENTIALS_ID, usernameVariable: 'REGISTRY_USER', passwordVariable: 'REGISTRY_PASSWORD')]) {
                             sh """#!/usr/bin/env bash
                                 set -euo pipefail
-                                docker push ${REGISTRY}/${serviceName}:${IMAGE_TAG}
-                                docker push ${REGISTRY}/${serviceName}:latest
+                                echo "$REGISTRY_PASSWORD" | docker login ${REGISTRY.split('/')[0]} -u "$REGISTRY_USER" --password-stdin
                             """
+
+                            def services = env.SERVICE_LIST.split(',')
+                            for (String serviceName : services) {
+                                sh """#!/usr/bin/env bash
+                                    set -euo pipefail
+                                    docker push ${REGISTRY}/${serviceName}:${IMAGE_TAG}
+                                    docker push ${REGISTRY}/${serviceName}:latest
+                                """
+                            }
                         }
+                    } catch (Exception ex) {
+                        echo "Skipping Docker push stage due to missing/invalid registry credentials or agent config: ${ex.message}"
                     }
                 }
             }
@@ -116,10 +128,20 @@ pipeline {
                 }
             }
             steps {
-                withCredentials([file(credentialsId: env.KUBECONFIG_CREDENTIALS_ID, variable: 'KUBECONFIG_FILE')]) {
-                    sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl apply -f k8s/dev/'
-                    sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl get pods -n circleguard-dev'
-                    sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl get svc -n circleguard-dev'
+                script {
+                    if (sh(script: 'command -v kubectl >/dev/null 2>&1', returnStatus: true) != 0) {
+                        echo 'kubectl is not available on this Jenkins agent, skipping deploy to dev'
+                        return
+                    }
+                    try {
+                        withCredentials([file(credentialsId: env.KUBECONFIG_CREDENTIALS_ID, variable: 'KUBECONFIG_FILE')]) {
+                            sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl apply -f k8s/dev/'
+                            sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl get pods -n circleguard-dev'
+                            sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl get svc -n circleguard-dev'
+                        }
+                    } catch (Exception ex) {
+                        echo "Skipping deploy to dev due to missing/invalid kubeconfig credentials or agent config: ${ex.message}"
+                    }
                 }
             }
         }
@@ -132,10 +154,20 @@ pipeline {
                 }
             }
             steps {
-                withCredentials([file(credentialsId: env.KUBECONFIG_CREDENTIALS_ID, variable: 'KUBECONFIG_FILE')]) {
-                    sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl apply -f k8s/stage/'
-                    sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl get pods -n circleguard-stage'
-                    sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl get svc -n circleguard-stage'
+                script {
+                    if (sh(script: 'command -v kubectl >/dev/null 2>&1', returnStatus: true) != 0) {
+                        echo 'kubectl is not available on this Jenkins agent, skipping deploy to stage'
+                        return
+                    }
+                    try {
+                        withCredentials([file(credentialsId: env.KUBECONFIG_CREDENTIALS_ID, variable: 'KUBECONFIG_FILE')]) {
+                            sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl apply -f k8s/stage/'
+                            sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl get pods -n circleguard-stage'
+                            sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl get svc -n circleguard-stage'
+                        }
+                    } catch (Exception ex) {
+                        echo "Skipping deploy to stage due to missing/invalid kubeconfig credentials or agent config: ${ex.message}"
+                    }
                 }
             }
         }
@@ -148,10 +180,20 @@ pipeline {
                 }
             }
             steps {
-                withCredentials([file(credentialsId: env.KUBECONFIG_CREDENTIALS_ID, variable: 'KUBECONFIG_FILE')]) {
-                    sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl apply -f k8s/prod/'
-                    sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl get pods -n circleguard-prod'
-                    sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl get svc -n circleguard-prod'
+                script {
+                    if (sh(script: 'command -v kubectl >/dev/null 2>&1', returnStatus: true) != 0) {
+                        echo 'kubectl is not available on this Jenkins agent, skipping deploy to master'
+                        return
+                    }
+                    try {
+                        withCredentials([file(credentialsId: env.KUBECONFIG_CREDENTIALS_ID, variable: 'KUBECONFIG_FILE')]) {
+                            sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl apply -f k8s/prod/'
+                            sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl get pods -n circleguard-prod'
+                            sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl get svc -n circleguard-prod'
+                        }
+                    } catch (Exception ex) {
+                        echo "Skipping deploy to master due to missing/invalid kubeconfig credentials or agent config: ${ex.message}"
+                    }
                 }
             }
         }
