@@ -1,13 +1,13 @@
 -- Dynamic RBAC Schema
 
 CREATE TABLE permissions (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id UUID DEFAULT RANDOM_UUID() PRIMARY KEY,
     name VARCHAR(100) UNIQUE NOT NULL, -- e.g. 'gate:scan', 'identity:lookup'
     description TEXT
 );
 
 CREATE TABLE roles (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id UUID DEFAULT RANDOM_UUID() PRIMARY KEY,
     name VARCHAR(100) UNIQUE NOT NULL, -- e.g. 'STUDENT', 'HEALTH_CENTER'
     description TEXT
 );
@@ -19,7 +19,7 @@ CREATE TABLE role_permissions (
 );
 
 CREATE TABLE local_users (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id UUID DEFAULT RANDOM_UUID() PRIMARY KEY,
     username VARCHAR(255) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     email VARCHAR(255),

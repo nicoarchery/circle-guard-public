@@ -1,0 +1,1478 @@
+openjdk version "21.0.10" 2026-01-20
+OpenJDK Runtime Environment (build 21.0.10+7)
+OpenJDK 64-Bit Server VM (build 21.0.10+7, mixed mode, sharing)
+Initialized native services in: /home/nicolas/.gradle/native
+Initialized jansi services in: /home/nicolas/.gradle/native
+Found daemon DaemonInfo{pid=512156, address=[af526a9c-fdb4-428e-a4e4-bc6126f7c08e port:36555, addresses:[/127.0.0.1]], state=Idle, lastBusy=1778454009703, context=DefaultDaemonContext[uid=cccd1795-7d2e-4cbd-98f8-589c2dad06d9,javaHome=/usr/lib/jvm/java-11-openjdk,javaVersion=11,javaVendor=Arch Linux,daemonRegistryDir=/home/nicolas/.gradle/daemon,pid=512156,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-XX:MaxMetaspaceSize=384m,-XX:+HeapDumpOnOutOfMemoryError,-Xms256m,-Xmx512m,-Dfile.encoding=UTF-8,-Duser.country=US,-Duser.language=en,-Duser.variant]} however its context does not match the desired criteria.
+JVM is incompatible.
+Wanted: DaemonRequestContext{jvmCriteria=/usr/lib/jvm/java-21-openjdk (no JDK specified, using current Java home), daemonOpts=[-XX:MaxMetaspaceSize=384m, -XX:+HeapDumpOnOutOfMemoryError, -Xms256m, -Xmx512m, -Dfile.encoding=UTF-8, -Duser.country=US, -Duser.language=en, -Duser.variant], applyInstrumentationAgent=true, nativeServicesMode=ENABLED, priority=NORMAL}
+Actual: DefaultDaemonContext[uid=cccd1795-7d2e-4cbd-98f8-589c2dad06d9,javaHome=/usr/lib/jvm/java-11-openjdk,javaVersion=11,javaVendor=Arch Linux,daemonRegistryDir=/home/nicolas/.gradle/daemon,pid=512156,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-XX:MaxMetaspaceSize=384m,-XX:+HeapDumpOnOutOfMemoryError,-Xms256m,-Xmx512m,-Dfile.encoding=UTF-8,-Duser.country=US,-Duser.language=en,-Duser.variant]
+
+  Looking for a different daemon...
+Found daemon DaemonInfo{pid=594105, address=[38580543-bf0b-4c68-ba39-0bd3286e3ea6 port:36415, addresses:[/127.0.0.1]], state=Idle, lastBusy=1778467051998, context=DefaultDaemonContext[uid=99fc67e3-2c0c-4906-9294-d665a24b3efd,javaHome=/home/nicolas/.antigravity/extensions/redhat.java-1.54.0-linux-x64/jre/21.0.10-linux-x86_64,javaVersion=21,javaVendor=Eclipse Adoptium,daemonRegistryDir=/home/nicolas/.gradle/daemon,pid=594105,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-XX:MaxMetaspaceSize=384m,-XX:+HeapDumpOnOutOfMemoryError,-Xms256m,-Xmx512m,-Dfile.encoding=UTF-8,-Duser.country=US,-Duser.language=en,-Duser.variant]} however its context does not match the desired criteria.
+JVM is incompatible.
+Wanted: DaemonRequestContext{jvmCriteria=/usr/lib/jvm/java-21-openjdk (no JDK specified, using current Java home), daemonOpts=[-XX:MaxMetaspaceSize=384m, -XX:+HeapDumpOnOutOfMemoryError, -Xms256m, -Xmx512m, -Dfile.encoding=UTF-8, -Duser.country=US, -Duser.language=en, -Duser.variant], applyInstrumentationAgent=true, nativeServicesMode=ENABLED, priority=NORMAL}
+Actual: DefaultDaemonContext[uid=99fc67e3-2c0c-4906-9294-d665a24b3efd,javaHome=/home/nicolas/.antigravity/extensions/redhat.java-1.54.0-linux-x64/jre/21.0.10-linux-x86_64,javaVersion=21,javaVendor=Eclipse Adoptium,daemonRegistryDir=/home/nicolas/.gradle/daemon,pid=594105,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-XX:MaxMetaspaceSize=384m,-XX:+HeapDumpOnOutOfMemoryError,-Xms256m,-Xmx512m,-Dfile.encoding=UTF-8,-Duser.country=US,-Duser.language=en,-Duser.variant]
+
+  Looking for a different daemon...
+The client will now receive all logging from the daemon (pid: 577274). The daemon log file: /home/nicolas/.gradle/daemon/8.14/daemon-577274.out.log
+Starting 16th build in daemon [uptime: 36 mins 43.818 secs, performance: 100%, GC rate: 0.00/s, heap usage: 0% of 512 MiB, non-heap usage: 27% of 384 MiB]
+Using 16 worker leases.
+Now considering [/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public] as hierarchies to watch
+Watching the file system is configured to be enabled if available
+File system watching is active
+Starting Build
+Resolved plugin [id: 'org.gradle.toolchains.foojay-resolver-convention', version: '0.8.0']
+Settings evaluated using settings file '/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/settings.gradle.kts'.
+Projects loaded. Root project using build file '/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/build.gradle.kts'.
+Included projects: [root project 'circleguard', project ':services', project ':services:circleguard-auth-service', project ':services:circleguard-dashboard-service', project ':services:circleguard-file-service', project ':services:circleguard-form-service', project ':services:circleguard-gateway-service', project ':services:circleguard-identity-service', project ':services:circleguard-notification-service', project ':services:circleguard-promotion-service']
+
+> Configure project :
+Evaluating root project 'circleguard' using build file '/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/build.gradle.kts'.
+Resolved plugin [id: 'org.springframework.boot', version: '3.2.4', apply: false]
+Resolved plugin [id: 'io.spring.dependency-management', version: '1.1.4', apply: false]
+Resolved plugin [id: 'org.jetbrains.kotlin.jvm', version: '1.9.24', apply: false]
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.spring', version: '1.9.24', apply: false]
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.jpa', version: '1.9.24', apply: false]
+Using Kotlin Gradle Plugin gradle82 variant
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Using Kotlin Gradle Plugin gradle82 variant
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Using Kotlin Gradle Plugin gradle82 variant
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Using Kotlin Gradle Plugin gradle82 variant
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Using Kotlin Gradle Plugin gradle82 variant
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Using Kotlin Gradle Plugin gradle82 variant
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Using Kotlin Gradle Plugin gradle82 variant
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Using Kotlin Gradle Plugin gradle82 variant
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Using Kotlin Gradle Plugin gradle82 variant
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+
+> Configure project :services
+Evaluating project ':services' using build file '/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/build.gradle'.
+
+> Configure project :services:circleguard-auth-service
+Evaluating project ':services:circleguard-auth-service' using build file '/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-auth-service/build.gradle.kts'.
+Resolved plugin [id: 'org.springframework.boot']
+Resolved plugin [id: 'io.spring.dependency-management']
+Resolved plugin [id: 'org.jetbrains.kotlin.jvm']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.spring']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.jpa']
+Applying dependency management to configuration 'annotationProcessor' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'api' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'apiDependenciesMetadata' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'apiElements' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'archives' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'bootArchives' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'compileClasspath' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'compileOnly' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'compileOnlyDependenciesMetadata' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'default' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'developmentOnly' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'implementation' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'implementationDependenciesMetadata' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'intransitiveDependenciesMetadata' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'kotlinBuildToolsApiClasspath' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'kotlinCompilerClasspath' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspath' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspathMain' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspathTest' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'kotlinKlibCommonizerClasspath' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'kotlinNativeCompilerPluginClasspath' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'kotlinScriptDef' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'kotlinScriptDefExtensions' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'mainSourceElements' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'productionRuntimeClasspath' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'runtimeClasspath' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'runtimeElements' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'runtimeOnly' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'testAndDevelopmentOnly' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'testAnnotationProcessor' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'testApi' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'testApiDependenciesMetadata' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'testCompileClasspath' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'testCompileOnly' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'testCompileOnlyDependenciesMetadata' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'testImplementation' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'testImplementationDependenciesMetadata' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'testIntransitiveDependenciesMetadata' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'testKotlinScriptDef' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'testKotlinScriptDefExtensions' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'testResultsElementsForTest' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'testRuntimeClasspath' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'testRuntimeOnly' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'apiElements-published' in project 'circleguard-auth-service'
+Applying dependency management to configuration 'runtimeElements-published' in project 'circleguard-auth-service'
+
+> Configure project :services:circleguard-dashboard-service
+Evaluating project ':services:circleguard-dashboard-service' using build file '/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-dashboard-service/build.gradle.kts'.
+Resolved plugin [id: 'org.springframework.boot']
+Resolved plugin [id: 'io.spring.dependency-management']
+Resolved plugin [id: 'org.jetbrains.kotlin.jvm']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.spring']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.jpa']
+Applying dependency management to configuration 'annotationProcessor' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'api' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'apiDependenciesMetadata' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'apiElements' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'archives' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'bootArchives' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'compileClasspath' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'compileOnly' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'compileOnlyDependenciesMetadata' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'default' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'developmentOnly' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'implementation' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'implementationDependenciesMetadata' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'intransitiveDependenciesMetadata' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'kotlinBuildToolsApiClasspath' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'kotlinCompilerClasspath' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspath' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspathMain' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspathTest' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'kotlinKlibCommonizerClasspath' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'kotlinNativeCompilerPluginClasspath' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'kotlinScriptDef' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'kotlinScriptDefExtensions' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'mainSourceElements' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'productionRuntimeClasspath' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'runtimeClasspath' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'runtimeElements' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'runtimeOnly' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'testAndDevelopmentOnly' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'testAnnotationProcessor' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'testApi' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'testApiDependenciesMetadata' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'testCompileClasspath' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'testCompileOnly' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'testCompileOnlyDependenciesMetadata' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'testImplementation' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'testImplementationDependenciesMetadata' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'testIntransitiveDependenciesMetadata' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'testKotlinScriptDef' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'testKotlinScriptDefExtensions' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'testResultsElementsForTest' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'testRuntimeClasspath' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'testRuntimeOnly' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'apiElements-published' in project 'circleguard-dashboard-service'
+Applying dependency management to configuration 'runtimeElements-published' in project 'circleguard-dashboard-service'
+
+> Configure project :services:circleguard-file-service
+Evaluating project ':services:circleguard-file-service' using build file '/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-file-service/build.gradle.kts'.
+Resolved plugin [id: 'org.springframework.boot']
+Resolved plugin [id: 'io.spring.dependency-management']
+Resolved plugin [id: 'org.jetbrains.kotlin.jvm']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.spring']
+Applying dependency management to configuration 'annotationProcessor' in project 'circleguard-file-service'
+Applying dependency management to configuration 'api' in project 'circleguard-file-service'
+Applying dependency management to configuration 'apiDependenciesMetadata' in project 'circleguard-file-service'
+Applying dependency management to configuration 'apiElements' in project 'circleguard-file-service'
+Applying dependency management to configuration 'archives' in project 'circleguard-file-service'
+Applying dependency management to configuration 'bootArchives' in project 'circleguard-file-service'
+Applying dependency management to configuration 'compileClasspath' in project 'circleguard-file-service'
+Applying dependency management to configuration 'compileOnly' in project 'circleguard-file-service'
+Applying dependency management to configuration 'compileOnlyDependenciesMetadata' in project 'circleguard-file-service'
+Applying dependency management to configuration 'default' in project 'circleguard-file-service'
+Applying dependency management to configuration 'developmentOnly' in project 'circleguard-file-service'
+Applying dependency management to configuration 'implementation' in project 'circleguard-file-service'
+Applying dependency management to configuration 'implementationDependenciesMetadata' in project 'circleguard-file-service'
+Applying dependency management to configuration 'intransitiveDependenciesMetadata' in project 'circleguard-file-service'
+Applying dependency management to configuration 'kotlinBuildToolsApiClasspath' in project 'circleguard-file-service'
+Applying dependency management to configuration 'kotlinCompilerClasspath' in project 'circleguard-file-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspath' in project 'circleguard-file-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspathMain' in project 'circleguard-file-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspathTest' in project 'circleguard-file-service'
+Applying dependency management to configuration 'kotlinKlibCommonizerClasspath' in project 'circleguard-file-service'
+Applying dependency management to configuration 'kotlinNativeCompilerPluginClasspath' in project 'circleguard-file-service'
+Applying dependency management to configuration 'kotlinScriptDef' in project 'circleguard-file-service'
+Applying dependency management to configuration 'kotlinScriptDefExtensions' in project 'circleguard-file-service'
+Applying dependency management to configuration 'mainSourceElements' in project 'circleguard-file-service'
+Applying dependency management to configuration 'productionRuntimeClasspath' in project 'circleguard-file-service'
+Applying dependency management to configuration 'runtimeClasspath' in project 'circleguard-file-service'
+Applying dependency management to configuration 'runtimeElements' in project 'circleguard-file-service'
+Applying dependency management to configuration 'runtimeOnly' in project 'circleguard-file-service'
+Applying dependency management to configuration 'testAndDevelopmentOnly' in project 'circleguard-file-service'
+Applying dependency management to configuration 'testAnnotationProcessor' in project 'circleguard-file-service'
+Applying dependency management to configuration 'testApi' in project 'circleguard-file-service'
+Applying dependency management to configuration 'testApiDependenciesMetadata' in project 'circleguard-file-service'
+Applying dependency management to configuration 'testCompileClasspath' in project 'circleguard-file-service'
+Applying dependency management to configuration 'testCompileOnly' in project 'circleguard-file-service'
+Applying dependency management to configuration 'testCompileOnlyDependenciesMetadata' in project 'circleguard-file-service'
+Applying dependency management to configuration 'testImplementation' in project 'circleguard-file-service'
+Applying dependency management to configuration 'testImplementationDependenciesMetadata' in project 'circleguard-file-service'
+Applying dependency management to configuration 'testIntransitiveDependenciesMetadata' in project 'circleguard-file-service'
+Applying dependency management to configuration 'testKotlinScriptDef' in project 'circleguard-file-service'
+Applying dependency management to configuration 'testKotlinScriptDefExtensions' in project 'circleguard-file-service'
+Applying dependency management to configuration 'testResultsElementsForTest' in project 'circleguard-file-service'
+Applying dependency management to configuration 'testRuntimeClasspath' in project 'circleguard-file-service'
+Applying dependency management to configuration 'testRuntimeOnly' in project 'circleguard-file-service'
+Applying dependency management to configuration 'apiElements-published' in project 'circleguard-file-service'
+Applying dependency management to configuration 'runtimeElements-published' in project 'circleguard-file-service'
+
+> Configure project :services:circleguard-form-service
+Evaluating project ':services:circleguard-form-service' using build file '/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-form-service/build.gradle.kts'.
+Resolved plugin [id: 'org.springframework.boot']
+Resolved plugin [id: 'io.spring.dependency-management']
+Resolved plugin [id: 'org.jetbrains.kotlin.jvm']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.spring']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.jpa']
+Applying dependency management to configuration 'annotationProcessor' in project 'circleguard-form-service'
+Applying dependency management to configuration 'api' in project 'circleguard-form-service'
+Applying dependency management to configuration 'apiDependenciesMetadata' in project 'circleguard-form-service'
+Applying dependency management to configuration 'apiElements' in project 'circleguard-form-service'
+Applying dependency management to configuration 'archives' in project 'circleguard-form-service'
+Applying dependency management to configuration 'bootArchives' in project 'circleguard-form-service'
+Applying dependency management to configuration 'compileClasspath' in project 'circleguard-form-service'
+Applying dependency management to configuration 'compileOnly' in project 'circleguard-form-service'
+Applying dependency management to configuration 'compileOnlyDependenciesMetadata' in project 'circleguard-form-service'
+Applying dependency management to configuration 'default' in project 'circleguard-form-service'
+Applying dependency management to configuration 'developmentOnly' in project 'circleguard-form-service'
+Applying dependency management to configuration 'implementation' in project 'circleguard-form-service'
+Applying dependency management to configuration 'implementationDependenciesMetadata' in project 'circleguard-form-service'
+Applying dependency management to configuration 'intransitiveDependenciesMetadata' in project 'circleguard-form-service'
+Applying dependency management to configuration 'kotlinBuildToolsApiClasspath' in project 'circleguard-form-service'
+Applying dependency management to configuration 'kotlinCompilerClasspath' in project 'circleguard-form-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspath' in project 'circleguard-form-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspathMain' in project 'circleguard-form-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspathTest' in project 'circleguard-form-service'
+Applying dependency management to configuration 'kotlinKlibCommonizerClasspath' in project 'circleguard-form-service'
+Applying dependency management to configuration 'kotlinNativeCompilerPluginClasspath' in project 'circleguard-form-service'
+Applying dependency management to configuration 'kotlinScriptDef' in project 'circleguard-form-service'
+Applying dependency management to configuration 'kotlinScriptDefExtensions' in project 'circleguard-form-service'
+Applying dependency management to configuration 'mainSourceElements' in project 'circleguard-form-service'
+Applying dependency management to configuration 'productionRuntimeClasspath' in project 'circleguard-form-service'
+Applying dependency management to configuration 'runtimeClasspath' in project 'circleguard-form-service'
+Applying dependency management to configuration 'runtimeElements' in project 'circleguard-form-service'
+Applying dependency management to configuration 'runtimeOnly' in project 'circleguard-form-service'
+Applying dependency management to configuration 'testAndDevelopmentOnly' in project 'circleguard-form-service'
+Applying dependency management to configuration 'testAnnotationProcessor' in project 'circleguard-form-service'
+Applying dependency management to configuration 'testApi' in project 'circleguard-form-service'
+Applying dependency management to configuration 'testApiDependenciesMetadata' in project 'circleguard-form-service'
+Applying dependency management to configuration 'testCompileClasspath' in project 'circleguard-form-service'
+Applying dependency management to configuration 'testCompileOnly' in project 'circleguard-form-service'
+Applying dependency management to configuration 'testCompileOnlyDependenciesMetadata' in project 'circleguard-form-service'
+Applying dependency management to configuration 'testImplementation' in project 'circleguard-form-service'
+Applying dependency management to configuration 'testImplementationDependenciesMetadata' in project 'circleguard-form-service'
+Applying dependency management to configuration 'testIntransitiveDependenciesMetadata' in project 'circleguard-form-service'
+Applying dependency management to configuration 'testKotlinScriptDef' in project 'circleguard-form-service'
+Applying dependency management to configuration 'testKotlinScriptDefExtensions' in project 'circleguard-form-service'
+Applying dependency management to configuration 'testResultsElementsForTest' in project 'circleguard-form-service'
+Applying dependency management to configuration 'testRuntimeClasspath' in project 'circleguard-form-service'
+Applying dependency management to configuration 'testRuntimeOnly' in project 'circleguard-form-service'
+Applying dependency management to configuration 'apiElements-published' in project 'circleguard-form-service'
+Applying dependency management to configuration 'runtimeElements-published' in project 'circleguard-form-service'
+
+> Configure project :services:circleguard-gateway-service
+Evaluating project ':services:circleguard-gateway-service' using build file '/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-gateway-service/build.gradle.kts'.
+Resolved plugin [id: 'org.springframework.boot']
+Resolved plugin [id: 'io.spring.dependency-management']
+Resolved plugin [id: 'org.jetbrains.kotlin.jvm']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.spring']
+Applying dependency management to configuration 'annotationProcessor' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'api' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'apiDependenciesMetadata' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'apiElements' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'archives' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'bootArchives' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'compileClasspath' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'compileOnly' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'compileOnlyDependenciesMetadata' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'default' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'developmentOnly' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'implementation' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'implementationDependenciesMetadata' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'intransitiveDependenciesMetadata' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'kotlinBuildToolsApiClasspath' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'kotlinCompilerClasspath' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspath' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspathMain' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspathTest' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'kotlinKlibCommonizerClasspath' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'kotlinNativeCompilerPluginClasspath' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'kotlinScriptDef' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'kotlinScriptDefExtensions' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'mainSourceElements' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'productionRuntimeClasspath' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'runtimeClasspath' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'runtimeElements' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'runtimeOnly' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'testAndDevelopmentOnly' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'testAnnotationProcessor' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'testApi' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'testApiDependenciesMetadata' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'testCompileClasspath' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'testCompileOnly' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'testCompileOnlyDependenciesMetadata' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'testImplementation' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'testImplementationDependenciesMetadata' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'testIntransitiveDependenciesMetadata' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'testKotlinScriptDef' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'testKotlinScriptDefExtensions' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'testResultsElementsForTest' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'testRuntimeClasspath' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'testRuntimeOnly' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'apiElements-published' in project 'circleguard-gateway-service'
+Applying dependency management to configuration 'runtimeElements-published' in project 'circleguard-gateway-service'
+
+> Configure project :services:circleguard-identity-service
+Evaluating project ':services:circleguard-identity-service' using build file '/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-identity-service/build.gradle.kts'.
+Resolved plugin [id: 'org.springframework.boot']
+Resolved plugin [id: 'io.spring.dependency-management']
+Resolved plugin [id: 'org.jetbrains.kotlin.jvm']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.spring']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.jpa']
+Applying dependency management to configuration 'annotationProcessor' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'api' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'apiDependenciesMetadata' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'apiElements' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'archives' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'bootArchives' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'compileClasspath' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'compileOnly' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'compileOnlyDependenciesMetadata' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'default' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'developmentOnly' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'implementation' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'implementationDependenciesMetadata' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'intransitiveDependenciesMetadata' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'kotlinBuildToolsApiClasspath' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'kotlinCompilerClasspath' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspath' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspathMain' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspathTest' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'kotlinKlibCommonizerClasspath' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'kotlinNativeCompilerPluginClasspath' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'kotlinScriptDef' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'kotlinScriptDefExtensions' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'mainSourceElements' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'productionRuntimeClasspath' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'runtimeClasspath' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'runtimeElements' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'runtimeOnly' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'testAndDevelopmentOnly' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'testAnnotationProcessor' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'testApi' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'testApiDependenciesMetadata' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'testCompileClasspath' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'testCompileOnly' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'testCompileOnlyDependenciesMetadata' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'testImplementation' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'testImplementationDependenciesMetadata' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'testIntransitiveDependenciesMetadata' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'testKotlinScriptDef' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'testKotlinScriptDefExtensions' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'testResultsElementsForTest' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'testRuntimeClasspath' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'testRuntimeOnly' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'apiElements-published' in project 'circleguard-identity-service'
+Applying dependency management to configuration 'runtimeElements-published' in project 'circleguard-identity-service'
+
+> Configure project :services:circleguard-notification-service
+Evaluating project ':services:circleguard-notification-service' using build file '/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-notification-service/build.gradle.kts'.
+Resolved plugin [id: 'org.springframework.boot']
+Resolved plugin [id: 'io.spring.dependency-management']
+Resolved plugin [id: 'org.jetbrains.kotlin.jvm']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.spring']
+Applying dependency management to configuration 'annotationProcessor' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'api' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'apiDependenciesMetadata' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'apiElements' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'archives' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'bootArchives' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'compileClasspath' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'compileOnly' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'compileOnlyDependenciesMetadata' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'default' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'developmentOnly' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'implementation' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'implementationDependenciesMetadata' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'intransitiveDependenciesMetadata' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'kotlinBuildToolsApiClasspath' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'kotlinCompilerClasspath' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspath' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspathMain' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspathTest' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'kotlinKlibCommonizerClasspath' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'kotlinNativeCompilerPluginClasspath' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'kotlinScriptDef' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'kotlinScriptDefExtensions' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'mainSourceElements' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'productionRuntimeClasspath' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'runtimeClasspath' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'runtimeElements' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'runtimeOnly' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'testAndDevelopmentOnly' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'testAnnotationProcessor' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'testApi' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'testApiDependenciesMetadata' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'testCompileClasspath' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'testCompileOnly' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'testCompileOnlyDependenciesMetadata' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'testImplementation' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'testImplementationDependenciesMetadata' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'testIntransitiveDependenciesMetadata' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'testKotlinScriptDef' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'testKotlinScriptDefExtensions' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'testResultsElementsForTest' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'testRuntimeClasspath' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'testRuntimeOnly' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'apiElements-published' in project 'circleguard-notification-service'
+Applying dependency management to configuration 'runtimeElements-published' in project 'circleguard-notification-service'
+
+> Configure project :services:circleguard-promotion-service
+Evaluating project ':services:circleguard-promotion-service' using build file '/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-promotion-service/build.gradle.kts'.
+Resolved plugin [id: 'org.springframework.boot']
+Resolved plugin [id: 'io.spring.dependency-management']
+Resolved plugin [id: 'org.jetbrains.kotlin.jvm']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.spring']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.jpa']
+Applying dependency management to configuration 'annotationProcessor' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'api' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'apiDependenciesMetadata' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'apiElements' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'archives' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'bootArchives' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'compileClasspath' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'compileOnly' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'compileOnlyDependenciesMetadata' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'default' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'developmentOnly' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'implementation' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'implementationDependenciesMetadata' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'intransitiveDependenciesMetadata' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'kotlinBuildToolsApiClasspath' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'kotlinCompilerClasspath' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspath' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspathMain' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'kotlinCompilerPluginClasspathTest' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'kotlinKlibCommonizerClasspath' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'kotlinNativeCompilerPluginClasspath' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'kotlinScriptDef' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'kotlinScriptDefExtensions' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'mainSourceElements' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'productionRuntimeClasspath' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'runtimeClasspath' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'runtimeElements' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'runtimeOnly' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'testAndDevelopmentOnly' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'testAnnotationProcessor' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'testApi' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'testApiDependenciesMetadata' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'testCompileClasspath' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'testCompileOnly' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'testCompileOnlyDependenciesMetadata' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'testImplementation' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'testImplementationDependenciesMetadata' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'testIntransitiveDependenciesMetadata' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'testKotlinScriptDef' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'testKotlinScriptDefExtensions' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'testResultsElementsForTest' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'testRuntimeClasspath' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'testRuntimeOnly' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'apiElements-published' in project 'circleguard-promotion-service'
+Applying dependency management to configuration 'runtimeElements-published' in project 'circleguard-promotion-service'
+All projects evaluated.
+Task path ':services:circleguard-promotion-service:test' matched project ':services:circleguard-promotion-service'
+Task name matched 'test'
+Selected primary task 'test' from project :services:circleguard-promotion-service
+Tasks to be executed: [task ':services:circleguard-promotion-service:checkKotlinGradlePluginConfigurationErrors', task ':services:circleguard-promotion-service:compileKotlin', task ':services:circleguard-promotion-service:compileJava', task ':services:circleguard-promotion-service:processResources', task ':services:circleguard-promotion-service:classes', task ':services:circleguard-promotion-service:compileTestKotlin', task ':services:circleguard-promotion-service:compileTestJava', task ':services:circleguard-promotion-service:processTestResources', task ':services:circleguard-promotion-service:testClasses', task ':services:circleguard-promotion-service:test']
+Tasks that were excluded: []
+Resolve mutations for :services:circleguard-promotion-service:checkKotlinGradlePluginConfigurationErrors (Thread[#3267,Execution worker,5,main]) started.
+:services:circleguard-promotion-service:checkKotlinGradlePluginConfigurationErrors (Thread[#3267,Execution worker,5,main]) started.
+
+> Task :services:circleguard-promotion-service:checkKotlinGradlePluginConfigurationErrors
+Caching disabled for task ':services:circleguard-promotion-service:checkKotlinGradlePluginConfigurationErrors' because:
+  Build cache is disabled
+Task ':services:circleguard-promotion-service:checkKotlinGradlePluginConfigurationErrors' is not up-to-date because:
+  Task has not declared any outputs despite executing actions.
+Resolve mutations for :services:circleguard-promotion-service:compileKotlin (Thread[#3267,Execution worker,5,main]) started.
+:services:circleguard-promotion-service:compileKotlin (Thread[#3267,Execution worker,5,main]) started.
+
+> Task :services:circleguard-promotion-service:compileKotlin NO-SOURCE
+Resolving global dependency management for project 'circleguard-promotion-service'
+Excluding []
+Skipping task ':services:circleguard-promotion-service:compileKotlin' as it has no source files and no previous output files.
+Resolve mutations for :services:circleguard-promotion-service:compileJava (Thread[#3267,Execution worker,5,main]) started.
+:services:circleguard-promotion-service:compileJava (Thread[#3267,Execution worker,5,main]) started.
+
+> Task :services:circleguard-promotion-service:compileJava UP-TO-DATE
+Excluding []
+Excluding []
+Custom actions are attached to task ':services:circleguard-promotion-service:compileJava'.
+Caching disabled for task ':services:circleguard-promotion-service:compileJava' because:
+  Build cache is disabled
+Skipping task ':services:circleguard-promotion-service:compileJava' as it is up-to-date.
+No compile result for :services:circleguard-promotion-service:compileJava
+Resolve mutations for :services:circleguard-promotion-service:processResources (Thread[#3267,Execution worker,5,main]) started.
+:services:circleguard-promotion-service:processResources (Thread[#3267,Execution worker,5,main]) started.
+
+> Task :services:circleguard-promotion-service:processResources UP-TO-DATE
+Caching disabled for task ':services:circleguard-promotion-service:processResources' because:
+  Build cache is disabled
+  Not worth caching
+Skipping task ':services:circleguard-promotion-service:processResources' as it is up-to-date.
+Resolve mutations for :services:circleguard-promotion-service:classes (Thread[#3267,Execution worker,5,main]) started.
+:services:circleguard-promotion-service:classes (Thread[#3270,Execution worker Thread 4,5,main]) started.
+
+> Task :services:circleguard-promotion-service:classes UP-TO-DATE
+Skipping task ':services:circleguard-promotion-service:classes' as it has no actions.
+Resolve mutations for :services:circleguard-promotion-service:compileTestKotlin (Thread[#3267,Execution worker,5,main]) started.
+:services:circleguard-promotion-service:compileTestKotlin (Thread[#3267,Execution worker,5,main]) started.
+
+> Task :services:circleguard-promotion-service:compileTestKotlin NO-SOURCE
+Excluding []
+Skipping task ':services:circleguard-promotion-service:compileTestKotlin' as it has no source files and no previous output files.
+Resolve mutations for :services:circleguard-promotion-service:compileTestJava (Thread[#3267,Execution worker,5,main]) started.
+:services:circleguard-promotion-service:compileTestJava (Thread[#3267,Execution worker,5,main]) started.
+
+> Task :services:circleguard-promotion-service:compileTestJava UP-TO-DATE
+Excluding []
+Excluding []
+Custom actions are attached to task ':services:circleguard-promotion-service:compileTestJava'.
+Caching disabled for task ':services:circleguard-promotion-service:compileTestJava' because:
+  Build cache is disabled
+Skipping task ':services:circleguard-promotion-service:compileTestJava' as it is up-to-date.
+No compile result for :services:circleguard-promotion-service:compileTestJava
+Resolve mutations for :services:circleguard-promotion-service:processTestResources (Thread[#3267,Execution worker,5,main]) started.
+:services:circleguard-promotion-service:processTestResources (Thread[#3267,Execution worker,5,main]) started.
+
+> Task :services:circleguard-promotion-service:processTestResources UP-TO-DATE
+Caching disabled for task ':services:circleguard-promotion-service:processTestResources' because:
+  Build cache is disabled
+  Not worth caching
+Skipping task ':services:circleguard-promotion-service:processTestResources' as it is up-to-date.
+Resolve mutations for :services:circleguard-promotion-service:testClasses (Thread[#3267,Execution worker,5,main]) started.
+:services:circleguard-promotion-service:testClasses (Thread[#3280,Execution worker Thread 13,5,main]) started.
+
+> Task :services:circleguard-promotion-service:testClasses UP-TO-DATE
+Skipping task ':services:circleguard-promotion-service:testClasses' as it has no actions.
+Resolve mutations for :services:circleguard-promotion-service:test (Thread[#3280,Execution worker Thread 13,5,main]) started.
+:services:circleguard-promotion-service:test (Thread[#3280,Execution worker Thread 13,5,main]) started.
+Gradle Test Executor 16 started executing tests.
+
+> Task :services:circleguard-promotion-service:test
+Excluding []
+Caching disabled for task ':services:circleguard-promotion-service:test' because:
+  Build cache is disabled
+  Gradle does not know how file 'build/test-results/test/binary/output.bin.idx' was created (output property 'binaryResultsDirectory'). Task output caching requires exclusive access to output paths to guarantee correctness (i.e. multiple tasks are not allowed to produce output in the same location).
+Task ':services:circleguard-promotion-service:test' is not up-to-date because:
+  Task has failed previously.
+file or directory '/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-promotion-service/build/classes/kotlin/test', not found
+Starting process 'Gradle Test Executor 16'. Working directory: /home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-promotion-service Command: /usr/lib/jvm/java-21-openjdk/bin/java -Dorg.gradle.internal.worker.tmpdir=/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-promotion-service/build/tmp/test/work @/home/nicolas/.gradle/.tmp/gradle-worker-classpath8321590327635645455txt -Xmx512m -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant -ea worker.org.gradle.process.internal.worker.GradleWorkerMain 'Gradle Test Executor 16'
+Successfully started process 'Gradle Test Executor 16'
+
+HealthStatusE2ETest STANDARD_OUT
+    21:56:23.920 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.circleguard.promotion.e2e.HealthStatusE2ETest]: HealthStatusE2ETest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+    21:56:24.049 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.circleguard.promotion.PromotionApplication for test class com.circleguard.promotion.e2e.HealthStatusE2ETest
+
+      .   ____          _            __ _ _
+     /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+    ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+     \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+      '  |____| .__|_| |_|_| |_\__, | / / / /
+     =========|_|==============|___/=/_/_/_/
+     :: Spring Boot ::                (v3.2.4)
+
+    2026-05-10T21:56:24.527-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] c.c.promotion.e2e.HealthStatusE2ETest    : Starting HealthStatusE2ETest using Java 21.0.10 with PID 612785 (started by nicolas in /home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-promotion-service)
+    2026-05-10T21:56:24.529-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] c.c.promotion.e2e.HealthStatusE2ETest    : No active profile set, falling back to 1 default profile: "default"
+    2026-05-10T21:56:25.499-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+    2026-05-10T21:56:25.500-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+    2026-05-10T21:56:25.628-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 120 ms. Found 4 JPA repository interfaces.
+    2026-05-10T21:56:25.630-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+    2026-05-10T21:56:25.631-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Neo4j repositories in DEFAULT mode.
+    2026-05-10T21:56:25.638-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 2 Neo4j repository interfaces.
+    2026-05-10T21:56:25.935-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+    2026-05-10T21:56:25.935-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Neo4j repositories in DEFAULT mode.
+    2026-05-10T21:56:25.966-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data Neo4j - Could not safely identify store assignment for repository candidate interface com.circleguard.promotion.repository.jpa.AccessPointRepository; If you want this repository to be a Neo4j repository, consider annotating your entities with one of these annotations: org.springframework.data.neo4j.core.schema.Node, org.springframework.data.neo4j.core.schema.RelationshipProperties (preferred), or consider extending one of the following types with your repository: org.springframework.data.neo4j.repository.ReactiveNeo4jRepository
+    2026-05-10T21:56:25.967-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data Neo4j - Could not safely identify store assignment for repository candidate interface com.circleguard.promotion.repository.jpa.BuildingRepository; If you want this repository to be a Neo4j repository, consider annotating your entities with one of these annotations: org.springframework.data.neo4j.core.schema.Node, org.springframework.data.neo4j.core.schema.RelationshipProperties (preferred), or consider extending one of the following types with your repository: org.springframework.data.neo4j.repository.ReactiveNeo4jRepository
+    2026-05-10T21:56:25.969-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data Neo4j - Could not safely identify store assignment for repository candidate interface com.circleguard.promotion.repository.jpa.FloorRepository; If you want this repository to be a Neo4j repository, consider annotating your entities with one of these annotations: org.springframework.data.neo4j.core.schema.Node, org.springframework.data.neo4j.core.schema.RelationshipProperties (preferred), or consider extending one of the following types with your repository: org.springframework.data.neo4j.repository.ReactiveNeo4jRepository
+    2026-05-10T21:56:25.969-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data Neo4j - Could not safely identify store assignment for repository candidate interface com.circleguard.promotion.repository.jpa.SystemSettingsRepository; If you want this repository to be a Neo4j repository, consider annotating your entities with one of these annotations: org.springframework.data.neo4j.core.schema.Node, org.springframework.data.neo4j.core.schema.RelationshipProperties (preferred), or consider extending one of the following types with your repository: org.springframework.data.neo4j.repository.ReactiveNeo4jRepository
+    2026-05-10T21:56:25.970-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33 ms. Found 0 Neo4j repository interfaces.
+    2026-05-10T21:56:25.991-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+    2026-05-10T21:56:25.992-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+    2026-05-10T21:56:26.014-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.circleguard.promotion.repository.graph.CircleNodeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+    2026-05-10T21:56:26.015-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.circleguard.promotion.repository.graph.UserNodeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+    2026-05-10T21:56:26.015-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.circleguard.promotion.repository.jpa.AccessPointRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+    2026-05-10T21:56:26.015-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.circleguard.promotion.repository.jpa.BuildingRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+    2026-05-10T21:56:26.016-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.circleguard.promotion.repository.jpa.FloorRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+    2026-05-10T21:56:26.016-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.circleguard.promotion.repository.jpa.SystemSettingsRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+    2026-05-10T21:56:26.016-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9 ms. Found 0 Redis repository interfaces.
+
+HealthStatusE2ETest STANDARD_ERROR
+    WARNING: A Java agent has been loaded dynamically (/home/nicolas/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.12/be4984cb6fd1ef1d11f218a648889dfda44b8a15/byte-buddy-agent-1.14.12.jar)
+    WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+    WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+    WARNING: Dynamic loading of agents will be disallowed by default in a future release
+
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+
+> Task :services:circleguard-promotion-service:test
+
+HealthStatusE2ETest STANDARD_OUT
+    2026-05-10T21:56:28.571-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+    2026-05-10T21:56:28.959-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7acb5200
+    2026-05-10T21:56:28.962-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+    2026-05-10T21:56:29.088-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.22.3 by Redgate
+    2026-05-10T21:56:29.088-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] o.f.c.internal.license.VersionPrinter    : See release notes here: https://rd.gt/416ObMi
+    2026-05-10T21:56:29.089-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] o.f.c.internal.license.VersionPrinter    : 
+    2026-05-10T21:56:29.112-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/circleguard_promotion (PostgreSQL 16.13)
+    2026-05-10T21:56:29.127-05:00  WARN 612785 --- [circleguard-promotion-service] [    Test worker] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 16.13 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 15.
+    2026-05-10T21:56:29.193-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] o.f.core.internal.command.DbValidate     : Successfully validated 3 migrations (execution time 00:00.050s)
+    2026-05-10T21:56:29.220-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+    2026-05-10T21:56:29.252-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "2 - add status timing settings"
+    2026-05-10T21:56:29.268-05:00 ERROR 612785 --- [circleguard-promotion-service] [    Test worker] o.f.core.internal.command.DbMigrate      : Migration of schema "public" to version "2 - add status timing settings" failed! Changes successfully rolled back.
+    2026-05-10T21:56:29.278-05:00  WARN 612785 --- [circleguard-promotion-service] [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Migration V2__add_status_timing_settings.sql failed
+    ---------------------------------------------------
+    SQL State  : 42P01
+    Error Code : 0
+    Message    : ERROR: relation "system_settings" does not exist
+    Location   : db/migration/V2__add_status_timing_settings.sql (/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-promotion-service/build/resources/main/db/migration/V2__add_status_timing_settings.sql)
+    Line       : 1
+    Statement  : ALTER TABLE system_settings 
+    ADD COLUMN mandatory_fence_days INTEGER NOT NULL DEFAULT 14,
+    ADD COLUMN encounter_window_days INTEGER NOT NULL DEFAULT 14
+
+    2026-05-10T21:56:29.279-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+    2026-05-10T21:56:29.302-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+    2026-05-10T21:56:29.327-05:00  INFO 612785 --- [circleguard-promotion-service] [    Test worker] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+    Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+    2026-05-10T21:56:29.363-05:00 ERROR 612785 --- [circleguard-promotion-service] [    Test worker] o.s.boot.SpringApplication               : Application run failed
+
+    org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Migration V2__add_status_timing_settings.sql failed
+    ---------------------------------------------------
+    SQL State  : 42P01
+    Error Code : 0
+    Message    : ERROR: relation "system_settings" does not exist
+    Location   : db/migration/V2__add_status_timing_settings.sql (/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-promotion-service/build/resources/main/db/migration/V2__add_status_timing_settings.sql)
+    Line       : 1
+    Statement  : ALTER TABLE system_settings 
+    ADD COLUMN mandatory_fence_days INTEGER NOT NULL DEFAULT 14,
+    ADD COLUMN encounter_window_days INTEGER NOT NULL DEFAULT 14
+
+    	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786) ~[spring-beans-6.1.5.jar:6.1.5]
+    	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.5.jar:6.1.5]
+    	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.5.jar:6.1.5]
+    	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.5.jar:6.1.5]
+    	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.5.jar:6.1.5]
+    	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.5.jar:6.1.5]
+    	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.5.jar:6.1.5]
+    	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:313) ~[spring-beans-6.1.5.jar:6.1.5]
+    	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.5.jar:6.1.5]
+    	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1234) ~[spring-context-6.1.5.jar:6.1.5]
+    	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:952) ~[spring-context-6.1.5.jar:6.1.5]
+    	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.5.jar:6.1.5]
+    	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.4.jar:3.2.4]
+    	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.4.jar:3.2.4]
+    	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.4.jar:3.2.4]
+    	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:137) ~[spring-boot-test-3.2.4.jar:3.2.4]
+    	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58) ~[spring-core-6.1.5.jar:6.1.5]
+    	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46) ~[spring-core-6.1.5.jar:6.1.5]
+    	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1454) ~[spring-boot-3.2.4.jar:3.2.4]
+    	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:553) ~[spring-boot-test-3.2.4.jar:3.2.4]
+    	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:137) ~[spring-boot-test-3.2.4.jar:3.2.4]
+    	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:108) ~[spring-boot-test-3.2.4.jar:3.2.4]
+    	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225) ~[spring-test-6.1.5.jar:6.1.5]
+    	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152) ~[spring-test-6.1.5.jar:6.1.5]
+    	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130) ~[spring-test-6.1.5.jar:6.1.5]
+    	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191) ~[spring-test-6.1.5.jar:6.1.5]
+    	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130) ~[spring-test-6.1.5.jar:6.1.5]
+    	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260) ~[spring-test-6.1.5.jar:6.1.5]
+    	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163) ~[spring-test-6.1.5.jar:6.1.5]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:378) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:383) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:378) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
+    	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179) ~[na:na]
+    	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708) ~[na:na]
+    	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[na:na]
+    	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
+    	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310) ~[na:na]
+    	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735) ~[na:na]
+    	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734) ~[na:na]
+    	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762) ~[na:na]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:377) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:290) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:289) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:279) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at java.base/java.util.Optional.orElseGet(Optional.java:364) ~[na:na]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:278) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:106) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:105) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:69) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+    	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+    	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:124) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:99) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:94) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63) ~[na:na]
+    	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+    	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+    	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36) ~[na:na]
+    	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24) ~[na:na]
+    	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33) ~[na:na]
+    	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92) ~[na:na]
+    	at jdk.proxy1/jdk.proxy1.$Proxy4.stop(Unknown Source) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63) ~[na:na]
+    	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56) ~[na:na]
+    	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:122) ~[na:na]
+    	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:72) ~[na:na]
+    	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69) ~[gradle-worker.jar:na]
+    	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74) ~[gradle-worker.jar:na]
+    Caused by: org.flywaydb.core.internal.command.DbMigrate$FlywayMigrateException: Migration V2__add_status_timing_settings.sql failed
+    ---------------------------------------------------
+    SQL State  : 42P01
+    Error Code : 0
+    Message    : ERROR: relation "system_settings" does not exist
+    Location   : db/migration/V2__add_status_timing_settings.sql (/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-promotion-service/build/resources/main/db/migration/V2__add_status_timing_settings.sql)
+    Line       : 1
+    Statement  : ALTER TABLE system_settings 
+    ADD COLUMN mandatory_fence_days INTEGER NOT NULL DEFAULT 14,
+    ADD COLUMN encounter_window_days INTEGER NOT NULL DEFAULT 14
+
+    	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:382) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.command.DbMigrate.lambda$applyMigrations$1(DbMigrate.java:272) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:55) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.command.DbMigrate.applyMigrations(DbMigrate.java:271) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.command.DbMigrate.migrateGroup(DbMigrate.java:244) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.command.DbMigrate.lambda$migrateAll$0(DbMigrate.java:139) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.database.postgresql.PostgreSQLAdvisoryLockTemplate.execute(PostgreSQLAdvisoryLockTemplate.java:73) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.database.postgresql.PostgreSQLAdvisoryLockTemplate.lambda$execute$0(PostgreSQLAdvisoryLockTemplate.java:56) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:55) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.database.postgresql.PostgreSQLAdvisoryLockTemplate.execute(PostgreSQLAdvisoryLockTemplate.java:56) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.database.postgresql.PostgreSQLConnection.lock(PostgreSQLConnection.java:96) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory.lock(JdbcTableSchemaHistory.java:144) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.command.DbMigrate.migrateAll(DbMigrate.java:139) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.command.DbMigrate.migrate(DbMigrate.java:97) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.Flyway.lambda$migrate$0(Flyway.java:188) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.FlywayExecutor.execute(FlywayExecutor.java:213) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.Flyway.migrate(Flyway.java:140) ~[flyway-core-9.22.3.jar:na]
+    	at org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:66) ~[spring-boot-autoconfigure-3.2.4.jar:3.2.4]
+    	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833) ~[spring-beans-6.1.5.jar:6.1.5]
+    	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782) ~[spring-beans-6.1.5.jar:6.1.5]
+    	... 107 common frames omitted
+    Caused by: org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: Migration V2__add_status_timing_settings.sql failed
+    ---------------------------------------------------
+    SQL State  : 42P01
+    Error Code : 0
+    Message    : ERROR: relation "system_settings" does not exist
+    Location   : db/migration/V2__add_status_timing_settings.sql (/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-promotion-service/build/resources/main/db/migration/V2__add_status_timing_settings.sql)
+    Line       : 1
+    Statement  : ALTER TABLE system_settings 
+    ADD COLUMN mandatory_fence_days INTEGER NOT NULL DEFAULT 14,
+    ADD COLUMN encounter_window_days INTEGER NOT NULL DEFAULT 14
+
+    	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.handleException(DefaultSqlScriptExecutor.java:267) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:222) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.execute(DefaultSqlScriptExecutor.java:126) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.executeOnce(SqlMigrationExecutor.java:68) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.lambda$execute$0(SqlMigrationExecutor.java:57) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.database.DefaultExecutionStrategy.execute(DefaultExecutionStrategy.java:27) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.execute(SqlMigrationExecutor.java:56) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:374) ~[flyway-core-9.22.3.jar:na]
+    	... 126 common frames omitted
+    Caused by: org.postgresql.util.PSQLException: ERROR: relation "system_settings" does not exist
+    	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.2.jar:42.6.2]
+    	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401) ~[postgresql-42.6.2.jar:42.6.2]
+    	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368) ~[postgresql-42.6.2.jar:42.6.2]
+    	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498) ~[postgresql-42.6.2.jar:42.6.2]
+    	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415) ~[postgresql-42.6.2.jar:42.6.2]
+    	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:335) ~[postgresql-42.6.2.jar:42.6.2]
+    	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:321) ~[postgresql-42.6.2.jar:42.6.2]
+    	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:297) ~[postgresql-42.6.2.jar:42.6.2]
+    	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:292) ~[postgresql-42.6.2.jar:42.6.2]
+    	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-5.0.1.jar:na]
+    	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-5.0.1.jar:na]
+    	at org.flywaydb.core.internal.jdbc.JdbcTemplate.executeStatement(JdbcTemplate.java:201) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.sqlscript.ParsedSqlStatement.execute(ParsedSqlStatement.java:95) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:210) ~[flyway-core-9.22.3.jar:na]
+    	... 132 common frames omitted
+
+
+HealthStatusE2ETest STANDARD_ERROR
+
+
+
+    ============================
+    CONDITIONS EVALUATION REPORT
+    ============================
+
+
+    Positive matches:
+    -----------------
+
+        None
+
+
+    Negative matches:
+    -----------------
+
+        None
+
+
+    Exclusions:
+    -----------
+
+        None
+
+
+    Unconditional classes:
+    ----------------------
+
+        None
+
+
+
+
+HealthStatusE2ETest STANDARD_OUT
+    2026-05-10T21:56:29.408-05:00  WARN 612785 --- [circleguard-promotion-service] [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener] to prepare test instance [com.circleguard.promotion.e2e.HealthStatusE2ETest@1afa048a]
+
+    java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@632b96b8 testClass = com.circleguard.promotion.e2e.HealthStatusE2ETest, locations = [], classes = [com.circleguard.promotion.PromotionApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@4b3fa0b3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@5bd82fed, [ImportsContextCustomizer@5a07ae2f key = [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, com.circleguard.promotion.security.SecurityConfig, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@2313052e, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@52045dbe, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@6ac8665e, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@129b4fe2, org.springframework.boot.test.context.SpringBootTestAnnotation@ed473e96], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+    	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:180) ~[spring-test-6.1.5.jar:6.1.5]
+    	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130) ~[spring-test-6.1.5.jar:6.1.5]
+    	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191) ~[spring-test-6.1.5.jar:6.1.5]
+    	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130) ~[spring-test-6.1.5.jar:6.1.5]
+    	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260) ~[spring-test-6.1.5.jar:6.1.5]
+    	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163) ~[spring-test-6.1.5.jar:6.1.5]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:378) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:383) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:378) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
+    	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179) ~[na:na]
+    	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708) ~[na:na]
+    	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[na:na]
+    	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
+    	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310) ~[na:na]
+    	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735) ~[na:na]
+    	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734) ~[na:na]
+    	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762) ~[na:na]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:377) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:290) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:289) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:279) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at java.base/java.util.Optional.orElseGet(Optional.java:364) ~[na:na]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:278) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:106) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:105) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:69) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+    	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+    	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:124) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:99) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:94) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63) ~[na:na]
+    	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+    	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+    	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36) ~[na:na]
+    	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24) ~[na:na]
+    	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33) ~[na:na]
+    	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92) ~[na:na]
+    	at jdk.proxy1/jdk.proxy1.$Proxy4.stop(Unknown Source) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63) ~[na:na]
+    	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56) ~[na:na]
+    	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:122) ~[na:na]
+    	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:72) ~[na:na]
+    	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69) ~[gradle-worker.jar:na]
+    	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74) ~[gradle-worker.jar:na]
+    Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Migration V2__add_status_timing_settings.sql failed
+    ---------------------------------------------------
+    SQL State  : 42P01
+    Error Code : 0
+    Message    : ERROR: relation "system_settings" does not exist
+    Location   : db/migration/V2__add_status_timing_settings.sql (/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-promotion-service/build/resources/main/db/migration/V2__add_status_timing_settings.sql)
+    Line       : 1
+    Statement  : ALTER TABLE system_settings 
+    ADD COLUMN mandatory_fence_days INTEGER NOT NULL DEFAULT 14,
+    ADD COLUMN encounter_window_days INTEGER NOT NULL DEFAULT 14
+
+    	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786) ~[spring-beans-6.1.5.jar:6.1.5]
+    	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.5.jar:6.1.5]
+    	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.5.jar:6.1.5]
+    	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.5.jar:6.1.5]
+    	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.5.jar:6.1.5]
+    	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.5.jar:6.1.5]
+    	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.5.jar:6.1.5]
+    	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:313) ~[spring-beans-6.1.5.jar:6.1.5]
+    	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.5.jar:6.1.5]
+    	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1234) ~[spring-context-6.1.5.jar:6.1.5]
+    	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:952) ~[spring-context-6.1.5.jar:6.1.5]
+    	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.5.jar:6.1.5]
+    	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.4.jar:3.2.4]
+    	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.4.jar:3.2.4]
+    	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.4.jar:3.2.4]
+    	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:137) ~[spring-boot-test-3.2.4.jar:3.2.4]
+    	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58) ~[spring-core-6.1.5.jar:6.1.5]
+    	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46) ~[spring-core-6.1.5.jar:6.1.5]
+    	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1454) ~[spring-boot-3.2.4.jar:3.2.4]
+    	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:553) ~[spring-boot-test-3.2.4.jar:3.2.4]
+    	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:137) ~[spring-boot-test-3.2.4.jar:3.2.4]
+    	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:108) ~[spring-boot-test-3.2.4.jar:3.2.4]
+    	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225) ~[spring-test-6.1.5.jar:6.1.5]
+    	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152) ~[spring-test-6.1.5.jar:6.1.5]
+    	... 84 common frames omitted
+    Caused by: org.flywaydb.core.internal.command.DbMigrate$FlywayMigrateException: Migration V2__add_status_timing_settings.sql failed
+    ---------------------------------------------------
+    SQL State  : 42P01
+    Error Code : 0
+    Message    : ERROR: relation "system_settings" does not exist
+    Location   : db/migration/V2__add_status_timing_settings.sql (/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-promotion-service/build/resources/main/db/migration/V2__add_status_timing_settings.sql)
+    Line       : 1
+    Statement  : ALTER TABLE system_settings 
+    ADD COLUMN mandatory_fence_days INTEGER NOT NULL DEFAULT 14,
+    ADD COLUMN encounter_window_days INTEGER NOT NULL DEFAULT 14
+
+    	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:382) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.command.DbMigrate.lambda$applyMigrations$1(DbMigrate.java:272) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:55) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.command.DbMigrate.applyMigrations(DbMigrate.java:271) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.command.DbMigrate.migrateGroup(DbMigrate.java:244) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.command.DbMigrate.lambda$migrateAll$0(DbMigrate.java:139) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.database.postgresql.PostgreSQLAdvisoryLockTemplate.execute(PostgreSQLAdvisoryLockTemplate.java:73) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.database.postgresql.PostgreSQLAdvisoryLockTemplate.lambda$execute$0(PostgreSQLAdvisoryLockTemplate.java:56) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:55) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.database.postgresql.PostgreSQLAdvisoryLockTemplate.execute(PostgreSQLAdvisoryLockTemplate.java:56) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.database.postgresql.PostgreSQLConnection.lock(PostgreSQLConnection.java:96) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory.lock(JdbcTableSchemaHistory.java:144) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.command.DbMigrate.migrateAll(DbMigrate.java:139) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.command.DbMigrate.migrate(DbMigrate.java:97) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.Flyway.lambda$migrate$0(Flyway.java:188) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.FlywayExecutor.execute(FlywayExecutor.java:213) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.Flyway.migrate(Flyway.java:140) ~[flyway-core-9.22.3.jar:na]
+    	at org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:66) ~[spring-boot-autoconfigure-3.2.4.jar:3.2.4]
+    	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833) ~[spring-beans-6.1.5.jar:6.1.5]
+    	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782) ~[spring-beans-6.1.5.jar:6.1.5]
+    	... 107 common frames omitted
+    Caused by: org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: Migration V2__add_status_timing_settings.sql failed
+    ---------------------------------------------------
+    SQL State  : 42P01
+    Error Code : 0
+    Message    : ERROR: relation "system_settings" does not exist
+    Location   : db/migration/V2__add_status_timing_settings.sql (/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-promotion-service/build/resources/main/db/migration/V2__add_status_timing_settings.sql)
+    Line       : 1
+    Statement  : ALTER TABLE system_settings 
+    ADD COLUMN mandatory_fence_days INTEGER NOT NULL DEFAULT 14,
+    ADD COLUMN encounter_window_days INTEGER NOT NULL DEFAULT 14
+
+    	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.handleException(DefaultSqlScriptExecutor.java:267) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:222) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.execute(DefaultSqlScriptExecutor.java:126) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.executeOnce(SqlMigrationExecutor.java:68) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.lambda$execute$0(SqlMigrationExecutor.java:57) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.database.DefaultExecutionStrategy.execute(DefaultExecutionStrategy.java:27) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.execute(SqlMigrationExecutor.java:56) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:374) ~[flyway-core-9.22.3.jar:na]
+    	... 126 common frames omitted
+    Caused by: org.postgresql.util.PSQLException: ERROR: relation "system_settings" does not exist
+    	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.2.jar:42.6.2]
+    	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401) ~[postgresql-42.6.2.jar:42.6.2]
+    	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368) ~[postgresql-42.6.2.jar:42.6.2]
+    	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498) ~[postgresql-42.6.2.jar:42.6.2]
+    	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415) ~[postgresql-42.6.2.jar:42.6.2]
+    	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:335) ~[postgresql-42.6.2.jar:42.6.2]
+    	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:321) ~[postgresql-42.6.2.jar:42.6.2]
+    	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:297) ~[postgresql-42.6.2.jar:42.6.2]
+    	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:292) ~[postgresql-42.6.2.jar:42.6.2]
+    	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-5.0.1.jar:na]
+    	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-5.0.1.jar:na]
+    	at org.flywaydb.core.internal.jdbc.JdbcTemplate.executeStatement(JdbcTemplate.java:201) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.sqlscript.ParsedSqlStatement.execute(ParsedSqlStatement.java:95) ~[flyway-core-9.22.3.jar:na]
+    	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:210) ~[flyway-core-9.22.3.jar:na]
+    	... 132 common frames omitted
+
+
+
+Gradle Test Executor 16 finished executing tests.
+
+> Task :services:circleguard-promotion-service:test FAILED
+HealthStatusE2ETest > reportShouldUpdateStatusWithOverride() FAILED
+    java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@632b96b8 testClass = com.circleguard.promotion.e2e.HealthStatusE2ETest, locations = [], classes = [com.circleguard.promotion.PromotionApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@4b3fa0b3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@5bd82fed, [ImportsContextCustomizer@5a07ae2f key = [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, com.circleguard.promotion.security.SecurityConfig, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@2313052e, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@52045dbe, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@6ac8665e, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@129b4fe2, org.springframework.boot.test.context.SpringBootTestAnnotation@ed473e96], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+        at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:180)
+        at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
+        at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191)
+        at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130)
+        at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
+        at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163)
+        at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:378)
+        at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:383)
+        at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:378)
+        at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+        at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+        at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
+        at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+        at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+        at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
+        at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+        at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+        at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+        at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:377)
+        at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:290)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+        at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:289)
+        at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:279)
+        at java.base/java.util.Optional.orElseGet(Optional.java:364)
+        at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:278)
+        at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:106)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:105)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:69)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+        at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+        at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+        at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+        at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+        at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+        at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+        at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+        at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:124)
+        at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:99)
+        at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:94)
+        at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63)
+        at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+        at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+        at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+        at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+        at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+        at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92)
+        at jdk.proxy1/jdk.proxy1.$Proxy4.stop(Unknown Source)
+        at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200)
+        at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132)
+        at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)
+        at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)
+        at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+        at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:122)
+        at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:72)
+        at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+        at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+
+        Caused by:
+        org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Migration V2__add_status_timing_settings.sql failed
+        ---------------------------------------------------
+        SQL State  : 42P01
+        Error Code : 0
+        Message    : ERROR: relation "system_settings" does not exist
+        Location   : db/migration/V2__add_status_timing_settings.sql (/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-promotion-service/build/resources/main/db/migration/V2__add_status_timing_settings.sql)
+        Line       : 1
+        Statement  : ALTER TABLE system_settings 
+        ADD COLUMN mandatory_fence_days INTEGER NOT NULL DEFAULT 14,
+        ADD COLUMN encounter_window_days INTEGER NOT NULL DEFAULT 14
+            at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786)
+            at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+            at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+            at app//org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
+            at app//org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+            at app//org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
+            at app//org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+            at app//org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:313)
+            at app//org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+            at app//org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1234)
+            at app//org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:952)
+            at app//org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+            at app//org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+            at app//org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+            at app//org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+            at app//org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:137)
+            at app//org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
+            at app//org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
+            at app//org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1454)
+            at app//org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:553)
+            at app//org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:137)
+            at app//org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:108)
+            at app//org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225)
+            at app//org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152)
+            ... 84 more
+
+            Caused by:
+            org.flywaydb.core.internal.command.DbMigrate$FlywayMigrateException: Migration V2__add_status_timing_settings.sql failed
+            ---------------------------------------------------
+            SQL State  : 42P01
+            Error Code : 0
+            Message    : ERROR: relation "system_settings" does not exist
+            Location   : db/migration/V2__add_status_timing_settings.sql (/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-promotion-service/build/resources/main/db/migration/V2__add_status_timing_settings.sql)
+            Line       : 1
+            Statement  : ALTER TABLE system_settings 
+            ADD COLUMN mandatory_fence_days INTEGER NOT NULL DEFAULT 14,
+            ADD COLUMN encounter_window_days INTEGER NOT NULL DEFAULT 14
+                at app//org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:382)
+                at app//org.flywaydb.core.internal.command.DbMigrate.lambda$applyMigrations$1(DbMigrate.java:272)
+                at app//org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:55)
+                at app//org.flywaydb.core.internal.command.DbMigrate.applyMigrations(DbMigrate.java:271)
+                at app//org.flywaydb.core.internal.command.DbMigrate.migrateGroup(DbMigrate.java:244)
+                at app//org.flywaydb.core.internal.command.DbMigrate.lambda$migrateAll$0(DbMigrate.java:139)
+                at app//org.flywaydb.core.internal.database.postgresql.PostgreSQLAdvisoryLockTemplate.execute(PostgreSQLAdvisoryLockTemplate.java:73)
+                at app//org.flywaydb.core.internal.database.postgresql.PostgreSQLAdvisoryLockTemplate.lambda$execute$0(PostgreSQLAdvisoryLockTemplate.java:56)
+                at app//org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:55)
+                at app//org.flywaydb.core.internal.database.postgresql.PostgreSQLAdvisoryLockTemplate.execute(PostgreSQLAdvisoryLockTemplate.java:56)
+                at app//org.flywaydb.core.internal.database.postgresql.PostgreSQLConnection.lock(PostgreSQLConnection.java:96)
+                at app//org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory.lock(JdbcTableSchemaHistory.java:144)
+                at app//org.flywaydb.core.internal.command.DbMigrate.migrateAll(DbMigrate.java:139)
+                at app//org.flywaydb.core.internal.command.DbMigrate.migrate(DbMigrate.java:97)
+                at app//org.flywaydb.core.Flyway.lambda$migrate$0(Flyway.java:188)
+                at app//org.flywaydb.core.FlywayExecutor.execute(FlywayExecutor.java:213)
+                at app//org.flywaydb.core.Flyway.migrate(Flyway.java:140)
+                at app//org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:66)
+                at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833)
+                at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782)
+                ... 107 more
+
+                Caused by:
+                org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: Migration V2__add_status_timing_settings.sql failed
+                ---------------------------------------------------
+                SQL State  : 42P01
+                Error Code : 0
+                Message    : ERROR: relation "system_settings" does not exist
+                Location   : db/migration/V2__add_status_timing_settings.sql (/home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-promotion-service/build/resources/main/db/migration/V2__add_status_timing_settings.sql)
+                Line       : 1
+                Statement  : ALTER TABLE system_settings 
+                ADD COLUMN mandatory_fence_days INTEGER NOT NULL DEFAULT 14,
+                ADD COLUMN encounter_window_days INTEGER NOT NULL DEFAULT 14
+                    at app//org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.handleException(DefaultSqlScriptExecutor.java:267)
+                    at app//org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:222)
+                    at app//org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.execute(DefaultSqlScriptExecutor.java:126)
+                    at app//org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.executeOnce(SqlMigrationExecutor.java:68)
+                    at app//org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.lambda$execute$0(SqlMigrationExecutor.java:57)
+                    at app//org.flywaydb.core.internal.database.DefaultExecutionStrategy.execute(DefaultExecutionStrategy.java:27)
+                    at app//org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.execute(SqlMigrationExecutor.java:56)
+                    at app//org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:374)
+                    ... 126 more
+
+                    Caused by:
+                    org.postgresql.util.PSQLException: ERROR: relation "system_settings" does not exist
+                        at app//org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713)
+                        at app//org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401)
+                        at app//org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368)
+                        at app//org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498)
+                        at app//org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415)
+                        at app//org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:335)
+                        at app//org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:321)
+                        at app//org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:297)
+                        at app//org.postgresql.jdbc.PgStatement.execute(PgStatement.java:292)
+                        at app//com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+                        at app//com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+                        at app//org.flywaydb.core.internal.jdbc.JdbcTemplate.executeStatement(JdbcTemplate.java:201)
+                        at app//org.flywaydb.core.internal.sqlscript.ParsedSqlStatement.execute(ParsedSqlStatement.java:95)
+                        at app//org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:210)
+                        ... 132 more
+
+HealthStatusE2ETest STANDARD_OUT
+    2026-05-10T21:56:29.448-05:00  WARN 612785 --- [circleguard-promotion-service] [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener] to prepare test instance [com.circleguard.promotion.e2e.HealthStatusE2ETest@5008559a]
+
+    java.lang.IllegalStateException: ApplicationContext failure threshold (1) exceeded: skipping repeated attempt to load context for [WebMergedContextConfiguration@632b96b8 testClass = com.circleguard.promotion.e2e.HealthStatusE2ETest, locations = [], classes = [com.circleguard.promotion.PromotionApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@4b3fa0b3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@5bd82fed, [ImportsContextCustomizer@5a07ae2f key = [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, com.circleguard.promotion.security.SecurityConfig, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@2313052e, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@52045dbe, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@6ac8665e, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@129b4fe2, org.springframework.boot.test.context.SpringBootTestAnnotation@ed473e96], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+    	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:145) ~[spring-test-6.1.5.jar:6.1.5]
+    	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130) ~[spring-test-6.1.5.jar:6.1.5]
+    	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191) ~[spring-test-6.1.5.jar:6.1.5]
+    	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130) ~[spring-test-6.1.5.jar:6.1.5]
+    	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260) ~[spring-test-6.1.5.jar:6.1.5]
+    	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163) ~[spring-test-6.1.5.jar:6.1.5]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:378) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:383) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:378) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
+    	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179) ~[na:na]
+    	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708) ~[na:na]
+    	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[na:na]
+    	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
+    	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310) ~[na:na]
+    	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735) ~[na:na]
+    	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734) ~[na:na]
+    	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762) ~[na:na]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:377) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:290) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:289) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:279) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at java.base/java.util.Optional.orElseGet(Optional.java:364) ~[na:na]
+    	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:278) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:106) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:105) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:69) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+    	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+    	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+    	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+    	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:124) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:99) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:94) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63) ~[na:na]
+    	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+    	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+    	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36) ~[na:na]
+    	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24) ~[na:na]
+    	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33) ~[na:na]
+    	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92) ~[na:na]
+    	at jdk.proxy1/jdk.proxy1.$Proxy4.stop(Unknown Source) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103) ~[na:na]
+    	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63) ~[na:na]
+    	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56) ~[na:na]
+    	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:122) ~[na:na]
+    	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:72) ~[na:na]
+    	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69) ~[gradle-worker.jar:na]
+    	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74) ~[gradle-worker.jar:na]
+
+
+HealthStatusE2ETest > resolveShouldBeForbiddenForStudent() FAILED
+    java.lang.IllegalStateException: ApplicationContext failure threshold (1) exceeded: skipping repeated attempt to load context for [WebMergedContextConfiguration@632b96b8 testClass = com.circleguard.promotion.e2e.HealthStatusE2ETest, locations = [], classes = [com.circleguard.promotion.PromotionApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@4b3fa0b3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@5bd82fed, [ImportsContextCustomizer@5a07ae2f key = [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, com.circleguard.promotion.security.SecurityConfig, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@2313052e, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@52045dbe, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@6ac8665e, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@129b4fe2, org.springframework.boot.test.context.SpringBootTestAnnotation@ed473e96], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+        at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:145)
+        at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
+        at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191)
+        at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130)
+        at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
+        at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163)
+        at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:378)
+        at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:383)
+        at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:378)
+        at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+        at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+        at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
+        at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+        at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+        at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
+        at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+        at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+        at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+        at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:377)
+        at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:290)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+        at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:289)
+        at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:279)
+        at java.base/java.util.Optional.orElseGet(Optional.java:364)
+        at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:278)
+        at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:106)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:105)
+        at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:69)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+        at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+        at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+        at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+        at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+        at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+        at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+        at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+        at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+        at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+        at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+        at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+        at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:124)
+        at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:99)
+        at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:94)
+        at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63)
+        at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+        at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+        at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+        at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+        at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+        at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92)
+        at jdk.proxy1/jdk.proxy1.$Proxy4.stop(Unknown Source)
+        at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200)
+        at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132)
+        at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)
+        at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)
+        at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+        at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:122)
+        at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:72)
+        at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+        at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+
+2 tests completed, 2 failed
+Finished generating test XML results (0.006 secs) into: /home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-promotion-service/build/test-results/test
+Generating HTML test report...
+Finished generating test html results (0.011 secs) into: /home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller 2/circle-guard-public/services/circleguard-promotion-service/build/reports/tests/test
+
+[Incubating] Problems report is available at: file:///home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller%202/circle-guard-public/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':services:circleguard-promotion-service:test'.
+> There were failing tests. See the report at: file:///home/nicolas/Documentos/ICESI/Semestre7/Ingesoft5/Taller%202/circle-guard-public/services/circleguard-promotion-service/build/reports/tests/test/index.html
+
+* Try:
+> Run with --scan to get full insights.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 8s
+6 actionable tasks: 2 executed, 4 up-to-date

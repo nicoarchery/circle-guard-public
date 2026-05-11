@@ -36,4 +36,21 @@ public class GateControllerTest {
                 .andExpect(jsonPath("$.valid").value(true))
                 .andExpect(jsonPath("$.status").value("GREEN"));
     }
+
+    @Test
+    void shouldReturnValidationResultWhenAccessIsDenied() throws Exception {
+        String token = "blocked-token";
+        QrValidationService.ValidationResult mockResult =
+            new QrValidationService.ValidationResult(false, "RED", "Access Denied: Health Risk Detected");
+
+        Mockito.when(validationService.validateToken(token)).thenReturn(mockResult);
+
+        mockMvc.perform(post("/api/v1/gate/validate")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"token\": \"blocked-token\"}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.valid").value(false))
+                .andExpect(jsonPath("$.status").value("RED"))
+                .andExpect(jsonPath("$.message").value("Access Denied: Health Risk Detected"));
+    }
 }

@@ -1,3 +1,6 @@
+import org.gradle.api.tasks.testing.Test
+import org.gradle.api.tasks.SourceSetContainer
+
 plugins {
     id("org.springframework.boot") version "3.2.4" apply false
     id("io.spring.dependency-management") version "1.1.4" apply false
@@ -45,5 +48,37 @@ subprojects {
 
     tasks.withType<Test> {
         useJUnitPlatform()
+    }
+
+    // Add a dedicated e2eTest task per subproject that only runs classes matching *E2ETest
+    tasks.register<Test>("e2eTest") {
+        description = "Runs E2E tests in this project (classes matching *E2ETest)"
+        group = "verification"
+        useJUnitPlatform()
+        // Only run if there are compiled test classes matching the E2E pattern
+        onlyIf {
+            try {
+                val sourceSets = extensions.getByType(SourceSetContainer::class.java)
+                val classesDirs = sourceSets.getByName("test").output.classesDirs
+                classesDirs.any { dir ->
+                    fileTree(dir).matching { include("**/*E2ETest*.class") }.files.isNotEmpty()
+                }
+            } catch (e: Exception) {
+                false
+            }
+        }
+        filter {
+            includeTestsMatching("*E2ETest")
+        }
+    }
+}
+
+// Aggregate e2eTest across all subprojects from the root project
+tasks.register("e2eTest") {
+    group = "verification"
+    description = "Run all e2eTest tasks in subprojects"
+    // Ensure the task depends on each subproject's :<project>:e2eTest
+    subprojects.forEach { proj ->
+        dependsOn("${proj.path}:e2eTest")
     }
 }

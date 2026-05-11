@@ -11,6 +11,7 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.security.Key;
+import java.util.Date;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -64,5 +65,22 @@ public class QrValidationServiceTest {
         
         assertFalse(result.valid());
         assertEquals("RED", result.status());
+    }
+
+    @Test
+    void shouldRejectExpiredToken() {
+        String anonymousId = UUID.randomUUID().toString();
+        Key key = Keys.hmacShaKeyFor(secret.getBytes());
+        String token = Jwts.builder()
+                .setSubject(anonymousId)
+                .setExpiration(new Date(System.currentTimeMillis() - 60_000))
+                .signWith(key, SignatureAlgorithm.HS256)
+                .compact();
+
+        QrValidationService.ValidationResult result = service.validateToken(token);
+
+        assertFalse(result.valid());
+        assertEquals("RED", result.status());
+        assertEquals("Invalid or Expired Token", result.message());
     }
 }

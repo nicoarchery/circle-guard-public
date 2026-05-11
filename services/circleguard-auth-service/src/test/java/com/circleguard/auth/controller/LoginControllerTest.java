@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.test.web.servlet.MockMvc;
@@ -63,5 +64,33 @@ public class LoginControllerTest {
                 .andExpect(jsonPath("$.token").value(token))
                 .andExpect(jsonPath("$.anonymousId").value(anonymousId.toString()))
                 .andExpect(jsonPath("$.type").value("Bearer"));
+    }
+
+    @Test
+    void shouldRejectInvalidCredentials() throws Exception {
+        Mockito.when(authManager.authenticate(Mockito.any(UsernamePasswordAuthenticationToken.class)))
+                .thenThrow(new BadCredentialsException("Invalid credentials"));
+
+        mockMvc.perform(post("/api/v1/auth/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"username\": \"baduser\", \"password\": \"wrong\"}"))
+                .andExpect(status().isUnauthorized())
+                .andExpect(jsonPath("$.message").value("Invalid username or password"));
+    }
+
+    @Test
+    void shouldGenerateVisitorHandoffToken() throws Exception {
+        UUID anonymousId = UUID.randomUUID();
+        String token = "visitor-token";
+
+        Mockito.when(jwtService.generateToken(Mockito.eq(anonymousId), Mockito.any(Authentication.class)))
+                .thenReturn(token);
+
+        mockMvc.perform(post("/api/v1/auth/visitor/handoff")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"anonymousId\": \"" + anonymousId + "\"}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.token").value(token))
+                .andExpect(jsonPath("$.handoffPayload").value(org.hamcrest.Matchers.containsString(anonymousId.toString())));
     }
 }

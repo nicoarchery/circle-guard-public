@@ -1,7 +1,7 @@
 -- Initial Spatial Hierarchy Schema
 
 CREATE TABLE buildings (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id UUID DEFAULT RANDOM_UUID() PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     code VARCHAR(50) UNIQUE NOT NULL,
     description TEXT,
@@ -9,7 +9,7 @@ CREATE TABLE buildings (
 );
 
 CREATE TABLE floors (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id UUID DEFAULT RANDOM_UUID() PRIMARY KEY,
     building_id UUID REFERENCES buildings(id) ON DELETE CASCADE,
     floor_number INTEGER NOT NULL,
     name VARCHAR(255),
@@ -19,7 +19,7 @@ CREATE TABLE floors (
 );
 
 CREATE TABLE access_points (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id UUID DEFAULT RANDOM_UUID() PRIMARY KEY,
     mac_address VARCHAR(17) UNIQUE NOT NULL,
     floor_id UUID REFERENCES floors(id) ON DELETE CASCADE,
     coordinate_x DOUBLE PRECISION NOT NULL,
@@ -31,3 +31,12 @@ CREATE TABLE access_points (
 -- Indexing for lookup
 CREATE INDEX idx_ap_mac ON access_points(mac_address);
 CREATE INDEX idx_floor_building ON floors(building_id);
+
+CREATE TABLE system_settings (
+    id BIGSERIAL PRIMARY KEY,
+    unconfirmed_fencing_enabled BOOLEAN NOT NULL DEFAULT FALSE,
+    auto_threshold_seconds BIGINT NOT NULL DEFAULT 3600
+);
+
+-- Seed initial record
+INSERT INTO system_settings (unconfirmed_fencing_enabled, auto_threshold_seconds) VALUES (FALSE, 3600);

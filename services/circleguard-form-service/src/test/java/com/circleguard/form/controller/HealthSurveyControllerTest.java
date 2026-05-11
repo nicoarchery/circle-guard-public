@@ -39,4 +39,20 @@ class HealthSurveyControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").exists());
     }
+
+    @Test
+    void shouldReturnSubmittedAnonymousId() throws Exception {
+        UUID anonymousId = UUID.fromString("550e8400-e29b-41d4-a716-446655440000");
+        HealthSurvey surveyResponse = new HealthSurvey();
+        surveyResponse.setId(UUID.randomUUID());
+        surveyResponse.setAnonymousId(anonymousId);
+
+        Mockito.when(surveyService.submitSurvey(Mockito.any(HealthSurvey.class))).thenReturn(surveyResponse);
+
+        mockMvc.perform(post("/api/v1/surveys")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"anonymousId\": \"550e8400-e29b-41d4-a716-446655440000\", \"symptoms\": [\"COUGH\"]}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.anonymousId").value(anonymousId.toString()));
+    }
 }
