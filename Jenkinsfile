@@ -56,6 +56,7 @@ pipeline {
             steps {
                 sh '''#!/usr/bin/env bash
                     set -euo pipefail
+                    export SPRING_PROFILES_ACTIVE=test
                     export JWT_SECRET="my-super-secret-test-key-32-chars-long-012345"
                     ./gradlew clean test -x :services:circleguard-promotion-service:test
                 '''
