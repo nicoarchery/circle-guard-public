@@ -16,23 +16,32 @@ pipeline {
     }
 
     stages {
-                stage('Start local infra') {
-                        steps {
-                                sh '''#!/usr/bin/env bash
-                                        set -euo pipefail
-                                        if [ -f docker-compose.dev.yml ]; then
-                                            docker-compose -f docker-compose.dev.yml up -d
-                                            ./scripts/wait-for-services.sh
-                                        else
-                                            echo "docker-compose.dev.yml not found, skipping infra startup"
-                                        fi
-                                '''
-                        }
-                }
         stage('Checkout') {
             steps {
                 checkout scm
                 sh 'chmod +x ./gradlew'
+                sh 'chmod +x ./scripts/wait-for-services.sh || true'
+            }
+        }
+
+        stage('Start local infra') {
+            steps {
+                sh '''#!/usr/bin/env bash
+                    set -euo pipefail
+                    if [ -f docker-compose.dev.yml ]; then
+                        if command -v docker-compose >/dev/null 2>&1; then
+                            docker-compose -f docker-compose.dev.yml up -d
+                        elif docker compose version >/dev/null 2>&1; then
+                            docker compose -f docker-compose.dev.yml up -d
+                        else
+                            echo "docker-compose/docker compose not available, skipping infra startup"
+                            exit 0
+                        fi
+                        ./scripts/wait-for-services.sh
+                    else
+                        echo "docker-compose.dev.yml not found, skipping infra startup"
+                    fi
+                '''
             }
         }
 
@@ -209,12 +218,16 @@ EOF
     post {
         always {
             archiveArtifacts artifacts: 'services/**/build/libs/*.jar,build/release-notes/**', fingerprint: true, allowEmptyArchive: true
-            sh '''#!/usr/bin/env bash
-                set -euo pipefail
-                if [ -f docker-compose.dev.yml ]; then
-                  docker-compose -f docker-compose.dev.yml down
-                fi
-            '''
+                        sh '''#!/usr/bin/env bash
+                                set -euo pipefail
+                                if [ -f docker-compose.dev.yml ]; then
+                                    if command -v docker-compose >/dev/null 2>&1; then
+                                        docker-compose -f docker-compose.dev.yml down || true
+                                    elif docker compose version >/dev/null 2>&1; then
+                                        docker compose -f docker-compose.dev.yml down || true
+                                    fi
+                                fi
+                        '''
         }
     }
 }
