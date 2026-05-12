@@ -8,7 +8,8 @@ pipeline {
 
     environment {
         GRADLE_OPTS = '-Dorg.gradle.daemon=false -Dorg.gradle.parallel=true -Dorg.gradle.caching=true'
-        REGISTRY = 'registry.example.com/circleguard'
+        // Use GitHub Container Registry for images; set your GitHub user below
+        REGISTRY = 'ghcr.io/nicolas/circleguard'
         REGISTRY_CREDENTIALS_ID = 'circleguard-registry'
         KUBECONFIG_CREDENTIALS_ID = 'circleguard-kubeconfig'
         SERVICE_LIST = 'circleguard-auth-service,circleguard-identity-service,circleguard-gateway-service,circleguard-form-service,circleguard-promotion-service,circleguard-notification-service'
