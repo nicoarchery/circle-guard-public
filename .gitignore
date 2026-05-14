@@ -50,3 +50,4 @@ neo4jdata/
 # Markdown: ignore all .md files except the workshop README
 *.md
 !README_TALLER2.md
+!informeFinal.md
