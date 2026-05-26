@@ -47,6 +47,20 @@ web-build/
 pgdata/
 neo4jdata/
 
-# Markdown: ignore all .md files except the workshop README
-*.md
-!README_TALLER2.md
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+_override.tf
+_override.tf.json
+.terraform.lock.hcl
+
+# Markdown: keep documentation
+# (Removed the *.md ignore to allow docs/ and other READMEs)
+!*.md
+!**/*.md

@@ -84,6 +84,39 @@ CircleGuard follows a **Microservice Architecture** built on a **Hybrid Data Mod
 
 ---
 
+---
+
+## 📈 Estado del Proyecto (Cumplimiento)
+
+Actualmente, el proyecto cumple con los siguientes requisitos del curso:
+
+| Requisito | Estado | Evidencia Principal |
+|:---|:---:|:---|
+| **1. Metodología Ágil** | ✅ 100% | `docs/METODOLOGIA_AGIL.md` |
+| **2. Infraestructura (IaC)**| ✅ 100% | Carpeta `terraform/` y `docs/infrastructure_architecture.md` |
+| **3. Patrones de Diseño** | ✅ 100% | `docs/PATRONES_DISENO.md` e implementación en `PromotionService` |
+| **4. CI/CD Avanzado** | 🚧 20% | Jenkinsfile base (En proceso de integración con Azure) |
+| **5. Pruebas Completas** | 🚧 30% | Pruebas unitarias/integración de los microservicios |
+
+---
+
+## 🧪 Guía de Pruebas Rápidas
+
+### 1. Verificar Infraestructura (Azure)
+Para validar que el código de infraestructura funciona y es modular:
+```bash
+cd terraform/environments/dev
+terraform init
+terraform plan # Esto mostrará que está listo para crear 14+ recursos en Azure
+```
+
+### 2. Verificar Patrones de Diseño (Resiliencia)
+Hemos implementado **Circuit Breaker** y **Retry** en el servicio de Promoción para el proceso de limpieza de estados automáticos:
+- **Ubicación**: `services/circleguard-promotion-service/src/main/java/com/circleguard/promotion/service/StatusLifecycleService.java`
+- **Prueba**: Busca las anotaciones `@CircuitBreaker` y el método `fallbackStatusCleanup`. Si el broker falla, verás en los logs: `"Circuit breaker 'statusCleanup' opened!"`.
+
+---
+
 ## 💻 Local Development
 
 ### 1. Infrastructure
@@ -148,6 +181,39 @@ We maintain high system integrity via multi-level testing:
 | `./gradlew :services:<name>:test` | Single service testing |
 
 **Note**: Integration tests use **Testcontainers** to spawn ephemeral Neo4j and PostgreSQL instances for zero-side-effect validation.
+
+---
+
+## 🚀 Gestión de Infraestructura (Azure)
+
+Sigue estos pasos para trabajar con la infraestructura en la nube sin agotar tus créditos.
+
+### 1. La variable de sesión (¡Muy importante!)
+Cada vez que abras una nueva terminal, debes asegurarte de que las credenciales estén cargadas.
+**Verificación:** `echo $ARM_CLIENT_ID`. Si está vacío, ejecuta:
+```bash
+export ARM_CLIENT_ID="tu-appId"
+export ARM_CLIENT_SECRET="tu-password"
+export ARM_TENANT_ID="tu-tenant"
+export ARM_SUBSCRIPTION_ID="tu-subscriptionId"
+```
+
+### 2. Estructura de carpetas
+Ejecuta siempre los comandos de Terraform desde la carpeta del ambiente:
+```bash
+cd terraform/environments/dev
+```
+
+### 3. Ciclo de Vida (Interruptor de ahorro)
+- **Para encender (Desplegar):**
+  ```bash
+  terraform init
+  terraform apply -auto-approve
+  ```
+- **Para apagar (Ahorro total):**
+  ```bash
+  terraform destroy -auto-approve
+  ```
 
 ---
 

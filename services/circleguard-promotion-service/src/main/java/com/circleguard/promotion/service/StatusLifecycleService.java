@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.neo4j.core.Neo4jClient;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.kafka.core.KafkaTemplate;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +34,8 @@ public class StatusLifecycleService {
      */
     @Scheduled(cron = "0 0 * * * *") // Every hour
     @Transactional("neo4jTransactionManager")
+    @CircuitBreaker(name = "statusCleanup", fallbackMethod = "fallbackStatusCleanup")
+    @Retry(name = "statusCleanup")
     public void processAutomaticTransitions() {
         var settings = systemSettingsRepository.getSettings()
                 .orElseThrow(() -> new IllegalStateException("System Settings not initialized"));
@@ -85,5 +89,9 @@ public class StatusLifecycleService {
                 redisTemplate.opsForValue().multiSet(cacheUpdates);
             }
         }
+    }
+
+    public void fallbackStatusCleanup(Exception e) {
+        log.error("Circuit breaker 'statusCleanup' opened! Failed to transition statuses. Error: {}", e.getMessage());
     }
 }
