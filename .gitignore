@@ -1,17 +1,29 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
 # Gradle
 .gradle/
 build/
 !**/src/**/build/
 **/build/
-
-# Java
-*.class
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
 
 # Maven
 target/
@@ -33,10 +45,9 @@ target/
 Thumbs.db
 
 # Logs
-*.log
 logs/
 
-# Node/Expo (Handled in mobile/ but good to have here too)
+# Node/Expo
 node_modules/
 .expo/
 dist/
@@ -61,6 +72,5 @@ _override.tf.json
 .terraform.lock.hcl
 
 # Markdown: keep documentation
-# (Removed the *.md ignore to allow docs/ and other READMEs)
 !*.md
 !**/*.md
