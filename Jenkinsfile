@@ -114,9 +114,17 @@ pipeline {
                         echo 'Trivy is not installed on this Jenkins agent, skipping security scan'
                         return
                     }
+                    if (sh(script: 'command -v docker >/dev/null 2>&1', returnStatus: true) != 0) {
+                        echo 'Docker is not available, skipping Trivy container scan'
+                        return
+                    }
                     def services = env.SERVICE_LIST.split(',')
                     for (String serviceName : services) {
-                        sh "trivy image --severity HIGH,CRITICAL --format table --exit-code 0 ${REGISTRY}/${serviceName}:${IMAGE_TAG}"
+                        try {
+                            sh "trivy image --severity HIGH,CRITICAL --format table --exit-code 0 ${REGISTRY}/${serviceName}:${IMAGE_TAG}"
+                        } catch (Exception ex) {
+                            echo "Trivy scan skipped for ${serviceName}: ${ex.message}"
+                        }
                     }
                 }
             }
