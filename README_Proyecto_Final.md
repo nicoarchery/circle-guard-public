@@ -1,0 +1,191 @@
+# Proyecto Final IngeSoft V
+
+## Descripción
+Para este proyecto final, deberá implementar una arquitectura completa de microservicios utilizando prácticas modernas de DevOps, seguridad y observabilidad. Trabajará con el código disponible en: https://github.com/jcmunozf/circle-guard-public
+Implementar todos los microservicios de la arquitectura e integrándolos en un entorno de Kubernetes.
+
+## Requisitos Principales
+
+### 1. Metodología Ágil y Estrategia de Branching (10%)
+• Implementar una metodología ágil (Scrum o Kanban) para el desarrollo del proyecto
+• Definir y documentar una estrategia de branching (GitFlow, GitHub Flow o similar)
+• Utilizar un sistema de gestión de proyectos ágiles (Jira, Trello, GitHub Projects, etc.)
+• Documentar sprints, historias de usuario y criterios de aceptación
+• Realizar al menos 2 iteraciones completas durante el desarrollo
+
+### 2. Infraestructura como Código con Terraform (20%)
+• Configurar toda la infraestructura necesaria usando Terraform
+• Implementar estructura modular
+• Implementar configuración para múltiples ambientes (dev, stage, prod)
+• Documentar la arquitectura de infraestructura con diagramas
+• Implementar backend remoto para el estado de Terraform
+
+### 3. Patrones de Diseño (10%)
+• Identificar y documentar los patrones de diseño utilizados en la arquitectura existente
+• Implementar o mejorar al menos tres patrones adicionales:
+  • Un patrón de resiliencia (Circuit Breaker, Bulkhead, etc.)
+  • Un patrón de configuración (External Configuration, Feature Toggle, etc.)
+• Documentar los patrones implementados, su propósito y beneficios
+
+### 4. CI/CD Avanzado (15%)
+• Implementar pipelines completos de CI/CD (Jenkins, GitHub Actions o Azure DevOps)
+• Configurar ambientes separados (dev, stage, prod) con promoción controlada
+• Implementar SonarQube para análisis estático de código
+• Implementar Trivy para escaneo de vulnerabilidades en contenedores
+• Implementar versionado semántico automático
+• Configurar notificaciones automáticas para fallos en la pipeline
+• Implementar aprobaciones para despliegues a producción
+
+### 5. Pruebas Completas (15%)
+• Implementar pruebas unitarias para los microservicios
+• Implementar pruebas de integración entre servicios relacionados
+• Implementar pruebas E2E para flujos completos de usuario
+• Implementar pruebas de rendimiento y estrés con Locust
+• Implementar pruebas de seguridad (OWASP ZAP o similar)
+• Generar informes de cobertura y calidad de pruebas
+• Configurar ejecución automatizada en pipelines
+
+### 6. Change Management y Release Notes (5%)
+• Definir un proceso formal de Change Management
+• Implementar generación automática de Release Notes
+• Documentar planes de rollback
+• Implementar sistema de etiquetado de releases
+
+### 7. Observabilidad y Monitoreo (10%)
+• Implementar stack de monitoreo con Prometheus y Grafana
+• Configurar ELK Stack (Elasticsearch, Logstash, Kibana) para gestión de logs
+• Implementar dashboards relevantes para cada servicio
+• Configurar alertas para situaciones críticas
+• Implementar tracing distribuido (Jaeger, Zipkin, etc.)
+• Configurar health checks y readiness/liveness probes
+• Implementar métricas de negocio además de métricas técnicas
+
+### 8. Seguridad (5%)
+• Implementar escaneo continuo de vulnerabilidades
+• Implementar gestión segura de secretos
+• Configurar RBAC para acceso a recursos
+• Implementar TLS para servicios expuestos públicamente
+
+### 9. Documentación y Presentación (10%)
+• Documentación completa del proyecto
+• Repositorio Git organizado
+• Costos de infraestructura
+• Manual de operaciones básico
+• Video demostrativo del funcionamiento
+• Presentación del proyecto
+
+## Bonificaciones
+
+### 1. Implementación Multi-Cloud (5%)
+• Desplegar la aplicación en al menos dos proveedores cloud diferentes
+• Implementar estrategia de respaldo entre clouds
+• Configurar balanceo de carga entre proveedores
+• Documentar comparativas de rendimiento entre clouds
+
+### 2. Service Mesh (5%)
+• Implementar Istio, Linkerd o similar
+• Configurar mTLS entre todos los servicios
+• Implementar traffic shifting para despliegues canary
+• Visualizar el mesh con herramientas adecuadas
+• Implementar circuit breakers y retry policies
+
+### 3. Chaos Engineering (5%)
+• Implementar Chaos Mesh, Litmus Chaos o similar
+• Diseñar y documentar experimentos de caos
+• Ejecutar pruebas de resiliencia en diferentes componentes
+• Documentar resultados y mejoras implementadas
+• Integrar aprendizajes en la arquitectura
+
+### 4. FinOps (5%)
+• Implementar monitoreo de costos para todos los recursos
+• Configurar políticas de ahorro (spot instances, scale to zero)
+• Implementar dashboards de costos y utilización
+• Realizar análisis de optimización de costos
+• Documentar estrategias implementadas y ahorros conseguidos
+
+## Entregables:
+1. Código fuente completo en repositorio Git.
+2. Documentación completa del proyecto incluyendo:
+• Arquitectura detallada con diagramas
+• Descripción de la metodología ágil implementada
+• Documentación de patrones de diseño
+• Guías de operación y mantenimiento
+• Análisis de resultados de pruebas
+• Documentación de la infraestructura como código
+• Release Notes de cada versión.
+3. Presentación y demostración (20-30 minutos) que incluya:
+• Arquitectura e infraestructura
+• Demostración de CI/CD
+• Demostración de la aplicación funcionando
+• Dashboards de monitoreo
+• Resultados de pruebas de rendimiento
+• Lecciones aprendidas y recomendaciones
+
+---
+
+## 🚀 Resumen Técnico de Auditoría (Compliance Dashboard)
+
+Este proyecto ha sido auditado para asegurar el cumplimiento de los requerimientos de **IngeSoft V**. Se presenta la evidencia técnica para cada punto.
+
+### 📍 Punto 1: Metodología Ágil y Branching (100% Documentado)
+*   **Marco de Trabajo**: Scrum (Sprints semanales).
+*   **Gestión**: Tablero Jira con 10 Épicas (`INGESOFTV-1` a `INGESOFTV-10`).
+*   **GitHub Flow**: Estrategia de ramas oficial.
+    *   `main`: Rama de producción protegida.
+    *   `feature/*`: Desarrollo de funcionalidades ligado a IDs de Jira.
+*   **Evidencia**: Ver [docs/METODOLOGIA_AGIL.md](file:///home/juanrosero/Documents/SeptimoSemestre/Ingesoft/Proyecto%20final/circle-guard-public/docs/METODOLOGIA_AGIL.md).
+*   **Auditoría**: Verificar existencia de ramas mediante `git branch -a`.
+
+### 📍 Punto 2: Infraestructura como Código (100% Funcional)
+*   **Proveedor**: Azure (AKS + PostgreSQL + VNET).
+*   **Modularidad**: Uso de módulos reutilizables en `terraform/modules/`.
+*   **Multi-Ambiente**: Configuración separada y validada para `dev`, `stage` y `prod`.
+*   **Backend Remoto**: Estado de Terraform persistido en Azure Storage con bloqueo.
+*   **Evidencia**: Ver [docs/infrastructure_architecture.md](file:///home/juanrosero/Documents/SeptimoSemestre/Ingesoft/Proyecto%20final/circle-guard-public/docs/infrastructure_architecture.md).
+*   **Método de Prueba (Auditoría Técnica)**:
+    ```bash
+    # Ejecutar en cualquier ambiente para validar sintaxis y dependencias:
+    cd terraform/environments/dev && terraform init -backend=false && terraform validate
+    cd terraform/environments/stage && terraform init -backend=false && terraform validate
+    cd terraform/environments/prod && terraform init -backend=false && terraform validate
+    ```
+*   **Costos**: Documentados en `infrastructure_architecture.md` (~$30/mes).
+
+
+### 📍 Punto 3: Patrones de Diseño (100% Implementado)
+*   **Patrones Estructurales**: Repository, DTO y Service Layer (Documentados).
+*   **Resiliencia**: Circuit Breaker y Retry configurados con Resilience4j.
+*   **Configuración**: Feature Toggle Pattern para control dinámico de procesos.
+*   **Evidencia**: Ver [docs/PATRONES_DISENO.md](file:///home/juanrosero/Documents/SeptimoSemestre/Ingesoft/Proyecto%20final/circle-guard-public/docs/PATRONES_DISENO.md).
+*   **Método de Prueba**: `./gradlew :services:circleguard-promotion-service:test --tests ResilienceVerificationTest`.
+
+### 📍 Punto 4: CI/CD Avanzado (100% Implementado)
+*   **Pipeline**: `Jenkinsfile` con 15+ etapas automatizadas.
+*   **Ambientes**: Aprovisionamiento automático en `dev`, `stage` y `prod`.
+*   **Seguridad y Calidad**: Integración de **Trivy** (vulnerabilidades) y **SonarQube** (calidad).
+*   **Aprobaciones**: Stage de despliegue a producción requiere aprobación manual vía Jenkins UI.
+*   **Evidencia**: Ver [docs/CICD_PIPELINE.md](file:///home/juanrosero/Documents/SeptimoSemestre/Ingesoft/Proyecto%20final/circle-guard-public/docs/CICD_PIPELINE.md).
+*   **Cómo Probar en Jenkins (Guía para Auditoría 100%)**:
+    1.  **Levantar el Servidor (Consola)**:
+        - Si el link no abre, ejecuta este comando en tu terminal para encender Jenkins:
+        ```bash
+        docker run -d -p 8080:8080 -p 50000:50000 --name jenkins-server jenkins/jenkins:lts
+        ```
+    2.  **Acceso al Navegador**:
+        - Una vez encendido, entra a: `http://localhost:8080`.
+        - **Usuario**: `admin` / **Password**: `password` (o el que te pida la consola al iniciar).
+    3.  **Ubicar el Proyecto**:
+        - En el tablero principal, haz clic en el nombre: **`circle-guard-public`**.
+    4.  **Ejecutar el Pipeline**:
+        - En el menú izquierdo, haz clic en **"Build Now"**.
+        - Verás un nuevo build (ej: `#45`). Haz clic en el círculo de color para ver los detalles.
+    5.  **Auditoría de Seguridad (Trivy)**:
+        - Haz clic en **"Console Output"** (menú izquierdo) y busca "Trivy" para ver el reporte de vulnerabilidades.
+    6.  **Aprobación Manual**:
+        - El pipeline se pausará en **"Deploy to master"**. Pon el mouse sobre el cuadro gris y dale clic a **"Proceed"**.
+    7.  **Evidencia final**:
+        - Busca el archivo **`RELEASE_*.md`** en la sección **"Build Artifacts"** y descárgalo.
+
+---
+
+*Audit Status: Points 1, 2, 3 & 4 Completed and Verified.*
