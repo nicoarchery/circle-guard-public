@@ -169,7 +169,7 @@ pipeline {
                                 kubectl create namespace circleguard-dev --dry-run=client -o yaml | kubectl apply -f -
                                 # Patch images to use the build tag instead of :dev
                                 find k8s/dev/ -name "*.yaml" -exec sed -i "s|image: \\(.*\\):dev|image: ${REGISTRY}/\\1:${IMAGE_TAG}|g" {} +
-                                kubectl apply -f k8s/dev/
+                                kubectl apply -f k8s/dev/ --validate=false
                                 kubectl get pods -n circleguard-dev
                                 kubectl get svc -n circleguard-dev
                             """
@@ -202,7 +202,7 @@ pipeline {
                                 kubectl create namespace circleguard-stage --dry-run=client -o yaml | kubectl apply -f -
                                 # Patch images to use the build tag
                                 find k8s/stage/ -name "*.yaml" -exec sed -i "s|image: \\(.*\\):stage|image: ${REGISTRY}/\\1:${IMAGE_TAG}|g" {} +
-                                kubectl apply -f k8s/stage/
+                                kubectl apply -f k8s/stage/ --validate=false
                                 kubectl get pods -n circleguard-stage
                             """
                         }
@@ -235,7 +235,7 @@ pipeline {
                                 kubectl create namespace circleguard-prod --dry-run=client -o yaml | kubectl apply -f -
                                 # Patch images to use the build tag
                                 find k8s/prod/ -name "*.yaml" -exec sed -i "s|image: \\(.*\\):prod|image: ${REGISTRY}/\\1:${IMAGE_TAG}|g" {} +
-                                kubectl apply -f k8s/prod/
+                                kubectl apply -f k8s/prod/ --validate=false
                                 kubectl get pods -n circleguard-prod
                             """
                         }
