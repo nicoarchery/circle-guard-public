@@ -114,10 +114,7 @@ pipeline {
                         echo 'Trivy is not installed on this Jenkins agent, skipping security scan'
                         return
                     }
-                    def services = env.SERVICE_LIST.split(',')
-                    for (String serviceName : services) {
-                        sh "trivy image --severity HIGH,CRITICAL --format table --exit-code 0 ${REGISTRY}/${serviceName}:${IMAGE_TAG}"
-                    }
+                    sh "trivy fs --severity HIGH,CRITICAL --format table --exit-code 0 ."
                 }
             }
         }
