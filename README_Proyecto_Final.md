@@ -165,27 +165,44 @@ Este proyecto ha sido auditado para asegurar el cumplimiento de los requerimient
 *   **Seguridad y Calidad**: Integración de **Trivy** (vulnerabilidades) y **SonarQube** (calidad).
 *   **Aprobaciones**: Stage de despliegue a producción requiere aprobación manual vía Jenkins UI.
 *   **Evidencia**: Ver [docs/CICD_PIPELINE.md](file:///home/juanrosero/Documents/SeptimoSemestre/Ingesoft/Proyecto%20final/circle-guard-public/docs/CICD_PIPELINE.md).
-*   **Cómo Probar en Jenkins (Guía para Auditoría 100%)**:
-    1.  **Levantar el Servidor (Consola)**:
-        - Si el link no abre, ejecuta este comando en tu terminal para encender Jenkins:
-        ```bash
-        docker run -d -p 8080:8080 -p 50000:50000 --name jenkins-server jenkins/jenkins:lts
-        ```
-    2.  **Acceso al Navegador**:
-        - Una vez encendido, entra a: `http://localhost:8080`.
-        - **Usuario**: `admin` / **Password**: `password` (o el que te pida la consola al iniciar).
-    3.  **Ubicar el Proyecto**:
-        - En el tablero principal, haz clic en el nombre: **`circle-guard-public`**.
-    4.  **Ejecutar el Pipeline**:
-        - En el menú izquierdo, haz clic en **"Build Now"**.
-        - Verás un nuevo build (ej: `#45`). Haz clic en el círculo de color para ver los detalles.
-    5.  **Auditoría de Seguridad (Trivy)**:
-        - Haz clic en **"Console Output"** (menú izquierdo) y busca "Trivy" para ver el reporte de vulnerabilidades.
-    6.  **Aprobación Manual**:
-        - El pipeline se pausará en **"Deploy to master"**. Pon el mouse sobre el cuadro gris y dale clic a **"Proceed"**.
-    7.  **Evidencia final**:
-        - Busca el archivo **`RELEASE_*.md`** en la sección **"Build Artifacts"** y descárgalo.
+*   **Cómo Probar y Replicar (Guía paso a paso 100% Real)**:
+    Si borras todo y necesitas recrear el despliegue a Azure AKS desde cero, sigue estos pasos:
+
+    #### 1. Preparación de Infraestructura (Consola)
+    ```bash
+    # A. Iniciar sesión en Azure (si no lo has hecho)
+    az login
+
+    # B. Crear el Cluster con Terraform
+    cd terraform/environments/dev
+    terraform init
+    terraform apply -auto-approve
+
+    # C. Obtener el archivo de acceso (Kubeconfig)
+    # Reemplaza los nombres si los cambiaste en Terraform
+    az aks get-credentials --resource-group circleguard-rg-dev --name circleguard-aks-dev --file ./azure-aks-config
+    ```
+
+    #### 2. Configuración en Jenkins (Web)
+    - Entra a Jenkins (`http://localhost:8080`).
+    - Ve a **"Manage Jenkins"** > **"Credentials"** > **"System"** > **"Global credentials"**.
+    - Haz clic en **"Add Credentials"**:
+        - **Kind**: Secret file
+        - **File**: Sube el archivo `azure-aks-config` que generaste en el paso 1.C.
+        - **ID**: `circleguard-kubeconfig` (Este ID es CRÍTICO, debe ser idéntico).
+    
+    #### 3. Ejecución y Validación
+    - Entra al proyecto **`circle-guard-public`**.
+    - Haz clic en **"Build Now"**.
+    - **Validación AKS**: Al terminar los stages de deploy, abre tu terminal y corre:
+      ```bash
+      kubectl --kubeconfig ./azure-aks-config get pods -n circleguard-dev
+      ```
+      Deberías ver todos los pods de CircleGuard listados y creados en Azure.
+
+    #### 4. Aprobación a Producción
+    - El pipeline se detendrá antes del stage de **"master"**. 
+    - Haz clic en el build actual, busca la sección **"Paused for Input"** y dale a **"Desplegar"**.
 
 ---
-
 *Audit Status: Points 1, 2, 3 & 4 Completed and Verified.*
