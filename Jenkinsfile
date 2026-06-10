@@ -187,7 +187,7 @@ pipeline {
             when {
                 expression {
                     def branchName = env.BRANCH_NAME ?: env.GIT_BRANCH ?: ''
-                    (branchName == 'stage' || branchName.endsWith('/stage')) && fileExists('k8s/stage')
+                    (branchName == 'main' || branchName.endsWith('/main') || branchName == 'stage' || branchName.endsWith('/stage')) && fileExists('k8s/stage')
                 }
             }
             steps {
@@ -218,7 +218,7 @@ pipeline {
             when {
                 expression {
                     def branchName = env.BRANCH_NAME ?: env.GIT_BRANCH ?: ''
-                    (branchName == 'master' || branchName.endsWith('/master')) && fileExists('k8s/prod')
+                    (branchName == 'main' || branchName.endsWith('/main') || branchName == 'master' || branchName.endsWith('/master')) && fileExists('k8s/prod')
                 }
             }
             steps {
