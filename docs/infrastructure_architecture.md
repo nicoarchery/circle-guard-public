@@ -35,6 +35,19 @@ graph TD
 - **Flex Server PostgreSQL**: Base de datos administrada.
 - **Remote Backend**: Estado persistente en Azure Storage con bloqueo de estado.
 
+## Estimación de Costos Mensuales (Aprox)
+
+| Recurso Azure | Cantidad | Costo Unitario (Est.) | Total Mensual |
+|:---|:---:|:---|:---|
+| **AKS Cluster (B2ps_v2)** | 1 | $15.00 | $15.00 |
+| **PostgreSQL Flex Server** | 1 | $12.00 | $12.00 |
+| **Storage Account (tfstate)** | 1 | $1.00 | $1.00 |
+| **VNET & Public IPs** | 1 | $2.00 | $2.00 |
+| **TOTAL ESTIMADO** | | | **$30.00 / Mes** |
+
+> [!NOTE]
+> Se utiliza el **Tier Free** de AKS y tamaños de instancia **B-Series** para minimizar el impacto en los créditos de estudiante.
+
 ## Estructura de Carpetas
 - `modules/`: Módulos reutilizables de infraestructura.
 - `environments/`: Configuraciones específicas por ambiente (dev, stage, prod).

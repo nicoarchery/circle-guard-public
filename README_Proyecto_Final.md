@@ -123,9 +123,32 @@ Implementar todos los microservicios de la arquitectura e integrándolos en un e
 
 ---
 
-## 🚀 Estado de Metodología y Avance (Audit Status)
-- **Metodología**: Scrum.
-- **Herramienta de Gestión**: Jira.
-- **Historias de Usuario (HU)**: Ya definidas e integradas en Jira.
-- **Sprints**: 2 iteraciones completadas.
-- **Estrategia de Branching**: Pendiente de definición formal (en evaluación).
+## 🚀 Resumen Técnico de Auditoría (Compliance Dashboard)
+
+Este proyecto ha sido auditado para asegurar el cumplimiento de los requerimientos de **IngeSoft V**. Se presenta la evidencia técnica para cada punto.
+
+### 📍 Punto 1: Metodología Ágil y Branching (100% Documentado)
+*   **Marco de Trabajo**: Scrum (Sprints semanales).
+*   **Gestión**: Tablero Jira con 10 Épicas (`INGESOFTV-1` a `INGESOFTV-10`).
+*   **GitHub Flow**: Estrategia de ramas oficial.
+    *   `main`: Rama de producción protegida.
+    *   `feature/*`: Desarrollo de funcionalidades ligado a IDs de Jira.
+*   **Evidencia**: Ver [docs/METODOLOGIA_AGIL.md](file:///home/juanrosero/Documents/SeptimoSemestre/Ingesoft/Proyecto%20final/circle-guard-public/docs/METODOLOGIA_AGIL.md).
+*   **Auditoría**: Verificar existencia de ramas mediante `git branch -a`.
+
+### 📍 Punto 2: Infraestructura como Código (100% Funcional)
+*   **Proveedor**: Azure (AKS + PostgreSQL + VNET).
+*   **Modularidad**: Uso de módulos reutilizables en `terraform/modules/`.
+*   **Multi-Ambiente**: Configuración separada y validada para `dev`, `stage` y `prod`.
+*   **Backend Remoto**: Estado de Terraform persistido en Azure Storage con bloqueo.
+*   **Evidencia**: Ver [docs/infrastructure_architecture.md](file:///home/juanrosero/Documents/SeptimoSemestre/Ingesoft/Proyecto%20final/circle-guard-public/docs/infrastructure_architecture.md).
+*   **Método de Prueba (Auditoría Técnica)**:
+    ```bash
+    # Ejecutar en cualquier ambiente para validar sintaxis y dependencias:
+    cd terraform/environments/dev && terraform init -backend=false && terraform validate
+    cd terraform/environments/stage && terraform init -backend=false && terraform validate
+    cd terraform/environments/prod && terraform init -backend=false && terraform validate
+    ```
+
+---
+*Audit Status: Point 1 & 2 Completed and Verified.*

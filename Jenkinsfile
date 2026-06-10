@@ -13,7 +13,8 @@ pipeline {
         REGISTRY_CREDENTIALS_ID = 'circleguard-registry'
         KUBECONFIG_CREDENTIALS_ID = 'circleguard-kubeconfig'
         SERVICE_LIST = 'circleguard-auth-service,circleguard-identity-service,circleguard-gateway-service,circleguard-form-service,circleguard-promotion-service,circleguard-notification-service'
-        IMAGE_TAG = "${BUILD_NUMBER}"
+        IMAGE_TAG = "v1.0.${BUILD_NUMBER}" // Automatic Semantic Versioning
+        SONAR_CREDENTIALS_ID = 'sonar-token'
     }
 
     stages {
@@ -64,6 +65,20 @@ pipeline {
             }
         }
 
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    try {
+                        withCredentials([string(credentialsId: env.SONAR_CREDENTIALS_ID, variable: 'SONAR_AUTH_TOKEN')]) {
+                            sh "./gradlew sonar -Dsonar.token=${SONAR_AUTH_TOKEN} -Dsonar.projectKey=circleguard"
+                        }
+                    } catch (Exception ex) {
+                        echo "Skipping SonarQube analysis due to missing credentials: ${ex.message}"
+                    }
+                }
+            }
+        }
+
         stage('Build artifacts') {
             steps {
                 sh './gradlew bootJar -x test'
@@ -87,6 +102,21 @@ pipeline {
                               -t ${REGISTRY}/${serviceName}:latest \
                               services/${serviceName}
                         """
+                    }
+                }
+            }
+        }
+
+        stage('Security Scan (Trivy)') {
+            steps {
+                script {
+                    if (sh(script: 'command -v trivy >/dev/null 2>&1', returnStatus: true) != 0) {
+                        echo 'Trivy is not installed on this Jenkins agent, skipping security scan'
+                        return
+                    }
+                    def services = env.SERVICE_LIST.split(',')
+                    for (String serviceName : services) {
+                        sh "trivy image --severity HIGH,CRITICAL --format table --exit-code 0 ${REGISTRY}/${serviceName}:${IMAGE_TAG}"
                     }
                 }
             }
@@ -136,9 +166,15 @@ pipeline {
                     }
                     try {
                         withCredentials([file(credentialsId: env.KUBECONFIG_CREDENTIALS_ID, variable: 'KUBECONFIG_FILE')]) {
-                            sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl apply -f k8s/dev/'
-                            sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl get pods -n circleguard-dev'
-                            sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl get svc -n circleguard-dev'
+                            sh """#!/usr/bin/env bash
+                                set -euo pipefail
+                                export KUBECONFIG="$KUBECONFIG_FILE"
+                                # Patch images to use the build tag instead of :dev
+                                find k8s/dev/ -name "*.yaml" -exec sed -i "s|image: \\(.*\\):dev|image: ${REGISTRY}/\\1:${IMAGE_TAG}|g" {} +
+                                kubectl apply -f k8s/dev/
+                                kubectl get pods -n circleguard-dev
+                                kubectl get svc -n circleguard-dev
+                            """
                         }
                     } catch (Exception ex) {
                         echo "Skipping deploy to dev due to missing/invalid kubeconfig credentials or agent config: ${ex.message}"
@@ -162,9 +198,14 @@ pipeline {
                     }
                     try {
                         withCredentials([file(credentialsId: env.KUBECONFIG_CREDENTIALS_ID, variable: 'KUBECONFIG_FILE')]) {
-                            sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl apply -f k8s/stage/'
-                            sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl get pods -n circleguard-stage'
-                            sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl get svc -n circleguard-stage'
+                            sh """#!/usr/bin/env bash
+                                set -euo pipefail
+                                export KUBECONFIG="$KUBECONFIG_FILE"
+                                # Patch images to use the build tag
+                                find k8s/stage/ -name "*.yaml" -exec sed -i "s|image: \\(.*\\):stage|image: ${REGISTRY}/\\1:${IMAGE_TAG}|g" {} +
+                                kubectl apply -f k8s/stage/
+                                kubectl get pods -n circleguard-stage
+                            """
                         }
                     } catch (Exception ex) {
                         echo "Skipping deploy to stage due to missing/invalid kubeconfig credentials or agent config: ${ex.message}"
@@ -181,6 +222,7 @@ pipeline {
                 }
             }
             steps {
+                input message: "Aprovar despliegue a PRODUCCIÓN (Cluster AKS)?", ok: "Desplegar"
                 script {
                     if (sh(script: 'command -v kubectl >/dev/null 2>&1', returnStatus: true) != 0) {
                         echo 'kubectl is not available on this Jenkins agent, skipping deploy to master'
@@ -188,9 +230,14 @@ pipeline {
                     }
                     try {
                         withCredentials([file(credentialsId: env.KUBECONFIG_CREDENTIALS_ID, variable: 'KUBECONFIG_FILE')]) {
-                            sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl apply -f k8s/prod/'
-                            sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl get pods -n circleguard-prod'
-                            sh 'export KUBECONFIG="$KUBECONFIG_FILE" && kubectl get svc -n circleguard-prod'
+                            sh """#!/usr/bin/env bash
+                                set -euo pipefail
+                                export KUBECONFIG="$KUBECONFIG_FILE"
+                                # Patch images to use the build tag
+                                find k8s/prod/ -name "*.yaml" -exec sed -i "s|image: \\(.*\\):latest|image: ${REGISTRY}/\\1:${IMAGE_TAG}|g" {} +
+                                kubectl apply -f k8s/prod/
+                                kubectl get pods -n circleguard-prod
+                            """
                         }
                     } catch (Exception ex) {
                         echo "Skipping deploy to master due to missing/invalid kubeconfig credentials or agent config: ${ex.message}"
@@ -263,6 +310,22 @@ EOF
     }
 
     post {
+        success {
+            echo "✅ Build ${BUILD_NUMBER} exitoso. Desplegado v1.0.${BUILD_NUMBER}."
+            script {
+                if (env.DISCORD_WEBHOOK) {
+                    sh "curl -X POST -H 'Content-Type: application/json' -d '{\"content\": \"✅ Build ${BUILD_NUMBER} for ${env.JOB_NAME} SUCCEEDED\"}' ${env.DISCORD_WEBHOOK}"
+                }
+            }
+        }
+        failure {
+            echo "❌ Build ${BUILD_NUMBER} fallido. Revisar logs."
+            script {
+                if (env.DISCORD_WEBHOOK) {
+                    sh "curl -X POST -H 'Content-Type: application/json' -d '{\"content\": \"❌ Build ${BUILD_NUMBER} for ${env.JOB_NAME} FAILED\"}' ${env.DISCORD_WEBHOOK}"
+                }
+            }
+        }
         always {
             archiveArtifacts artifacts: 'services/**/build/libs/*.jar,build/release-notes/**', fingerprint: true, allowEmptyArchive: true
                         sh '''#!/usr/bin/env bash

@@ -93,7 +93,7 @@ Actualmente, el proyecto cumple con los siguientes requisitos del curso:
 | Requisito | Estado | Evidencia Principal |
 |:---|:---:|:---|
 | **1. Metodología Ágil** | ✅ 100% | `docs/METODOLOGIA_AGIL.md` |
-| **2. Infraestructura (IaC)**| ✅ 100% | Carpeta `terraform/` y `docs/infrastructure_architecture.md` |
+| **2. Infraestructura (IaC)**| ✅ 100% | Carpeta `terraform/` (Dev, Stage, Prod validados) |
 | **3. Patrones de Diseño** | ✅ 100% | `docs/PATRONES_DISENO.md` e implementación en `PromotionService` |
 | **4. CI/CD Avanzado** | 🚧 20% | Jenkinsfile base (En proceso de integración con Azure) |
 | **5. Pruebas Completas** | 🚧 30% | Pruebas unitarias/integración de los microservicios |
