@@ -70,7 +70,7 @@ pipeline {
                 script {
                     try {
                         withCredentials([string(credentialsId: env.SONAR_CREDENTIALS_ID, variable: 'SONAR_AUTH_TOKEN')]) {
-                            sh "./gradlew sonar -Dsonar.token=${SONAR_AUTH_TOKEN} -Dsonar.projectKey=circleguard"
+                            sh "./gradlew sonar -Dsonar.token=${SONAR_AUTH_TOKEN} -Dsonar.projectKey=circleguard -Dsonar.host.url=${env.SONAR_HOST_URL ?: 'http://localhost:9000'}"
                         }
                     } catch (Exception ex) {
                         echo "Skipping SonarQube analysis due to missing credentials: ${ex.message}"
@@ -114,7 +114,10 @@ pipeline {
                         echo 'Trivy is not installed on this Jenkins agent, skipping security scan'
                         return
                     }
-                    sh "trivy fs --severity HIGH,CRITICAL --format table --exit-code 0 ."
+                    def services = env.SERVICE_LIST.split(',')
+                    for (String serviceName : services) {
+                        sh "trivy image --severity HIGH,CRITICAL --format table --exit-code 0 ${REGISTRY}/${serviceName}:${IMAGE_TAG}"
+                    }
                 }
             }
         }
