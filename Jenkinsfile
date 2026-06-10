@@ -165,7 +165,8 @@ pipeline {
                         withCredentials([file(credentialsId: env.KUBECONFIG_CREDENTIALS_ID, variable: 'KUBECONFIG_FILE')]) {
                             sh """#!/usr/bin/env bash
                                 set -euo pipefail
-                                export KUBECONFIG="$KUBECONFIG_FILE"
+                                # Ensure namespace exists
+                                kubectl create namespace circleguard-dev --dry-run=client -o yaml | kubectl apply -f -
                                 # Patch images to use the build tag instead of :dev
                                 find k8s/dev/ -name "*.yaml" -exec sed -i "s|image: \\(.*\\):dev|image: ${REGISTRY}/\\1:${IMAGE_TAG}|g" {} +
                                 kubectl apply -f k8s/dev/
@@ -230,9 +231,10 @@ pipeline {
                         withCredentials([file(credentialsId: env.KUBECONFIG_CREDENTIALS_ID, variable: 'KUBECONFIG_FILE')]) {
                             sh """#!/usr/bin/env bash
                                 set -euo pipefail
-                                export KUBECONFIG="$KUBECONFIG_FILE"
+                                # Ensure namespace exists
+                                kubectl create namespace circleguard-prod --dry-run=client -o yaml | kubectl apply -f -
                                 # Patch images to use the build tag
-                                find k8s/prod/ -name "*.yaml" -exec sed -i "s|image: \\(.*\\):latest|image: ${REGISTRY}/\\1:${IMAGE_TAG}|g" {} +
+                                find k8s/prod/ -name "*.yaml" -exec sed -i "s|image: \\(.*\\):prod|image: ${REGISTRY}/\\1:${IMAGE_TAG}|g" {} +
                                 kubectl apply -f k8s/prod/
                                 kubectl get pods -n circleguard-prod
                             """
