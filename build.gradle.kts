@@ -46,8 +46,19 @@ subprojects {
         }
     }
 
+    apply(plugin = "jacoco")
+
     tasks.withType<Test> {
         useJUnitPlatform()
+        finalizedBy("jacocoTestReport")
+    }
+
+    tasks.withType<JacocoReport> {
+        dependsOn(tasks.withType<Test>())
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+        }
     }
 
     // Add a dedicated e2eTest task per subproject that only runs classes matching *E2ETest
@@ -70,6 +81,37 @@ subprojects {
         filter {
             includeTestsMatching("*E2ETest")
         }
+    }
+}
+
+// Global JaCoCo aggregation task
+tasks.register<JacocoReport>("jacocoRootReport") {
+    group = "verification"
+    description = "Generates an aggregate report from all subprojects"
+    dependsOn(subprojects.map { it.tasks.matching { t -> t.name == "jacocoTestReport" } })
+
+    val executionDataFiles = files(subprojects.map { 
+        layout.buildDirectory.dir("jacoco").map { d -> d.file("test.exec") }
+    })
+    
+    executionData.setFrom(executionDataFiles)
+    
+    subprojects.forEach { proj ->
+        proj.plugins.withType<JavaPlugin> {
+            val sourceSets = proj.extensions.getByType<SourceSetContainer>()
+            sourceSets.getByName("main").allJava.srcDirs.forEach { srcDir ->
+                sourceDirectories.from(srcDir)
+            }
+            sourceSets.getByName("main").output.classesDirs.forEach { classDir ->
+                classDirectories.from(classDir)
+            }
+        }
+    }
+
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+        html.outputLocation.set(layout.buildDirectory.dir("reports/jacoco/root"))
     }
 }
 

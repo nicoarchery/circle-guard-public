@@ -18,8 +18,13 @@ class AttachmentControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @org.springframework.boot.test.mock.mockito.MockBean
+    private com.circleguard.form.service.StorageService storageService;
+
     @Test
     void shouldUploadFile() throws Exception {
+        org.mockito.Mockito.when(storageService.store(org.mockito.ArgumentMatchers.any())).thenReturn("mock-filename.pdf");
+
         MockMultipartFile file = new MockMultipartFile(
                 "file",
                 "test.pdf",

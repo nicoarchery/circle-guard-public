@@ -39,7 +39,7 @@ class HealthSurveyControllerIntegrationTest {
 
         mockMvc.perform(post("/api/v1/surveys")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"anonymousId\":\"550e8400-e29b-41d4-a716-446655440000\",\"symptoms\":[\"COUGH\"]}"))
+                        .content("{\"anonymousId\":\"550e8400-e29b-41d4-a716-446655440000\",\"hasCough\":true}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.anonymousId").value(anonymousId.toString()));
     }

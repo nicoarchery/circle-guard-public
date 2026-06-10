@@ -30,7 +30,7 @@ class SymptomMapperTest {
                 .build();
         
         HealthSurvey survey = HealthSurvey.builder()
-                .responses(Map.of(questionId.toString(), "YES"))
+                .responses(Map.of(questionId.toString(), (Object)"YES"))
                 .build();
         
         assertTrue(mapper.hasSymptoms(survey, questionnaire));
@@ -50,48 +50,48 @@ class SymptomMapperTest {
                 .build();
         
         HealthSurvey survey = HealthSurvey.builder()
-                .responses(Map.of(questionId.toString(), "NO"))
+                .responses(Map.of(questionId.toString(), (Object)"NO"))
                 .build();
         
         assertFalse(mapper.hasSymptoms(survey, questionnaire));
     }
 
-            @Test
-            void shouldReturnFalseWhenSurveyResponsesAreMissing() {
-                Question q = Question.builder()
-                        .id(UUID.randomUUID())
-                        .text("Do you have a fever?")
-                        .type(QuestionType.YES_NO)
-                        .build();
+    @Test
+    void shouldReturnFalseWhenSurveyResponsesAreMissing() {
+        Question q = Question.builder()
+                .id(UUID.randomUUID())
+                .text("Do you have a fever?")
+                .type(QuestionType.YES_NO)
+                .build();
 
-                Questionnaire questionnaire = Questionnaire.builder()
-                        .questions(List.of(q))
-                        .build();
+        Questionnaire questionnaire = Questionnaire.builder()
+                .questions(List.of(q))
+                .build();
 
-                HealthSurvey survey = HealthSurvey.builder()
-                        .responses(null)
-                        .build();
+        HealthSurvey survey = HealthSurvey.builder()
+                .responses(null)
+                .build();
 
-                assertFalse(mapper.hasSymptoms(survey, questionnaire));
-            }
+        assertFalse(mapper.hasSymptoms(survey, questionnaire));
+    }
 
-            @Test
-            void shouldDetectSymptomsFromChoiceQuestionWithSelection() {
-                UUID questionId = UUID.randomUUID();
-                Question q = Question.builder()
-                        .id(questionId)
-                        .text("Select any symptoms you have experienced")
-                        .type(QuestionType.MULTI_CHOICE)
-                        .build();
+    @Test
+    void shouldDetectSymptomsFromChoiceQuestionWithSelection() {
+        UUID questionId = UUID.randomUUID();
+        Question q = Question.builder()
+                .id(questionId)
+                .text("Select any symptoms you have experienced")
+                .type(QuestionType.MULTI_CHOICE)
+                .build();
 
-                Questionnaire questionnaire = Questionnaire.builder()
-                        .questions(List.of(q))
-                        .build();
+        Questionnaire questionnaire = Questionnaire.builder()
+                .questions(List.of(q))
+                .build();
 
-                HealthSurvey survey = HealthSurvey.builder()
-                        .responses(Map.of(questionId.toString(), "[COUGH,FEVER]"))
-                        .build();
+        HealthSurvey survey = HealthSurvey.builder()
+                .responses(Map.of(questionId.toString(), (Object)"[COUGH,FEVER]"))
+                .build();
 
-                assertTrue(mapper.hasSymptoms(survey, questionnaire));
-            }
+        assertTrue(mapper.hasSymptoms(survey, questionnaire));
+    }
 }

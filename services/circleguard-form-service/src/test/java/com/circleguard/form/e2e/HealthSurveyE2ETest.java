@@ -33,16 +33,22 @@ class HealthSurveyE2ETest {
     @Test
     void submitSurveyShouldReturnSavedSurvey() {
         UUID anonymousId = UUID.fromString("550e8400-e29b-41d4-a716-446655440000");
-        HealthSurvey saved = new HealthSurvey();
-        saved.setId(UUID.randomUUID());
-        saved.setAnonymousId(anonymousId);
-        saved.setHasCough(true);
+        HealthSurvey surveyInput = HealthSurvey.builder()
+                .anonymousId(anonymousId)
+                .responses(Map.of("symptoms", "COUGH"))
+                .build();
+
+        HealthSurvey saved = HealthSurvey.builder()
+                .id(UUID.randomUUID())
+                .anonymousId(anonymousId)
+                .hasCough(true)
+                .build();
 
         when(surveyService.submitSurvey(any(HealthSurvey.class))).thenReturn(saved);
 
         ResponseEntity<HealthSurvey> response = restTemplate.postForEntity(
                 url("/api/v1/surveys"),
-                Map.of("anonymousId", anonymousId.toString(), "symptoms", new String[]{"COUGH"}),
+                surveyInput,
                 HealthSurvey.class);
 
         assertEquals(200, response.getStatusCode().value());
