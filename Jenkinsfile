@@ -70,7 +70,10 @@ pipeline {
                 script {
                     try {
                         withCredentials([string(credentialsId: env.SONAR_CREDENTIALS_ID, variable: 'SONAR_AUTH_TOKEN')]) {
-                            sh "./gradlew sonar -Dsonar.token=${SONAR_AUTH_TOKEN} -Dsonar.projectKey=circleguard -Dsonar.host.url=${env.SONAR_HOST_URL ?: 'http://localhost:9000'} -Dsonar.java.binaries='**/build/classes'"
+                            sh """#!/usr/bin/env bash
+                                set -euo pipefail
+                                ./gradlew sonar -Dsonar.token=${SONAR_AUTH_TOKEN} -Dsonar.projectKey=circleguard -Dsonar.host.url=${env.SONAR_HOST_URL ?: 'http://localhost:9000'} -Dsonar.java.binaries="services/*/build/classes"
+                            """
                         }
                     } catch (Exception ex) {
                         echo "Skipping SonarQube analysis due to missing credentials: ${ex.message}"
