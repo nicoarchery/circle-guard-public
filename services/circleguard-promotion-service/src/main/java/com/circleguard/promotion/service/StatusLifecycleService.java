@@ -25,6 +25,9 @@ public class StatusLifecycleService {
     private final StringRedisTemplate redisTemplate;
     private final KafkaTemplate<String, Object> kafkaTemplate;
 
+    @org.springframework.beans.factory.annotation.Value("${circleguard.features.auto-cleanup-enabled:true}")
+    private boolean autoCleanupEnabled;
+
     private static final String STATUS_KEY_PREFIX = "user:status:";
     private static final String TOPIC_STATUS_CHANGED = "promotion.status.changed";
 
@@ -37,6 +40,11 @@ public class StatusLifecycleService {
     @CircuitBreaker(name = "statusCleanup", fallbackMethod = "fallbackStatusCleanup")
     @Retry(name = "statusCleanup")
     public void processAutomaticTransitions() {
+        if (!autoCleanupEnabled) {
+            log.info("Status lifecycle check skipped: Feature 'auto-cleanup-enabled' is DISABLED");
+            return;
+        }
+
         var settings = systemSettingsRepository.getSettings()
                 .orElseThrow(() -> new IllegalStateException("System Settings not initialized"));
 

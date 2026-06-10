@@ -149,6 +149,14 @@ Este proyecto ha sido auditado para asegurar el cumplimiento de los requerimient
     cd terraform/environments/stage && terraform init -backend=false && terraform validate
     cd terraform/environments/prod && terraform init -backend=false && terraform validate
     ```
+*   **Costos**: Documentados en `infrastructure_architecture.md` (~$30/mes).
 
+
+### 📍 Punto 3: Patrones de Diseño (100% Implementado)
+*   **Patrones Estructurales**: Repository, DTO y Service Layer (Documentados).
+*   **Resiliencia**: Circuit Breaker y Retry configurados con Resilience4j.
+*   **Configuración**: Feature Toggle Pattern para control dinámico de procesos.
+*   **Evidencia**: Ver [docs/PATRONES_DISENO.md](file:///home/juanrosero/Documents/SeptimoSemestre/Ingesoft/Proyecto%20final/circle-guard-public/docs/PATRONES_DISENO.md).
+*   **Método de Prueba**: `./gradlew :services:circleguard-promotion-service:test --tests ResilienceVerificationTest`.
 ---
-*Audit Status: Point 1 & 2 Completed and Verified.*
+*Audit Status: Points 1, 2 & 3 Completed and Verified.*
