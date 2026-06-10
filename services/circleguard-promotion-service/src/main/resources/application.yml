@@ -41,3 +41,15 @@ jwt:
 circleguard:
   features:
     auto-cleanup-enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,resilience4j
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    tags:
+      application: ${spring.application.name}

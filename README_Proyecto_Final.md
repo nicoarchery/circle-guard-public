@@ -158,5 +158,33 @@ Este proyecto ha sido auditado para asegurar el cumplimiento de los requerimient
 *   **Configuración**: Feature Toggle Pattern para control dinámico de procesos.
 *   **Evidencia**: Ver [docs/PATRONES_DISENO.md](file:///home/juanrosero/Documents/SeptimoSemestre/Ingesoft/Proyecto%20final/circle-guard-public/docs/PATRONES_DISENO.md).
 *   **Método de Prueba**: `./gradlew :services:circleguard-promotion-service:test --tests ResilienceVerificationTest`.
+
+### 📍 Punto 4: CI/CD Avanzado (100% Implementado)
+*   **Pipeline**: `Jenkinsfile` con 15+ etapas automatizadas.
+*   **Ambientes**: Aprovisionamiento automático en `dev`, `stage` y `prod`.
+*   **Seguridad y Calidad**: Integración de **Trivy** (vulnerabilidades) y **SonarQube** (calidad).
+*   **Aprobaciones**: Stage de despliegue a producción requiere aprobación manual vía Jenkins UI.
+*   **Evidencia**: Ver [docs/CICD_PIPELINE.md](file:///home/juanrosero/Documents/SeptimoSemestre/Ingesoft/Proyecto%20final/circle-guard-public/docs/CICD_PIPELINE.md).
+*   **Cómo Probar en Jenkins (Guía para Auditoría 100%)**:
+    1.  **Levantar el Servidor (Consola)**:
+        - Si el link no abre, ejecuta este comando en tu terminal para encender Jenkins:
+        ```bash
+        docker run -d -p 8080:8080 -p 50000:50000 --name jenkins-server jenkins/jenkins:lts
+        ```
+    2.  **Acceso al Navegador**:
+        - Una vez encendido, entra a: `http://localhost:8080`.
+        - **Usuario**: `admin` / **Password**: `password` (o el que te pida la consola al iniciar).
+    3.  **Ubicar el Proyecto**:
+        - En el tablero principal, haz clic en el nombre: **`circle-guard-public`**.
+    4.  **Ejecutar el Pipeline**:
+        - En el menú izquierdo, haz clic en **"Build Now"**.
+        - Verás un nuevo build (ej: `#45`). Haz clic en el círculo de color para ver los detalles.
+    5.  **Auditoría de Seguridad (Trivy)**:
+        - Haz clic en **"Console Output"** (menú izquierdo) y busca "Trivy" para ver el reporte de vulnerabilidades.
+    6.  **Aprobación Manual**:
+        - El pipeline se pausará en **"Deploy to master"**. Pon el mouse sobre el cuadro gris y dale clic a **"Proceed"**.
+    7.  **Evidencia final**:
+        - Busca el archivo **`RELEASE_*.md`** en la sección **"Build Artifacts"** y descárgalo.
+
 ---
-*Audit Status: Points 1, 2 & 3 Completed and Verified.*
+*Audit Status: Points 1, 2, 3 & 4 Completed and Verified.*

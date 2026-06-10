@@ -25,6 +25,8 @@ dependencies {
     implementation("org.flywaydb:flyway-core")
     implementation("io.github.resilience4j:resilience4j-spring-boot3:2.1.0")
     implementation("org.springframework.boot:spring-boot-starter-aop")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("io.micrometer:micrometer-registry-prometheus")
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
