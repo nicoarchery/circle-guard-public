@@ -313,14 +313,59 @@ EOF
         success {
             echo "✅ Build ${BUILD_NUMBER} exitoso. Desplegado v1.0.${BUILD_NUMBER}."
             script {
+                // Email notification on success
+                try {
+                    mail(
+                        to: 'devops-team@circleguard.edu',
+                        subject: "✅ [CircleGuard] Build #${BUILD_NUMBER} - SUCCESS",
+                        body: """
+Pipeline SUCCESS — CircleGuard CI/CD
+
+Build Number : ${BUILD_NUMBER}
+Git Commit   : ${env.GIT_COMMIT ?: 'N/A'}
+Branch       : ${env.GIT_BRANCH ?: 'main'}
+Duration     : ${currentBuild.durationString}
+
+Deployed version v1.0.${BUILD_NUMBER} to AKS (dev, stage, prod).
+
+View build: ${env.BUILD_URL}
+                        """.stripIndent()
+                    )
+                } catch (Exception mailEx) {
+                    echo "Email notification skipped (SMTP not configured): ${mailEx.message}"
+                }
+                // Discord webhook (optional)
                 if (env.DISCORD_WEBHOOK) {
                     sh "curl -X POST -H 'Content-Type: application/json' -d '{\"content\": \"✅ Build ${BUILD_NUMBER} for ${env.JOB_NAME} SUCCEEDED\"}' ${env.DISCORD_WEBHOOK}"
                 }
             }
         }
         failure {
-            echo "❌ Build ${BUILD_NUMBER} fallido. Revisar logs."
+            echo "❌ Build ${BUILD_NUMBER} fallido. Revisar logs en: ${env.BUILD_URL}console"
             script {
+                // Email notification on failure
+                try {
+                    mail(
+                        to: 'devops-team@circleguard.edu',
+                        subject: "❌ [CircleGuard] Build #${BUILD_NUMBER} - FAILED",
+                        body: """
+Pipeline FAILURE — CircleGuard CI/CD
+
+Build Number : ${BUILD_NUMBER}
+Git Commit   : ${env.GIT_COMMIT ?: 'N/A'}
+Branch       : ${env.GIT_BRANCH ?: 'main'}
+Duration     : ${currentBuild.durationString}
+
+ACTION REQUIRED: The pipeline has failed.
+Check the logs immediately: ${env.BUILD_URL}console
+
+Failed Stage: ${currentBuild.currentResult}
+                        """.stripIndent()
+                    )
+                } catch (Exception mailEx) {
+                    echo "Email notification skipped (SMTP not configured): ${mailEx.message}"
+                }
+                // Discord webhook (optional)
                 if (env.DISCORD_WEBHOOK) {
                     sh "curl -X POST -H 'Content-Type: application/json' -d '{\"content\": \"❌ Build ${BUILD_NUMBER} for ${env.JOB_NAME} FAILED\"}' ${env.DISCORD_WEBHOOK}"
                 }
@@ -328,16 +373,16 @@ EOF
         }
         always {
             archiveArtifacts artifacts: 'services/**/build/libs/*.jar,build/release-notes/**', fingerprint: true, allowEmptyArchive: true
-                        sh '''#!/usr/bin/env bash
-                                set -euo pipefail
-                                if [ -f docker-compose.dev.yml ]; then
-                                    if command -v docker-compose >/dev/null 2>&1; then
-                                        docker-compose -f docker-compose.dev.yml down || true
-                                    elif docker compose version >/dev/null 2>&1; then
-                                        docker compose -f docker-compose.dev.yml down || true
-                                    fi
-                                fi
-                        '''
+            sh '''#!/usr/bin/env bash
+                    set -euo pipefail
+                    if [ -f docker-compose.dev.yml ]; then
+                        if command -v docker-compose >/dev/null 2>&1; then
+                            docker-compose -f docker-compose.dev.yml down || true
+                        elif docker compose version >/dev/null 2>&1; then
+                            docker compose -f docker-compose.dev.yml down || true
+                        fi
+                    fi
+            '''
         }
     }
 }
