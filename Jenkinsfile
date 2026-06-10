@@ -197,7 +197,8 @@ pipeline {
                         withCredentials([file(credentialsId: env.KUBECONFIG_CREDENTIALS_ID, variable: 'KUBECONFIG_FILE')]) {
                             sh """#!/usr/bin/env bash
                                 set -euo pipefail
-                                export KUBECONFIG="$KUBECONFIG_FILE"
+                                # Ensure namespace exists
+                                kubectl create namespace circleguard-stage --dry-run=client -o yaml | kubectl apply -f -
                                 # Patch images to use the build tag
                                 find k8s/stage/ -name "*.yaml" -exec sed -i "s|image: \\(.*\\):stage|image: ${REGISTRY}/\\1:${IMAGE_TAG}|g" {} +
                                 kubectl apply -f k8s/stage/
