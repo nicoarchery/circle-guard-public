@@ -166,7 +166,7 @@ pipeline {
                             sh """#!/usr/bin/env bash
                                 set -euo pipefail
                                 # Ensure namespace exists
-                                kubectl create namespace circleguard-dev --dry-run=client -o yaml | kubectl apply -f -
+                                kubectl create namespace circleguard-dev --dry-run=client -o yaml | kubectl apply -f - --validate=false
                                 # Patch images to use the build tag instead of :dev
                                 find k8s/dev/ -name "*.yaml" -exec sed -i "s|image: \\(.*\\):dev|image: ${REGISTRY}/\\1:${IMAGE_TAG}|g" {} +
                                 kubectl apply -f k8s/dev/ --validate=false
@@ -199,7 +199,7 @@ pipeline {
                             sh """#!/usr/bin/env bash
                                 set -euo pipefail
                                 # Ensure namespace exists
-                                kubectl create namespace circleguard-stage --dry-run=client -o yaml | kubectl apply -f -
+                                kubectl create namespace circleguard-stage --dry-run=client -o yaml | kubectl apply -f - --validate=false
                                 # Patch images to use the build tag
                                 find k8s/stage/ -name "*.yaml" -exec sed -i "s|image: \\(.*\\):stage|image: ${REGISTRY}/\\1:${IMAGE_TAG}|g" {} +
                                 kubectl apply -f k8s/stage/ --validate=false
@@ -232,7 +232,7 @@ pipeline {
                             sh """#!/usr/bin/env bash
                                 set -euo pipefail
                                 # Ensure namespace exists
-                                kubectl create namespace circleguard-prod --dry-run=client -o yaml | kubectl apply -f -
+                                kubectl create namespace circleguard-prod --dry-run=client -o yaml | kubectl apply -f - --validate=false
                                 # Patch images to use the build tag
                                 find k8s/prod/ -name "*.yaml" -exec sed -i "s|image: \\(.*\\):prod|image: ${REGISTRY}/\\1:${IMAGE_TAG}|g" {} +
                                 kubectl apply -f k8s/prod/ --validate=false
