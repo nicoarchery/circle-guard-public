@@ -250,7 +250,7 @@ pipeline {
             when {
                 expression {
                     def branchName = env.BRANCH_NAME ?: env.GIT_BRANCH ?: ''
-                    branchName == 'master' || branchName.endsWith('/master')
+                    branchName == 'main' || branchName.endsWith('/main') || branchName == 'master' || branchName.endsWith('/master')
                 }
             }
             steps {
