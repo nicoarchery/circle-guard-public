@@ -183,8 +183,16 @@ Este proyecto ha sido auditado para asegurar el cumplimiento de los requerimient
     az aks get-credentials --resource-group circleguard-rg-dev --name circleguard-aks-dev --file ./azure-aks-config
     ```
 
-    #### 2. Configuración en Jenkins (Web)
-    - Entra a Jenkins (`http://localhost:8080`).
+    #### 2. Configuración de Jenkins (Software)
+    Instala los siguientes Plugins mediante **"Manage Jenkins"** > **"Plugins"** > **"Available Plugins"**:
+    - **Pipeline** (Core)
+    - **Docker Pipeline** (Para etapas de contenedores)
+    - **Credentials Binding** (Para manejar el kubeconfig)
+    - **Pipeline: Stage View** (Para ver el flujo visual)
+    - **Git** (Para clonar el repo automático)
+    - **SonarQube Scanner** (Para el análisis de calidad)
+
+    #### 3. Configuración de Credenciales (Web)
     - Ve a **"Manage Jenkins"** > **"Credentials"** > **"System"** > **"Global credentials"**.
     - Haz clic en **"Add Credentials"**:
         - **Kind**: Secret file
