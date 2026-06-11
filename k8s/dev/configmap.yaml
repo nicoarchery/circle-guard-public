@@ -41,3 +41,6 @@ data:
   MANAGEMENT_HEALTH_LDAP_ENABLED: "false"
   MANAGEMENT_HEALTH_MAIL_ENABLED: "false"
   MANAGEMENT_METRICS_TAGS_APPLICATION: "${spring.application.name}"
+
+  # Tracing
+  MANAGEMENT_OTLP_TRACING_ENDPOINT: "http://jaeger:4318/v1/traces"

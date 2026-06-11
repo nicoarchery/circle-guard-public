@@ -35,7 +35,7 @@ spec:
             name: circleguard-secrets
         resources:
           requests:
-            memory: "256Mi"
+            memory: "128Mi"
             cpu: "200m"
           limits:
             memory: "512Mi"
@@ -104,7 +104,7 @@ spec:
             name: circleguard-secrets
         resources:
           requests:
-            memory: "256Mi"
+            memory: "128Mi"
             cpu: "200m"
           limits:
             memory: "512Mi"
@@ -173,7 +173,7 @@ spec:
             name: circleguard-secrets
         resources:
           requests:
-            memory: "256Mi"
+            memory: "128Mi"
             cpu: "200m"
           limits:
             memory: "512Mi"
@@ -242,7 +242,7 @@ spec:
             name: circleguard-secrets
         resources:
           requests:
-            memory: "256Mi"
+            memory: "128Mi"
             cpu: "200m"
           limits:
             memory: "512Mi"
@@ -311,7 +311,7 @@ spec:
             name: circleguard-secrets
         resources:
           requests:
-            memory: "256Mi"
+            memory: "128Mi"
             cpu: "200m"
           limits:
             memory: "512Mi"
@@ -380,7 +380,7 @@ spec:
             name: circleguard-secrets
         resources:
           requests:
-            memory: "256Mi"
+            memory: "128Mi"
             cpu: "200m"
           limits:
             memory: "512Mi"
