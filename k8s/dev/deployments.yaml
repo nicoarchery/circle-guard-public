@@ -16,6 +16,8 @@ spec:
       labels:
         app: circleguard-auth-service
     spec:
+      imagePullSecrets:
+      - name: ghcr-credentials
       containers:
       - name: circleguard-auth-service
         image: circleguard-auth-service:dev
@@ -84,6 +86,8 @@ spec:
       labels:
         app: circleguard-identity-service
     spec:
+      imagePullSecrets:
+      - name: ghcr-credentials
       containers:
       - name: circleguard-identity-service
         image: circleguard-identity-service:dev
@@ -149,6 +153,8 @@ spec:
       labels:
         app: circleguard-gateway-service
     spec:
+      imagePullSecrets:
+      - name: ghcr-credentials
       containers:
       - name: circleguard-gateway-service
         image: circleguard-gateway-service:dev
@@ -214,6 +220,8 @@ spec:
       labels:
         app: circleguard-form-service
     spec:
+      imagePullSecrets:
+      - name: ghcr-credentials
       containers:
       - name: circleguard-form-service
         image: circleguard-form-service:dev
@@ -279,6 +287,8 @@ spec:
       labels:
         app: circleguard-promotion-service
     spec:
+      imagePullSecrets:
+      - name: ghcr-credentials
       containers:
       - name: circleguard-promotion-service
         image: circleguard-promotion-service:dev
@@ -344,6 +354,8 @@ spec:
       labels:
         app: circleguard-notification-service
     spec:
+      imagePullSecrets:
+      - name: ghcr-credentials
       containers:
       - name: circleguard-notification-service
         image: circleguard-notification-service:dev

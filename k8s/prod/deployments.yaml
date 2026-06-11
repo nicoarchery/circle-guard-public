@@ -7,7 +7,7 @@ metadata:
   labels:
     app: circleguard-auth-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: circleguard-auth-service
@@ -16,6 +16,8 @@ spec:
       labels:
         app: circleguard-auth-service
     spec:
+      imagePullSecrets:
+      - name: ghcr-credentials
       containers:
       - name: circleguard-auth-service
         image: circleguard-auth-service:prod
@@ -75,7 +77,7 @@ metadata:
   labels:
     app: circleguard-identity-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: circleguard-identity-service
@@ -84,6 +86,8 @@ spec:
       labels:
         app: circleguard-identity-service
     spec:
+      imagePullSecrets:
+      - name: ghcr-credentials
       containers:
       - name: circleguard-identity-service
         image: circleguard-identity-service:prod
@@ -140,7 +144,7 @@ metadata:
   labels:
     app: circleguard-gateway-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: circleguard-gateway-service
@@ -149,6 +153,8 @@ spec:
       labels:
         app: circleguard-gateway-service
     spec:
+      imagePullSecrets:
+      - name: ghcr-credentials
       containers:
       - name: circleguard-gateway-service
         image: circleguard-gateway-service:prod
@@ -205,7 +211,7 @@ metadata:
   labels:
     app: circleguard-form-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: circleguard-form-service
@@ -214,6 +220,8 @@ spec:
       labels:
         app: circleguard-form-service
     spec:
+      imagePullSecrets:
+      - name: ghcr-credentials
       containers:
       - name: circleguard-form-service
         image: circleguard-form-service:prod
@@ -270,7 +278,7 @@ metadata:
   labels:
     app: circleguard-promotion-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: circleguard-promotion-service
@@ -279,6 +287,8 @@ spec:
       labels:
         app: circleguard-promotion-service
     spec:
+      imagePullSecrets:
+      - name: ghcr-credentials
       containers:
       - name: circleguard-promotion-service
         image: circleguard-promotion-service:prod
@@ -335,7 +345,7 @@ metadata:
   labels:
     app: circleguard-notification-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: circleguard-notification-service
@@ -344,6 +354,8 @@ spec:
       labels:
         app: circleguard-notification-service
     spec:
+      imagePullSecrets:
+      - name: ghcr-credentials
       containers:
       - name: circleguard-notification-service
         image: circleguard-notification-service:prod
