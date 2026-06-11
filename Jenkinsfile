@@ -179,12 +179,12 @@ pipeline {
                         withCredentials([file(credentialsId: env.KUBECONFIG_CREDENTIALS_ID, variable: 'KUBECONFIG_FILE')]) {
                             sh """#!/usr/bin/env bash
                                 set -euo pipefail
-                                kubectl --kubeconfig=\$KUBECONFIG_FILE --cache-dir=/dev/null create namespace circleguard-dev --dry-run=client -o yaml > /tmp/ns-dev.yaml && kubectl --kubeconfig=\$KUBECONFIG_FILE --cache-dir=/dev/null apply -f /tmp/ns-dev.yaml --validate=false
+                                kubectl --kubeconfig="\$KUBECONFIG_FILE" --cache-dir=/dev/null create namespace circleguard-dev --dry-run=client -o yaml > /tmp/ns-dev.yaml && kubectl --kubeconfig="\$KUBECONFIG_FILE" --cache-dir=/dev/null apply -f /tmp/ns-dev.yaml --validate=false
                                 # Patch images to use the build tag instead of :dev
                                 find k8s/dev/ -name "*.yaml" -exec sed -i "s|image: \\(.*\\):dev|image: ${REGISTRY}/\\1:${IMAGE_TAG}|g" {} +
-                                kubectl --kubeconfig=\$KUBECONFIG_FILE --cache-dir=/dev/null apply -f k8s/dev/ --validate=false
-                                kubectl --kubeconfig=\$KUBECONFIG_FILE --cache-dir=/dev/null get pods -n circleguard-dev
-                                kubectl --kubeconfig=\$KUBECONFIG_FILE --cache-dir=/dev/null get svc -n circleguard-dev
+                                kubectl --kubeconfig="\$KUBECONFIG_FILE" --cache-dir=/dev/null apply -f k8s/dev/ --validate=false
+                                kubectl --kubeconfig="\$KUBECONFIG_FILE" --cache-dir=/dev/null get pods -n circleguard-dev
+                                kubectl --kubeconfig="\$KUBECONFIG_FILE" --cache-dir=/dev/null get svc -n circleguard-dev
                             """
                         }
                     } catch (Exception ex) {
@@ -211,11 +211,11 @@ pipeline {
                         withCredentials([file(credentialsId: env.KUBECONFIG_CREDENTIALS_ID, variable: 'KUBECONFIG_FILE')]) {
                             sh """#!/usr/bin/env bash
                                 set -euo pipefail
-                                kubectl --kubeconfig=\$KUBECONFIG_FILE --cache-dir=/dev/null create namespace circleguard-stage --dry-run=client -o yaml > /tmp/ns-stage.yaml && kubectl --kubeconfig=\$KUBECONFIG_FILE --cache-dir=/dev/null apply -f /tmp/ns-stage.yaml --validate=false
+                                kubectl --kubeconfig="\$KUBECONFIG_FILE" --cache-dir=/dev/null create namespace circleguard-stage --dry-run=client -o yaml > /tmp/ns-stage.yaml && kubectl --kubeconfig="\$KUBECONFIG_FILE" --cache-dir=/dev/null apply -f /tmp/ns-stage.yaml --validate=false
                                 # Patch images to use the build tag
                                 find k8s/stage/ -name "*.yaml" -exec sed -i "s|image: \\(.*\\):stage|image: ${REGISTRY}/\\1:${IMAGE_TAG}|g" {} +
-                                kubectl --kubeconfig=\$KUBECONFIG_FILE --cache-dir=/dev/null apply -f k8s/stage/ --validate=false
-                                kubectl --kubeconfig=\$KUBECONFIG_FILE --cache-dir=/dev/null get pods -n circleguard-stage
+                                kubectl --kubeconfig="\$KUBECONFIG_FILE" --cache-dir=/dev/null apply -f k8s/stage/ --validate=false
+                                kubectl --kubeconfig="\$KUBECONFIG_FILE" --cache-dir=/dev/null get pods -n circleguard-stage
                             """
                         }
                     } catch (Exception ex) {
@@ -243,11 +243,11 @@ pipeline {
                         withCredentials([file(credentialsId: env.KUBECONFIG_CREDENTIALS_ID, variable: 'KUBECONFIG_FILE')]) {
                             sh """#!/usr/bin/env bash
                                 set -euo pipefail
-                                kubectl --kubeconfig=\$KUBECONFIG_FILE --cache-dir=/dev/null create namespace circleguard-prod --dry-run=client -o yaml > /tmp/ns-prod.yaml && kubectl --kubeconfig=\$KUBECONFIG_FILE --cache-dir=/dev/null apply -f /tmp/ns-prod.yaml --validate=false
+                                kubectl --kubeconfig="\$KUBECONFIG_FILE" --cache-dir=/dev/null create namespace circleguard-prod --dry-run=client -o yaml > /tmp/ns-prod.yaml && kubectl --kubeconfig="\$KUBECONFIG_FILE" --cache-dir=/dev/null apply -f /tmp/ns-prod.yaml --validate=false
                                 # Patch images to use the build tag
                                 find k8s/prod/ -name "*.yaml" -exec sed -i "s|image: \\(.*\\):prod|image: ${REGISTRY}/\\1:${IMAGE_TAG}|g" {} +
-                                kubectl --kubeconfig=\$KUBECONFIG_FILE --cache-dir=/dev/null apply -f k8s/prod/ --validate=false
-                                kubectl --kubeconfig=\$KUBECONFIG_FILE --cache-dir=/dev/null get pods -n circleguard-prod
+                                kubectl --kubeconfig="\$KUBECONFIG_FILE" --cache-dir=/dev/null apply -f k8s/prod/ --validate=false
+                                kubectl --kubeconfig="\$KUBECONFIG_FILE" --cache-dir=/dev/null get pods -n circleguard-prod
                             """
                         }
                     } catch (Exception ex) {
