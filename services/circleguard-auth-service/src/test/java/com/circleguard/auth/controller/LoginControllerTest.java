@@ -4,6 +4,7 @@ import com.circleguard.auth.client.IdentityClient;
 import com.circleguard.auth.service.JwtTokenService;
 import com.circleguard.auth.service.CustomUserDetailsService;
 import com.circleguard.auth.security.SecurityConfig;
+import com.circleguard.auth.monitoring.BusinessMetrics;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.Import;
 import org.mockito.Mockito;
@@ -40,6 +41,9 @@ public class LoginControllerTest {
 
     @MockBean
     private CustomUserDetailsService userDetailsService;
+
+    @MockBean
+    private BusinessMetrics businessMetrics;
 
     @Test
     void shouldLoginSuccessfullyAndReturnAnonymizedToken() throws Exception {

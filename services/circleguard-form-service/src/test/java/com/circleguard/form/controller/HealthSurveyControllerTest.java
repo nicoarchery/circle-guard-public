@@ -2,6 +2,7 @@ package com.circleguard.form.controller;
 
 import com.circleguard.form.model.HealthSurvey;
 import com.circleguard.form.service.HealthSurveyService;
+import com.circleguard.form.monitoring.BusinessMetrics;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ class HealthSurveyControllerTest {
 
     @MockBean
     private HealthSurveyService surveyService;
+
+    @MockBean
+    private BusinessMetrics businessMetrics;
 
     @Test
     void shouldSubmitSurveySuccessfully() throws Exception {

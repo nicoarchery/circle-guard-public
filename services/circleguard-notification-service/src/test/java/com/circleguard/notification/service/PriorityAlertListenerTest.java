@@ -1,6 +1,7 @@
 package com.circleguard.notification.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.circleguard.notification.monitoring.BusinessMetrics;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
@@ -25,6 +26,9 @@ public class PriorityAlertListenerTest {
 
     @Mock
     private RestTemplate restTemplate;
+
+    @Mock
+    private BusinessMetrics businessMetrics;
 
     @InjectMocks
     private PriorityAlertListener priorityAlertListener;

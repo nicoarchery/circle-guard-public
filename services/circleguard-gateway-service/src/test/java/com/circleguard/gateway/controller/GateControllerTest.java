@@ -1,6 +1,7 @@
 package com.circleguard.gateway.controller;
 
 import com.circleguard.gateway.service.QrValidationService;
+import com.circleguard.gateway.monitoring.BusinessMetrics;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class GateControllerTest {
 
     @MockBean
     private QrValidationService validationService;
+
+    @MockBean
+    private BusinessMetrics businessMetrics;
 
     @Test
     void shouldReturnValidationResult() throws Exception {

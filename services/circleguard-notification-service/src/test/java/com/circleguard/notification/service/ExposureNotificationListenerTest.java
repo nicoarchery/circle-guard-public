@@ -1,5 +1,6 @@
 package com.circleguard.notification.service;
 
+import com.circleguard.notification.monitoring.BusinessMetrics;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -36,6 +37,9 @@ class ExposureNotificationListenerTest {
 
     @MockBean
     private PushService pushService;
+
+    @MockBean
+    private BusinessMetrics businessMetrics;
 
     @Test
     void shouldHandleStatusChangeEventWithoutError() {

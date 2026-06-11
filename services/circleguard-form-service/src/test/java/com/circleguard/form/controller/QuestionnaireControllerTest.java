@@ -2,6 +2,7 @@ package com.circleguard.form.controller;
 
 import com.circleguard.form.model.Questionnaire;
 import com.circleguard.form.service.QuestionnaireService;
+import com.circleguard.form.monitoring.BusinessMetrics;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ class QuestionnaireControllerTest {
 
     @MockBean
     private QuestionnaireService questionnaireService;
+
+    @MockBean
+    private BusinessMetrics businessMetrics;
 
     @Test
     void shouldReturnActiveQuestionnaire() throws Exception {

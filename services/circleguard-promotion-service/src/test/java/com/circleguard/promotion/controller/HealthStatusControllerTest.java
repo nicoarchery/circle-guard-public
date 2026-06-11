@@ -2,6 +2,7 @@ package com.circleguard.promotion.controller;
 
 import com.circleguard.promotion.service.HealthStatusService;
 import com.circleguard.promotion.security.SecurityConfig;
+import com.circleguard.promotion.monitoring.BusinessMetrics;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -24,6 +25,9 @@ class HealthStatusControllerTest {
 
     @MockBean
     private HealthStatusService statusService;
+
+    @MockBean
+    private BusinessMetrics businessMetrics;
 
     @Test
     @WithMockUser(authorities = "HEALTH_CENTER")

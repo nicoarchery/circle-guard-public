@@ -1,6 +1,7 @@
 package com.circleguard.identity.controller;
 
 import com.circleguard.identity.service.IdentityVaultService;
+import com.circleguard.identity.monitoring.BusinessMetrics;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -29,6 +30,9 @@ class IdentityVaultControllerTest {
 
     @MockBean
     private KafkaTemplate<String, Object> kafkaTemplate;
+
+    @MockBean
+    private BusinessMetrics businessMetrics;
 
     @Test
     @WithMockUser(authorities = "identity:lookup")

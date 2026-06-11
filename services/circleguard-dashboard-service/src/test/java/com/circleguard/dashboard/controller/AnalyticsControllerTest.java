@@ -1,6 +1,7 @@
 package com.circleguard.dashboard.controller;
 
 import com.circleguard.dashboard.service.AnalyticsService;
+import com.circleguard.dashboard.monitoring.BusinessMetrics;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ class AnalyticsControllerTest {
 
     @MockBean
     private AnalyticsService analyticsService;
+
+    @MockBean
+    private BusinessMetrics businessMetrics;
 
     @Test
     void shouldReturnHealthBoardStats() throws Exception {

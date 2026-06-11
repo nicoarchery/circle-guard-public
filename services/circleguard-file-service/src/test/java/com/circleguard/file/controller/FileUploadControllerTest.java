@@ -1,6 +1,7 @@
 package com.circleguard.file.controller;
 
 import com.circleguard.file.service.FileStorageService;
+import com.circleguard.file.monitoring.BusinessMetrics;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ class FileUploadControllerTest {
 
     @MockBean
     private FileStorageService storageService;
+
+    @MockBean
+    private BusinessMetrics businessMetrics;
 
     @Test
     void shouldUploadFileSuccessfully() throws Exception {
