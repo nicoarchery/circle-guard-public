@@ -95,11 +95,20 @@ pipeline {
                         echo 'docker is not available on this Jenkins agent, skipping Docker image build stage'
                         return
                     }
+                    sh """#!/usr/bin/env bash
+                        set -euo pipefail
+                        # Initialize buildx for multi-arch builds (ARM64 for AKS)
+                        docker buildx create --name circleguard-builder --use 2>/dev/null || docker buildx use circleguard-builder
+                        docker buildx inspect --bootstrap
+                    """
                     def services = env.SERVICE_LIST.split(',')
                     for (String serviceName : services) {
                         sh """#!/usr/bin/env bash
                             set -euo pipefail
-                            docker build \
+                            # Build for arm64 (AKS node architecture) using buildx
+                            docker buildx build \
+                              --platform linux/arm64 \
+                              --load \
                               -f services/${serviceName}/Dockerfile \
                               -t ${REGISTRY}/${serviceName}:${IMAGE_TAG} \
                               -t ${REGISTRY}/${serviceName}:latest \
