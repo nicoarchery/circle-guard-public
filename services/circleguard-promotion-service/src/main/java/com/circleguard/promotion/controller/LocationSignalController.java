@@ -1,6 +1,7 @@
 package com.circleguard.promotion.controller;
 
 import com.circleguard.promotion.service.LocationResolutionService;
+import com.circleguard.promotion.monitoring.BusinessMetrics;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +12,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class LocationSignalController {
     private final LocationResolutionService locationResolutionService;
+    private final BusinessMetrics metrics;
 
-    /**
-     * Endpoint for external WiFi controllers to post real-time signal detections.
-     */
     @PostMapping("/signal")
     public ResponseEntity<Void> receiveSignal(@RequestBody Map<String, Object> request) {
         String apMac = (String) request.get("apMac");
@@ -25,6 +24,7 @@ public class LocationSignalController {
             return ResponseEntity.badRequest().build();
         }
 
+        metrics.locationSignalsIngested.increment();
         locationResolutionService.processSignal(apMac, deviceMac, rssi);
         return ResponseEntity.ok().build();
     }

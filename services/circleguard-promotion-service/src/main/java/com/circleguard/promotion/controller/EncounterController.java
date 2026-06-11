@@ -2,6 +2,7 @@ package com.circleguard.promotion.controller;
 
 import com.circleguard.promotion.repository.graph.UserNodeRepository;
 import com.circleguard.promotion.service.AutoCircleService;
+import com.circleguard.promotion.monitoring.BusinessMetrics;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +20,7 @@ public class EncounterController {
 
     private final UserNodeRepository userRepository;
     private final AutoCircleService autoCircleService;
+    private final BusinessMetrics metrics;
 
     @Data
     public static class EncounterRequest {
@@ -32,6 +34,7 @@ public class EncounterController {
         log.info("Reporting encounter: {} -> {} at {}", 
             request.getSourceId(), request.getTargetId(), request.getLocationId());
         
+        metrics.encountersReported.increment();
         userRepository.recordEncounter(
             request.getSourceId(),
             request.getTargetId(),

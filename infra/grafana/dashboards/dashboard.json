@@ -1,0 +1,114 @@
+{
+  "title": "CircleGuard - Service Overview",
+  "tags": ["circleguard", "microservices"],
+  "schemaVersion": 36,
+  "version": 1,
+  "panels": [
+    {
+      "title": "Service Uptime",
+      "type": "stat",
+      "gridPos": {"h": 4, "w": 12, "x": 0, "y": 0},
+      "targets": [{"expr": "up{job=~\"circleguard-.*\"}", "legendFormat": "{{job}}"}],
+      "fieldConfig": {"defaults": {"color": {"mode": "thresholds"}, "thresholds": {"steps": [{"color": "red", "value": 0}, {"color": "green", "value": 1}]}}}
+    },
+    {
+      "title": "Request Rate (req/s) by Service",
+      "type": "timeseries",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 4},
+      "targets": [{"expr": "rate(http_server_requests_seconds_count[1m])", "legendFormat": "{{service}}"}]
+    },
+    {
+      "title": "P99 Latency by Service",
+      "type": "timeseries",
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 4},
+      "targets": [{"expr": "histogram_quantile(0.99, sum(rate(http_server_requests_seconds_bucket[5m])) by (le, service))", "legendFormat": "{{service}}"}]
+    },
+    {
+      "title": "Error Rate (%) by Service",
+      "type": "timeseries",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 12},
+      "targets": [{"expr": "sum(rate(http_server_requests_seconds_count{status=~\"5..\"}[5m])) by (service) / sum(rate(http_server_requests_seconds_count[5m])) by (service) * 100", "legendFormat": "{{service}}"}]
+    },
+    {
+      "title": "JVM Memory Usage by Service",
+      "type": "timeseries",
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 12},
+      "targets": [{"expr": "jvm_memory_used_bytes{area=\"heap\"} / 1024 / 1024", "legendFormat": "{{service}}"}]
+    },
+    {
+      "title": "Auth: Login Activity",
+      "type": "timeseries",
+      "gridPos": {"h": 6, "w": 8, "x": 0, "y": 20},
+      "targets": [
+        {"expr": "rate(circleguard_auth_login_attempts_total[5m])", "legendFormat": "Attempts"},
+        {"expr": "rate(circleguard_auth_login_success_total[5m])", "legendFormat": "Success"},
+        {"expr": "rate(circleguard_auth_login_failures_total[5m])", "legendFormat": "Failures"}
+      ]
+    },
+    {
+      "title": "Identity: Mappings & Lookups",
+      "type": "timeseries",
+      "gridPos": {"h": 6, "w": 8, "x": 8, "y": 20},
+      "targets": [
+        {"expr": "rate(circleguard_identity_map_total[5m])", "legendFormat": "Mapped"},
+        {"expr": "rate(circleguard_identity_lookup_total_total[5m])", "legendFormat": "Lookups"}
+      ]
+    },
+    {
+      "title": "Form: Surveys Submitted",
+      "type": "timeseries",
+      "gridPos": {"h": 6, "w": 8, "x": 16, "y": 20},
+      "targets": [
+        {"expr": "rate(circleguard_form_survey_submitted_total[5m])", "legendFormat": "Submitted"},
+        {"expr": "rate(circleguard_form_survey_validated_total[5m])", "legendFormat": "Validated"}
+      ]
+    },
+    {
+      "title": "Promotion: Health Status Changes",
+      "type": "timeseries",
+      "gridPos": {"h": 6, "w": 8, "x": 0, "y": 26},
+      "targets": [
+        {"expr": "rate(circleguard_promotion_health_report_total[5m])", "legendFormat": "Reports"},
+        {"expr": "rate(circleguard_promotion_encounter_reported_total[5m])", "legendFormat": "Encounters"}
+      ]
+    },
+    {
+      "title": "Promotion: Circles Activity",
+      "type": "timeseries",
+      "gridPos": {"h": 6, "w": 8, "x": 8, "y": 26},
+      "targets": [
+        {"expr": "rate(circleguard_promotion_circle_created_total[5m])", "legendFormat": "Created"},
+        {"expr": "rate(circleguard_promotion_circle_joined_total[5m])", "legendFormat": "Joined"},
+        {"expr": "rate(circleguard_promotion_circle_fenced_total[5m])", "legendFormat": "Fenced"}
+      ]
+    },
+    {
+      "title": "Gateway: Campus Access",
+      "type": "timeseries",
+      "gridPos": {"h": 6, "w": 8, "x": 16, "y": 26},
+      "targets": [
+        {"expr": "rate(circleguard_gateway_access_granted_total[5m])", "legendFormat": "Granted"},
+        {"expr": "rate(circleguard_gateway_access_denied_total[5m])", "legendFormat": "Denied"}
+      ]
+    },
+    {
+      "title": "Notification: Channels",
+      "type": "timeseries",
+      "gridPos": {"h": 6, "w": 8, "x": 0, "y": 32},
+      "targets": [
+        {"expr": "rate(circleguard_notification_email_sent_total[5m])", "legendFormat": "Email"},
+        {"expr": "rate(circleguard_notification_sms_sent_total[5m])", "legendFormat": "SMS"},
+        {"expr": "rate(circleguard_notification_push_sent_total[5m])", "legendFormat": "Push"}
+      ]
+    },
+    {
+      "title": "File: Uploads",
+      "type": "timeseries",
+      "gridPos": {"h": 6, "w": 8, "x": 8, "y": 32},
+      "targets": [
+        {"expr": "rate(circleguard_file_uploaded_total[5m])", "legendFormat": "Uploads"},
+        {"expr": "rate(circleguard_file_upload_errors_total[5m])", "legendFormat": "Errors"}
+      ]
+    }
+  ]
+}

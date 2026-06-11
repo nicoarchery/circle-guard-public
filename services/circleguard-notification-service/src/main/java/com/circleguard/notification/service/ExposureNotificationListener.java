@@ -2,6 +2,7 @@ package com.circleguard.notification.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.circleguard.notification.monitoring.BusinessMetrics;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -15,6 +16,7 @@ public class ExposureNotificationListener {
     private final NotificationDispatcher dispatcher;
     private final ObjectMapper objectMapper;
     private final LmsService lmsService;
+    private final BusinessMetrics metrics;
 
     /**
      * Listens for status changes and exposure events.
@@ -28,7 +30,9 @@ public class ExposureNotificationListener {
             String status = node.path("status").asText("UNKNOWN");
             
             if (!"ACTIVE".equals(status) && !"UNKNOWN".equals(status)) {
+                metrics.statusChangeNotifications.increment();
                 dispatcher.dispatch(userId, status);
+                metrics.lmsSyncs.increment();
                 lmsService.syncRemoteAttendance(userId, status);
             }
         } catch (Exception e) {

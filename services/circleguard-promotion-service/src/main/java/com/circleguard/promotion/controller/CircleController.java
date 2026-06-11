@@ -2,6 +2,7 @@ package com.circleguard.promotion.controller;
 
 import com.circleguard.promotion.model.graph.CircleNode;
 import com.circleguard.promotion.service.CircleService;
+import com.circleguard.promotion.monitoring.BusinessMetrics;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.List;
 public class CircleController {
 
     private final CircleService circleService;
+    private final BusinessMetrics metrics;
 
     @Data
     public static class CircleCreateRequest {
@@ -23,11 +25,13 @@ public class CircleController {
 
     @PostMapping
     public ResponseEntity<CircleNode> createCircle(@RequestBody CircleCreateRequest request) {
+        metrics.circlesCreated.increment();
         return ResponseEntity.ok(circleService.createCircle(request.getName(), request.getLocationId()));
     }
 
     @PostMapping("/join/{code}/user/{anonymousId}")
     public ResponseEntity<CircleNode> joinCircle(@PathVariable String code, @PathVariable String anonymousId) {
+        metrics.circlesJoined.increment();
         return ResponseEntity.ok(circleService.joinCircle(anonymousId, code));
     }
 
@@ -51,6 +55,7 @@ public class CircleController {
     @PostMapping("/{id}/force-fence")
     @org.springframework.security.access.prepost.PreAuthorize("hasAuthority('HEALTH_CENTER')")
     public ResponseEntity<Void> forceFence(@PathVariable Long id) {
+        metrics.circlesFenced.increment();
         circleService.forceFenceCircle(id);
         return ResponseEntity.ok().build();
     }

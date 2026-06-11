@@ -2,6 +2,7 @@ package com.circleguard.notification.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.circleguard.notification.monitoring.BusinessMetrics;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +21,7 @@ public class PriorityAlertListener {
     private final ObjectMapper objectMapper;
     private final TemplateService templateService;
     private final RestTemplate restTemplate = new RestTemplate();
+    private final BusinessMetrics metrics;
 
     @Value("${auth.api.url:http://circleguard-auth-service:8080}")
     private String authApiUrl;
@@ -33,6 +35,7 @@ public class PriorityAlertListener {
             Integer affectedCount = (Integer) payload.get("affectedCount");
             
             log.info("Processing {} Priority Alert. Affected: {}", eventType, affectedCount);
+            metrics.priorityAlerts.increment();
 
             // Fetch users with the alert:receive_priority permission
             String url = authApiUrl + "/api/v1/users/permissions/alert:receive_priority";

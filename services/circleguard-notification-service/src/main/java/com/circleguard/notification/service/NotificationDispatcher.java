@@ -1,5 +1,6 @@
 package com.circleguard.notification.service;
 
+import com.circleguard.notification.monitoring.BusinessMetrics;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ public class NotificationDispatcher {
     private final SmsService smsService;
     private final PushService pushService;
     private final TemplateService templateService;
+    private final BusinessMetrics metrics;
 
     public void dispatch(String userId, String status) {
         log.info("Dispatching contextual multi-channel notifications for user: {} with status: {}", userId, status);
@@ -24,6 +26,10 @@ public class NotificationDispatcher {
         String pushContent = templateService.generatePushContent(status);
         Map<String, String> pushMetadata = templateService.generatePushMetadata(status);
         String smsContent = templateService.generateSmsContent(status);
+
+        metrics.emailsSent.increment();
+        metrics.smsSent.increment();
+        metrics.pushNotificationsSent.increment();
 
         CompletableFuture.allOf(
             emailService.sendAsync(userId, emailContent),

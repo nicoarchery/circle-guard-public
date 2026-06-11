@@ -1,6 +1,7 @@
 package com.circleguard.promotion.controller;
 
 import com.circleguard.promotion.service.HealthStatusService;
+import com.circleguard.promotion.monitoring.BusinessMetrics;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,6 +13,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class HealthStatusController {
     private final HealthStatusService statusService;
+    private final BusinessMetrics metrics;
 
     @PostMapping("/report")
     @PreAuthorize("hasAuthority('HEALTH_CENTER')")
@@ -20,6 +22,8 @@ public class HealthStatusController {
         String status = (String) request.get("status");
         boolean override = request.containsKey("adminOverride") && (boolean) request.get("adminOverride");
         
+        metrics.healthReportsSubmitted.increment();
+        metrics.statusChanges.increment();
         statusService.updateStatus(anonymousId, status, override);
         return ResponseEntity.ok().build();
     }
@@ -28,6 +32,7 @@ public class HealthStatusController {
     @PreAuthorize("hasAuthority('HEALTH_CENTER')")
     public ResponseEntity<Void> confirmPositive(@RequestBody Map<String, String> request) {
         String anonymousId = request.get("anonymousId");
+        metrics.healthConfirmed.increment();
         statusService.updateStatus(anonymousId, "CONFIRMED");
         return ResponseEntity.ok().build();
     }
@@ -35,6 +40,7 @@ public class HealthStatusController {
     @PostMapping("/recovery/{id}")
     @PreAuthorize("hasAuthority('HEALTH_CENTER')")
     public ResponseEntity<Void> recover(@PathVariable String id) {
+        metrics.healthRecoveries.increment();
         statusService.promoteToRecovered(id);
         return ResponseEntity.ok().build();
     }
@@ -45,6 +51,7 @@ public class HealthStatusController {
         String anonymousId = (String) request.get("anonymousId");
         boolean override = request.containsKey("adminOverride") && (boolean) request.get("adminOverride");
 
+        metrics.statusChanges.increment();
         statusService.resolveStatus(anonymousId, override);
         return ResponseEntity.ok().build();
     }

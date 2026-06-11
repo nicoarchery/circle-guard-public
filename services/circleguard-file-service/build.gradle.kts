@@ -10,5 +10,8 @@ dependencies {
     testImplementation(platform("org.springframework.boot:spring-boot-dependencies:3.2.4"))
 
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("io.micrometer:micrometer-registry-prometheus")
+    implementation("org.springframework.boot:spring-boot-starter-aop")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

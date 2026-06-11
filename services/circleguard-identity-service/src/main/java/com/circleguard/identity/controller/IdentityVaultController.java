@@ -1,6 +1,7 @@
 package com.circleguard.identity.controller;
 
 import com.circleguard.identity.service.IdentityVaultService;
+import com.circleguard.identity.monitoring.BusinessMetrics;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,6 +20,7 @@ import java.time.Instant;
 public class IdentityVaultController {
     private final IdentityVaultService vaultService;
     private final KafkaTemplate<String, Object> kafkaTemplate;
+    private final BusinessMetrics metrics;
 
     /**
      * Maps a real identity to an anonymous ID. 
@@ -28,21 +30,19 @@ public class IdentityVaultController {
     public ResponseEntity<Map<String, UUID>> mapIdentity(@RequestBody Map<String, String> request) {
         String realIdentity = request.get("realIdentity");
         UUID anonymousId = vaultService.getOrCreateAnonymousId(realIdentity);
+        metrics.identitiesMapped.increment();
         return ResponseEntity.ok(Map.of("anonymousId", anonymousId));
     }
 
-    /**
-     * Registers a temporary visitor and maps their details to an Anonymous ID.
-     */
     @PostMapping("/visitor")
     public ResponseEntity<Map<String, UUID>> registerVisitor(@RequestBody Map<String, String> request) {
         String name = request.get("name");
         String email = request.get("email");
         String reason = request.get("reason_for_visit");
         
-        // Combine details into a single identity string for the vault
         String realIdentity = "VISITOR|" + email + "|" + name + "|" + reason;
         UUID anonymousId = vaultService.getOrCreateAnonymousId(realIdentity);
+        metrics.visitorsRegistered.increment();
         
         return ResponseEntity.ok(Map.of("anonymousId", anonymousId));
     }
@@ -56,16 +56,19 @@ public class IdentityVaultController {
     public ResponseEntity<Map<String, String>> lookupIdentity(@PathVariable UUID id) {
         String requestingUser = getCurrentUser();
         String status = "SUCCESS";
-        String realIdentity = null;
 
+        metrics.identityLookups.increment();
         try {
-            realIdentity = vaultService.resolveRealIdentity(id);
+            String realIdentity = vaultService.resolveRealIdentity(id);
+            metrics.lookupSuccesses.increment();
             return ResponseEntity.ok(Map.of("realIdentity", realIdentity));
         } catch (org.springframework.web.server.ResponseStatusException e) {
             status = "FAILURE_" + e.getStatusCode().toString();
+            metrics.lookupFailures.increment();
             throw e;
         } catch (Exception e) {
             status = "ERROR";
+            metrics.lookupFailures.increment();
             throw e;
         } finally {
             emitAuditEvent(id, requestingUser, status);

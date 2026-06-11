@@ -1,0 +1,51 @@
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: circleguard-jenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - jenkins_home:/var/jenkins_home
+      - ./azure-aks-config:/azure-aks-config:ro
+    environment:
+      JAVA_OPTS: "-Djenkins.install.runSetupWizard=true"
+    restart: unless-stopped
+
+  sonarqube:
+    image: sonarqube:lts-community
+    container_name: circleguard-sonarqube
+    ports:
+      - "9000:9000"
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_logs:/opt/sonarqube/logs
+      - sonarqube_extensions:/opt/sonarqube/extensions
+    environment:
+      SONAR_JDBC_URL: jdbc:postgresql://sonarqube-db:5432/sonar
+      SONAR_JDBC_USERNAME: sonar
+      SONAR_JDBC_PASSWORD: sonar
+    restart: unless-stopped
+    depends_on:
+      - sonarqube-db
+
+  sonarqube-db:
+    image: postgres:16-alpine
+    container_name: circleguard-sonarqube-db
+    ports:
+      - "5434:5432"
+    volumes:
+      - sonarqube_db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: sonar
+      POSTGRES_DB: sonar
+    restart: unless-stopped
+
+volumes:
+  jenkins_home:
+  sonarqube_data:
+  sonarqube_logs:
+  sonarqube_extensions:
+  sonarqube_db:

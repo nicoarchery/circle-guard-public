@@ -19,5 +19,9 @@ dependencies {
     implementation("org.springframework:spring-aspects")
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("io.micrometer:micrometer-registry-prometheus")
+    implementation("io.micrometer:micrometer-tracing-bridge-otel")
+    implementation("io.opentelemetry:opentelemetry-exporter-otlp:1.31.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

@@ -2,6 +2,7 @@ package com.circleguard.notification.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.circleguard.notification.monitoring.BusinessMetrics;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -16,6 +17,7 @@ public class CircleFencedListener {
 
     private final ObjectMapper objectMapper;
     private final RoomReservationService roomReservationService;
+    private final BusinessMetrics metrics;
 
     @KafkaListener(topics = "circle.fenced", groupId = "notification-group")
     public void handleCircleFenced(String message) {
@@ -26,6 +28,7 @@ public class CircleFencedListener {
             String locationId = (String) payload.get("locationId");
 
             if (locationId != null && !locationId.isEmpty()) {
+                metrics.circleFenceNotifications.increment();
                 roomReservationService.cancelReservation(circleId, locationId);
             } else {
                 log.warn("Circle {} has no locationId. Skipping room cancellation.", circleId);

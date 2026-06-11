@@ -1,6 +1,7 @@
 package com.circleguard.file.controller;
 
 import com.circleguard.file.service.FileStorageService;
+import com.circleguard.file.monitoring.BusinessMetrics;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +14,17 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class FileUploadController {
     private final FileStorageService storageService;
+    private final BusinessMetrics metrics;
 
     @PostMapping("/upload")
     public ResponseEntity<Map<String, String>> upload(@RequestParam("file") MultipartFile file) {
-        String filename = storageService.saveFile(file);
-        return ResponseEntity.ok(Map.of("filename", filename));
+        try {
+            String filename = storageService.saveFile(file);
+            metrics.filesUploaded.increment();
+            return ResponseEntity.ok(Map.of("filename", filename));
+        } catch (Exception e) {
+            metrics.uploadErrors.increment();
+            throw e;
+        }
     }
 }

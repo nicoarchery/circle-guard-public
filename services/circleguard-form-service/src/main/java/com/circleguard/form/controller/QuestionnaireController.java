@@ -2,6 +2,7 @@ package com.circleguard.form.controller;
 
 import com.circleguard.form.model.Questionnaire;
 import com.circleguard.form.service.QuestionnaireService;
+import com.circleguard.form.monitoring.BusinessMetrics;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class QuestionnaireController {
     private final QuestionnaireService service;
+    private final BusinessMetrics metrics;
 
     @GetMapping
     public ResponseEntity<List<Questionnaire>> getAll() {
@@ -30,11 +32,13 @@ public class QuestionnaireController {
 
     @PostMapping
     public ResponseEntity<Questionnaire> create(@RequestBody Questionnaire questionnaire) {
+        metrics.questionnairesCreated.increment();
         return ResponseEntity.ok(service.saveQuestionnaire(questionnaire));
     }
 
     @PostMapping("/{id}/activate")
     public ResponseEntity<Void> activate(@PathVariable UUID id) {
+        metrics.questionnairesActivated.increment();
         service.activateQuestionnaire(id);
         return ResponseEntity.ok().build();
     }

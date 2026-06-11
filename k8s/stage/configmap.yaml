@@ -18,4 +18,5 @@ data:
   LDAP_BASE_DN: "dc=example,dc=com"
   SPRING_PROFILES_ACTIVE: "stage"
   SERVER_PORT: "8080"
-  MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "health,metrics,info"
+  MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "health,metrics,info,prometheus,resilience4j"
+  MANAGEMENT_METRICS_TAGS_APPLICATION: "${spring.application.name}"

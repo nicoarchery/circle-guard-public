@@ -1,6 +1,7 @@
 package com.circleguard.auth.controller;
 
 import com.circleguard.auth.service.QrTokenService;
+import com.circleguard.auth.monitoring.BusinessMetrics;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -13,6 +14,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class QrTokenController {
     private final QrTokenService qrService;
+    private final BusinessMetrics metrics;
 
     /**
      * Generates a short-lived QR token for campus entry.
@@ -23,6 +25,7 @@ public class QrTokenController {
         // In a real app, the anonymousId is stored in the JWT principal/claims
         UUID anonymousId = UUID.fromString(auth.getName());
         String token = qrService.generateQrToken(anonymousId);
+        metrics.qrTokensGenerated.increment();
         
         return ResponseEntity.ok(Map.of(
             "qrToken", token,

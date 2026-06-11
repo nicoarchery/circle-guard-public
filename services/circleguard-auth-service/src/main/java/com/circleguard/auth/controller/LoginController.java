@@ -2,6 +2,7 @@ package com.circleguard.auth.controller;
 
 import com.circleguard.auth.service.JwtTokenService;
 import com.circleguard.auth.client.IdentityClient;
+import com.circleguard.auth.monitoring.BusinessMetrics;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.*;
@@ -17,27 +18,27 @@ public class LoginController {
     private final AuthenticationManager authManager;
     private final JwtTokenService jwtService;
     private final IdentityClient identityClient;
+    private final BusinessMetrics metrics;
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody Map<String, String> request) {
         String username = request.get("username");
         String password = request.get("password");
         
-        System.out.println("Login attempt for user: " + username + " (pass length: " + (password != null ? password.length() : 0) + ")");
+        metrics.loginAttempts.increment();
 
         try {
             // 1. Authenticate (Dual-Chain)
             Authentication auth = authManager.authenticate(
                     new UsernamePasswordAuthenticationToken(username, password)
             );
-            System.out.println("Authentication successful for: " + username);
 
             // 2. Anonymize (Fetch/Create Anonymous ID from Identity Service)
             UUID anonymousId = identityClient.getAnonymousId(username);
-            System.out.println("Anonymous ID retrieved: " + anonymousId);
 
             // 3. Issue Token
             String token = jwtService.generateToken(anonymousId, auth);
+            metrics.loginSuccesses.increment();
 
             return ResponseEntity.ok(Map.of(
                     "token", token,
@@ -45,11 +46,10 @@ public class LoginController {
                     "anonymousId", anonymousId.toString()
             ));
         } catch (org.springframework.security.core.AuthenticationException e) {
-            System.err.println("Authentication failed for " + username + ": " + e.getMessage());
+            metrics.loginFailures.increment();
             return ResponseEntity.status(401).body(Map.of("message", "Invalid username or password"));
         } catch (Exception e) {
-            System.err.println("Unexpected error during login for " + username + ":");
-            e.printStackTrace();
+            metrics.loginFailures.increment();
             return ResponseEntity.status(500).body(Map.of("message", "Internal server error: " + e.getMessage()));
         }
     }
@@ -71,6 +71,7 @@ public class LoginController {
         );
         
         String token = jwtService.generateToken(anonymousId, visitorAuth);
+        metrics.visitorHandoffs.increment();
         
         return ResponseEntity.ok(Map.of(
                 "token", token,

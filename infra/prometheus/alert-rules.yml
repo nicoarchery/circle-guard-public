@@ -1,0 +1,29 @@
+groups:
+  - name: circleguard-alerts
+    rules:
+      - alert: ServiceDown
+        expr: up{job=~"circleguard-.*"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Service {{ $labels.job }} is down"
+          description: "{{ $labels.job }} has been unreachable for more than 1 minute."
+
+      - alert: HighLatency
+        expr: http_server_requests_seconds_max{exception="None"} > 2
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High latency on {{ $labels.job }}"
+          description: "{{ $labels.job }} has request latency > 2s for the last minute."
+
+      - alert: HighErrorRate
+        expr: rate(http_server_requests_seconds_count{status=~"5.."}[5m]) / rate(http_server_requests_seconds_count[5m]) * 100 > 5
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High error rate on {{ $labels.job }}"
+          description: "Error rate on {{ $labels.job }} is above 5%."
