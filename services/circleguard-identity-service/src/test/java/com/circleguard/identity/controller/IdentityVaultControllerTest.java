@@ -2,10 +2,14 @@ package com.circleguard.identity.controller;
 
 import com.circleguard.identity.service.IdentityVaultService;
 import com.circleguard.identity.monitoring.BusinessMetrics;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Bean;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import java.util.UUID;
@@ -15,11 +19,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
-import org.springframework.context.annotation.Import;
 import com.circleguard.identity.config.SecurityConfig;
 
 @WebMvcTest(IdentityVaultController.class)
-@Import(SecurityConfig.class)
+@Import({SecurityConfig.class, IdentityVaultControllerTest.TestConfig.class})
 class IdentityVaultControllerTest {
 
     @Autowired
@@ -31,8 +34,13 @@ class IdentityVaultControllerTest {
     @MockBean
     private KafkaTemplate<String, Object> kafkaTemplate;
 
-    @MockBean
-    private BusinessMetrics businessMetrics;
+    @TestConfiguration
+    static class TestConfig {
+        @Bean
+        public BusinessMetrics businessMetrics() {
+            return new BusinessMetrics(new SimpleMeterRegistry());
+        }
+    }
 
     @Test
     @WithMockUser(authorities = "identity:lookup")

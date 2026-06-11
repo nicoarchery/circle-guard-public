@@ -5,8 +5,11 @@ import com.circleguard.auth.service.JwtTokenService;
 import com.circleguard.auth.service.CustomUserDetailsService;
 import com.circleguard.auth.security.SecurityConfig;
 import com.circleguard.auth.monitoring.BusinessMetrics;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Bean;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -24,7 +27,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(LoginController.class)
-@Import(SecurityConfig.class)
+@Import({SecurityConfig.class, LoginControllerTest.TestConfig.class})
 public class LoginControllerTest {
 
     @Autowired
@@ -42,8 +45,13 @@ public class LoginControllerTest {
     @MockBean
     private CustomUserDetailsService userDetailsService;
 
-    @MockBean
-    private BusinessMetrics businessMetrics;
+    @TestConfiguration
+    static class TestConfig {
+        @Bean
+        public BusinessMetrics businessMetrics() {
+            return new BusinessMetrics(new SimpleMeterRegistry());
+        }
+    }
 
     @Test
     void shouldLoginSuccessfullyAndReturnAnonymizedToken() throws Exception {

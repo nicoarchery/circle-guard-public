@@ -2,11 +2,15 @@ package com.circleguard.gateway.controller;
 
 import com.circleguard.gateway.service.QrValidationService;
 import com.circleguard.gateway.monitoring.BusinessMetrics;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Bean;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -14,6 +18,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(GateController.class)
+@Import(GateControllerTest.TestConfig.class)
 public class GateControllerTest {
 
     @Autowired
@@ -22,8 +27,13 @@ public class GateControllerTest {
     @MockBean
     private QrValidationService validationService;
 
-    @MockBean
-    private BusinessMetrics businessMetrics;
+    @TestConfiguration
+    static class TestConfig {
+        @Bean
+        public BusinessMetrics businessMetrics() {
+            return new BusinessMetrics(new SimpleMeterRegistry());
+        }
+    }
 
     @Test
     void shouldReturnValidationResult() throws Exception {

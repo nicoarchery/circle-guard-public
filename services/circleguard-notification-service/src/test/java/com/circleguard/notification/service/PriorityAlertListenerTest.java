@@ -2,6 +2,7 @@ package com.circleguard.notification.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.circleguard.notification.monitoring.BusinessMetrics;
+import io.micrometer.core.instrument.Counter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
@@ -38,6 +39,7 @@ public class PriorityAlertListenerTest {
         MockitoAnnotations.openMocks(this);
         ReflectionTestUtils.setField(priorityAlertListener, "authApiUrl", "http://localhost:8080");
         ReflectionTestUtils.setField(priorityAlertListener, "restTemplate", restTemplate);
+        ReflectionTestUtils.setField(businessMetrics, "priorityAlerts", mock(Counter.class));
     }
 
     @Test

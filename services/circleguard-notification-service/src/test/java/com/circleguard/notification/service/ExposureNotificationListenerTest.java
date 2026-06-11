@@ -1,12 +1,12 @@
 package com.circleguard.notification.service;
 
-import com.circleguard.notification.monitoring.BusinessMetrics;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.web.client.RestTemplate;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -18,7 +18,7 @@ class ExposureNotificationListenerTest {
     private ExposureNotificationListener listener;
 
     @MockBean
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private KafkaTemplate<String, Object> kafkaTemplate;
 
     @MockBean
     private NotificationDispatcher dispatcher;
@@ -39,7 +39,7 @@ class ExposureNotificationListenerTest {
     private PushService pushService;
 
     @MockBean
-    private BusinessMetrics businessMetrics;
+    private RestTemplate restTemplate;
 
     @Test
     void shouldHandleStatusChangeEventWithoutError() {

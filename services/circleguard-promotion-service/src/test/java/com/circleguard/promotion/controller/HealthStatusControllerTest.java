@@ -3,11 +3,14 @@ package com.circleguard.promotion.controller;
 import com.circleguard.promotion.service.HealthStatusService;
 import com.circleguard.promotion.security.SecurityConfig;
 import com.circleguard.promotion.monitoring.BusinessMetrics;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Bean;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -17,7 +20,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(HealthStatusController.class)
-@Import(SecurityConfig.class)
+@Import({SecurityConfig.class, HealthStatusControllerTest.TestConfig.class})
 class HealthStatusControllerTest {
 
     @Autowired
@@ -26,8 +29,13 @@ class HealthStatusControllerTest {
     @MockBean
     private HealthStatusService statusService;
 
-    @MockBean
-    private BusinessMetrics businessMetrics;
+    @TestConfiguration
+    static class TestConfig {
+        @Bean
+        public BusinessMetrics businessMetrics() {
+            return new BusinessMetrics(new SimpleMeterRegistry());
+        }
+    }
 
     @Test
     @WithMockUser(authorities = "HEALTH_CENTER")

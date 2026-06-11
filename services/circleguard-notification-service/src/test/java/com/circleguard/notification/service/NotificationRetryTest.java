@@ -1,6 +1,5 @@
 package com.circleguard.notification.service;
 
-import com.circleguard.notification.monitoring.BusinessMetrics;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,6 +8,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -29,7 +29,7 @@ public class NotificationRetryTest {
     private KafkaTemplate<String, Object> kafkaTemplate;
 
     @MockBean
-    private BusinessMetrics businessMetrics;
+    private RestTemplate restTemplate;
 
     @Test
     void testEmailRetryLogic() throws Exception {
