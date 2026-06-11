@@ -1,0 +1,411 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres-credentials
+  namespace: circleguard-dev
+type: Opaque
+stringData:
+  POSTGRES_USER: admin
+  POSTGRES_PASSWORD: password
+  POSTGRES_DB: circleguard
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgresql-service
+  namespace: circleguard-dev
+  labels:
+    app: postgresql-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgresql-service
+  template:
+    metadata:
+      labels:
+        app: postgresql-service
+    spec:
+      imagePullSecrets:
+      - name: ghcr-credentials
+      containers:
+      - name: postgresql
+        image: postgres:16-alpine
+        ports:
+        - containerPort: 5432
+        envFrom:
+        - secretRef:
+            name: postgres-credentials
+        volumeMounts:
+        - name: initdb
+          mountPath: /docker-entrypoint-initdb.d
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        livenessProbe:
+          exec:
+            command: ["pg_isready", "-U", "admin", "-d", "circleguard"]
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          exec:
+            command: ["pg_isready", "-U", "admin", "-d", "circleguard"]
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      volumes:
+      - name: initdb
+        configMap:
+          name: initdb-sql
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgresql-service
+  namespace: circleguard-dev
+  labels:
+    app: postgresql-service
+spec:
+  type: ClusterIP
+  ports:
+  - port: 5432
+    targetPort: 5432
+  selector:
+    app: postgresql-service
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: initdb-sql
+  namespace: circleguard-dev
+data:
+  init-db.sql: |
+    CREATE USER circleguard WITH PASSWORD 'circleguard-password';
+    GRANT ALL PRIVILEGES ON DATABASE circleguard TO circleguard;
+    GRANT ALL ON SCHEMA public TO circleguard;
+    SELECT 'CREATE DATABASE circleguard_auth' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'circleguard_auth')\gexec
+    SELECT 'CREATE DATABASE circleguard_identity' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'circleguard_identity')\gexec
+    SELECT 'CREATE DATABASE circleguard_promotion' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'circleguard_promotion')\gexec
+    SELECT 'CREATE DATABASE circleguard_dashboard' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'circleguard_dashboard')\gexec
+    SELECT 'CREATE DATABASE circleguard_form' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'circleguard_form')\gexec
+    GRANT ALL PRIVILEGES ON DATABASE circleguard_auth TO circleguard;
+    GRANT ALL PRIVILEGES ON DATABASE circleguard_identity TO circleguard;
+    GRANT ALL PRIVILEGES ON DATABASE circleguard_promotion TO circleguard;
+    GRANT ALL PRIVILEGES ON DATABASE circleguard_dashboard TO circleguard;
+    GRANT ALL PRIVILEGES ON DATABASE circleguard_form TO circleguard;
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-service
+  namespace: circleguard-dev
+  labels:
+    app: redis-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-service
+  template:
+    metadata:
+      labels:
+        app: redis-service
+    spec:
+      imagePullSecrets:
+      - name: ghcr-credentials
+      containers:
+      - name: redis
+        image: redis:7-alpine
+        ports:
+        - containerPort: 6379
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        livenessProbe:
+          exec:
+            command: ["redis-cli", "ping"]
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        readinessProbe:
+          exec:
+            command: ["redis-cli", "ping"]
+          initialDelaySeconds: 5
+          periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-service
+  namespace: circleguard-dev
+  labels:
+    app: redis-service
+spec:
+  type: ClusterIP
+  ports:
+  - port: 6379
+    targetPort: 6379
+  selector:
+    app: redis-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neo4j-service
+  namespace: circleguard-dev
+  labels:
+    app: neo4j-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: neo4j-service
+  template:
+    metadata:
+      labels:
+        app: neo4j-service
+    spec:
+      enableServiceLinks: false
+      imagePullSecrets:
+      - name: ghcr-credentials
+      containers:
+      - name: neo4j
+        image: neo4j:5-community
+        ports:
+        - containerPort: 7687
+        - containerPort: 7474
+        env:
+        - name: NEO4J_AUTH
+          value: neo4j/password
+        - name: NEO4J_PLUGINS
+          value: '["apoc"]'
+        - name: NEO4J_server_config_strict_validation_enabled
+          value: "false"
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        livenessProbe:
+          exec:
+            command: ["cypher-shell", "-u", "neo4j", "-p", "password", "RETURN 1"]
+          initialDelaySeconds: 120
+          periodSeconds: 15
+          timeoutSeconds: 10
+        readinessProbe:
+          exec:
+            command: ["cypher-shell", "-u", "neo4j", "-p", "password", "RETURN 1"]
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          timeoutSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: neo4j-service
+  namespace: circleguard-dev
+  labels:
+    app: neo4j-service
+spec:
+  type: ClusterIP
+  ports:
+  - name: bolt
+    port: 7687
+    targetPort: 7687
+  - name: http
+    port: 7474
+    targetPort: 7474
+  selector:
+    app: neo4j-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zookeeper-service
+  namespace: circleguard-dev
+  labels:
+    app: zookeeper-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zookeeper-service
+  template:
+    metadata:
+      labels:
+        app: zookeeper-service
+    spec:
+      imagePullSecrets:
+      - name: ghcr-credentials
+      containers:
+      - name: zookeeper
+        image: confluentinc/cp-zookeeper:7.6.0
+        ports:
+        - containerPort: 2181
+        env:
+        - name: ZOOKEEPER_CLIENT_PORT
+          value: "2181"
+        - name: ZOOKEEPER_TICK_TIME
+          value: "2000"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zookeeper-service
+  namespace: circleguard-dev
+  labels:
+    app: zookeeper-service
+spec:
+  type: ClusterIP
+  ports:
+  - port: 2181
+    targetPort: 2181
+  selector:
+    app: zookeeper-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-service
+  namespace: circleguard-dev
+  labels:
+    app: kafka-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-service
+  template:
+    metadata:
+      labels:
+        app: kafka-service
+    spec:
+      imagePullSecrets:
+      - name: ghcr-credentials
+      containers:
+      - name: kafka
+        image: confluentinc/cp-kafka:7.6.0
+        ports:
+        - containerPort: 9092
+        env:
+        - name: KAFKA_BROKER_ID
+          value: "1"
+        - name: KAFKA_ZOOKEEPER_CONNECT
+          value: zookeeper-service:2181
+        - name: KAFKA_ADVERTISED_LISTENERS
+          value: PLAINTEXT://kafka-service:9092
+        - name: KAFKA_LISTENER_SECURITY_PROTOCOL_MAP
+          value: PLAINTEXT:PLAINTEXT
+        - name: KAFKA_INTER_BROKER_LISTENER_NAME
+          value: PLAINTEXT
+        - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
+          value: "1"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          exec:
+            command: ["kafka-topics", "--bootstrap-server", "localhost:9092", "--list"]
+          initialDelaySeconds: 60
+          periodSeconds: 15
+          timeoutSeconds: 5
+        readinessProbe:
+          exec:
+            command: ["kafka-topics", "--bootstrap-server", "localhost:9092", "--list"]
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-service
+  namespace: circleguard-dev
+  labels:
+    app: kafka-service
+spec:
+  type: ClusterIP
+  ports:
+  - port: 9092
+    targetPort: 9092
+  selector:
+    app: kafka-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ldap-service
+  namespace: circleguard-dev
+  labels:
+    app: ldap-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ldap-service
+  template:
+    metadata:
+      labels:
+        app: ldap-service
+    spec:
+      imagePullSecrets:
+      - name: ghcr-credentials
+      containers:
+      - name: openldap
+        image: osixia/openldap:1.5.0
+        ports:
+        - containerPort: 389
+        - containerPort: 636
+        env:
+        - name: LDAP_ORGANISATION
+          value: "CircleGuard"
+        - name: LDAP_DOMAIN
+          value: "circleguard.edu"
+        - name: LDAP_ADMIN_PASSWORD
+          value: "admin"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ldap-service
+  namespace: circleguard-dev
+  labels:
+    app: ldap-service
+spec:
+  type: ClusterIP
+  ports:
+  - name: ldap
+    port: 389
+    targetPort: 389
+  - name: ldaps
+    port: 636
+    targetPort: 636
+  selector:
+    app: ldap-service

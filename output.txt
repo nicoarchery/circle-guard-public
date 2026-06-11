@@ -1,0 +1,406 @@
+Started by user nicolas jimenez
+
+Obtained Jenkinsfile from git https://github.com/nicoarchery/circle-guard-public.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins
+ in /var/jenkins_home/workspace/CircleGuard Pipeline
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+using credential circleguard-registry
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/CircleGuard Pipeline/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/nicoarchery/circle-guard-public.git # timeout=10
+Fetching upstream changes from https://github.com/nicoarchery/circle-guard-public.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+using GIT_ASKPASS to set credentials GitHub Container Registry credentials
+ > git fetch --tags --force --progress -- https://github.com/nicoarchery/circle-guard-public.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 07b41ebe228c8343ea28f82eeff22fb2dbee5632 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 07b41ebe228c8343ea28f82eeff22fb2dbee5632 # timeout=10
+Commit message: "fix: use real BusinessMetrics bean in tests instead of @MockBean"
+ > git rev-list --no-walk a3dc70695808b172bf8c7bf139e587f70bb1494b # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] checkout
+00:53:49  Selected Git installation does not exist. Using Default
+00:53:49  The recommended git tool is: NONE
+00:53:49  using credential circleguard-registry
+00:53:49   > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/CircleGuard Pipeline/.git # timeout=10
+00:53:49  Fetching changes from the remote Git repository
+00:53:49   > git config remote.origin.url https://github.com/nicoarchery/circle-guard-public.git # timeout=10
+00:53:49  Fetching upstream changes from https://github.com/nicoarchery/circle-guard-public.git
+00:53:49   > git --version # timeout=10
+00:53:49   > git --version # 'git version 2.47.3'
+00:53:49  using GIT_ASKPASS to set credentials GitHub Container Registry credentials
+00:53:49   > git fetch --tags --force --progress -- https://github.com/nicoarchery/circle-guard-public.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+00:53:49   > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+00:53:49  Checking out Revision 07b41ebe228c8343ea28f82eeff22fb2dbee5632 (refs/remotes/origin/main)
+00:53:49   > git config core.sparsecheckout # timeout=10
+00:53:49   > git checkout -f 07b41ebe228c8343ea28f82eeff22fb2dbee5632 # timeout=10
+00:53:49  Commit message: "fix: use real BusinessMetrics bean in tests instead of @MockBean"
+[Pipeline] sh
+00:53:49  + chmod +x ./gradlew
+[Pipeline] sh
+00:53:50  + chmod +x ./scripts/wait-for-services.sh
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Start local infra)
+[Pipeline] sh
+00:53:50  docker-compose/docker compose not available, skipping infra startup
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Toolchain check)
+[Pipeline] sh
+00:53:50  + java -version
+00:53:50  openjdk version "21.0.11" 2026-04-21 LTS
+00:53:50  OpenJDK Runtime Environment Temurin-21.0.11+10 (build 21.0.11+10-LTS)
+00:53:50  OpenJDK 64-Bit Server VM Temurin-21.0.11+10 (build 21.0.11+10-LTS, mixed mode)
+[Pipeline] sh
+00:53:50  + ./gradlew -version
+00:53:50  openjdk version "21.0.11" 2026-04-21 LTS
+00:53:50  OpenJDK Runtime Environment Temurin-21.0.11+10 (build 21.0.11+10-LTS)
+00:53:50  OpenJDK 64-Bit Server VM Temurin-21.0.11+10 (build 21.0.11+10-LTS, mixed mode)
+00:53:51  
+00:53:51  ------------------------------------------------------------
+00:53:51  Gradle 8.14
+00:53:51  ------------------------------------------------------------
+00:53:51  
+00:53:51  Build time:    2025-04-25 09:29:08 UTC
+00:53:51  Revision:      34c560e3be961658a6fbcd7170ec2443a228b109
+00:53:51  
+00:53:51  Kotlin:        2.0.21
+00:53:51  Groovy:        3.0.24
+00:53:51  Ant:           Apache Ant(TM) version 1.10.15 compiled on August 25 2024
+00:53:51  Launcher JVM:  21.0.11 (Eclipse Adoptium 21.0.11+10-LTS)
+00:53:51  Daemon JVM:    /opt/java/openjdk (no JDK specified, using current Java home)
+00:53:51  OS:            Linux 7.0.9-1-cachyos amd64
+00:53:51  
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Unit and integration tests)
+[Pipeline] sh
+00:53:51  openjdk version "21.0.11" 2026-04-21 LTS
+00:53:51  OpenJDK Runtime Environment Temurin-21.0.11+10 (build 21.0.11+10-LTS)
+00:53:51  OpenJDK 64-Bit Server VM Temurin-21.0.11+10 (build 21.0.11+10-LTS, mixed mode)
+00:53:52  To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+00:53:53  Daemon will be stopped at the end of the build 
+00:54:03  > Task :services:circleguard-promotion-service:clean UP-TO-DATE
+00:54:03  > Task :services:clean UP-TO-DATE
+00:54:03  > Task :services:checkKotlinGradlePluginConfigurationErrors
+00:54:03  > Task :services:circleguard-file-service:clean
+00:54:03  > Task :services:circleguard-gateway-service:clean
+00:54:03  > Task :services:circleguard-dashboard-service:clean
+00:54:03  > Task :services:circleguard-identity-service:clean
+00:54:03  > Task :services:circleguard-notification-service:clean
+00:54:03  > Task :services:circleguard-file-service:checkKotlinGradlePluginConfigurationErrors
+00:54:03  > Task :services:circleguard-dashboard-service:checkKotlinGradlePluginConfigurationErrors
+00:54:03  > Task :services:circleguard-identity-service:checkKotlinGradlePluginConfigurationErrors
+00:54:03  > Task :services:circleguard-notification-service:checkKotlinGradlePluginConfigurationErrors
+00:54:03  > Task :services:circleguard-form-service:clean
+00:54:03  > Task :services:circleguard-gateway-service:checkKotlinGradlePluginConfigurationErrors
+00:54:03  > Task :services:circleguard-auth-service:clean
+00:54:03  > Task :services:circleguard-form-service:checkKotlinGradlePluginConfigurationErrors
+00:54:03  > Task :services:circleguard-auth-service:checkKotlinGradlePluginConfigurationErrors
+00:54:03  > Task :services:compileKotlin NO-SOURCE
+00:54:03  > Task :services:compileJava NO-SOURCE
+00:54:03  > Task :services:processResources NO-SOURCE
+00:54:03  > Task :services:classes UP-TO-DATE
+00:54:03  > Task :services:compileTestKotlin NO-SOURCE
+00:54:03  > Task :services:circleguard-file-service:compileKotlin NO-SOURCE
+00:54:03  > Task :services:circleguard-dashboard-service:compileKotlin NO-SOURCE
+00:54:03  > Task :services:circleguard-gateway-service:compileKotlin NO-SOURCE
+00:54:03  > Task :services:circleguard-notification-service:compileKotlin NO-SOURCE
+00:54:03  > Task :services:circleguard-auth-service:compileKotlin NO-SOURCE
+00:54:03  > Task :services:circleguard-identity-service:compileKotlin NO-SOURCE
+00:54:03  > Task :services:compileTestJava NO-SOURCE
+00:54:03  > Task :services:processTestResources NO-SOURCE
+00:54:03  > Task :services:testClasses UP-TO-DATE
+00:54:03  > Task :services:test NO-SOURCE
+00:54:04  > Task :services:circleguard-form-service:compileKotlin NO-SOURCE
+00:54:05  > Task :services:circleguard-file-service:compileJava FROM-CACHE
+00:54:05  > Task :services:circleguard-gateway-service:compileJava FROM-CACHE
+00:54:05  > Task :services:circleguard-dashboard-service:compileJava FROM-CACHE
+00:54:05  > Task :services:circleguard-form-service:compileJava FROM-CACHE
+00:54:05  > Task :services:circleguard-identity-service:compileJava FROM-CACHE
+00:54:05  > Task :services:circleguard-auth-service:compileJava FROM-CACHE
+00:54:05  > Task :services:circleguard-gateway-service:processResources
+00:54:05  > Task :services:circleguard-identity-service:processResources
+00:54:05  > Task :services:circleguard-dashboard-service:processResources
+00:54:05  > Task :services:circleguard-file-service:processResources
+00:54:05  > Task :services:circleguard-gateway-service:classes
+00:54:05  > Task :services:circleguard-dashboard-service:classes
+00:54:05  > Task :services:circleguard-identity-service:classes
+00:54:05  > Task :services:circleguard-file-service:classes
+00:54:05  > Task :services:circleguard-form-service:processResources
+00:54:05  > Task :services:circleguard-auth-service:processResources
+00:54:05  > Task :services:circleguard-form-service:classes
+00:54:05  > Task :services:circleguard-auth-service:classes
+00:54:05  > Task :services:circleguard-dashboard-service:compileTestKotlin NO-SOURCE
+00:54:05  > Task :services:circleguard-gateway-service:compileTestKotlin NO-SOURCE
+00:54:05  > Task :services:circleguard-file-service:compileTestKotlin NO-SOURCE
+00:54:05  > Task :services:circleguard-identity-service:compileTestKotlin NO-SOURCE
+00:54:05  > Task :services:circleguard-auth-service:compileTestKotlin NO-SOURCE
+00:54:05  > Task :services:circleguard-form-service:compileTestKotlin NO-SOURCE
+00:54:05  > Task :services:circleguard-notification-service:compileJava FROM-CACHE
+00:54:05  > Task :services:circleguard-notification-service:processResources
+00:54:05  > Task :services:circleguard-notification-service:classes
+00:54:05  > Task :services:circleguard-notification-service:compileTestKotlin NO-SOURCE
+00:54:10  
+00:54:10  > Task :services:circleguard-gateway-service:compileTestJava
+00:54:10  Note: /var/jenkins_home/workspace/CircleGuard Pipeline/services/circleguard-gateway-service/src/test/java/com/circleguard/gateway/service/QrValidationServiceTest.java uses unchecked or unsafe operations.
+00:54:10  Note: Recompile with -Xlint:unchecked for details.
+00:54:11  
+00:54:11  > Task :services:circleguard-dashboard-service:compileTestJava
+00:54:11  > Task :services:circleguard-file-service:compileTestJava
+00:54:11  > Task :services:circleguard-dashboard-service:processTestResources NO-SOURCE
+00:54:11  > Task :services:circleguard-file-service:processTestResources NO-SOURCE
+00:54:11  > Task :services:circleguard-gateway-service:processTestResources NO-SOURCE
+00:54:11  > Task :services:circleguard-dashboard-service:testClasses
+00:54:11  > Task :services:circleguard-file-service:testClasses
+00:54:11  > Task :services:circleguard-form-service:compileTestJava
+00:54:11  > Task :services:circleguard-auth-service:compileTestJava
+00:54:11  > Task :services:circleguard-gateway-service:testClasses
+00:54:11  > Task :services:circleguard-form-service:processTestResources
+00:54:11  > Task :services:circleguard-form-service:testClasses
+00:54:11  > Task :services:circleguard-auth-service:processTestResources
+00:54:11  > Task :services:circleguard-auth-service:testClasses
+00:54:11  > Task :services:circleguard-identity-service:compileTestJava
+00:54:11  > Task :services:circleguard-identity-service:processTestResources
+00:54:11  > Task :services:circleguard-identity-service:testClasses
+00:54:11  > Task :services:circleguard-notification-service:compileTestJava
+00:54:11  > Task :services:circleguard-notification-service:processTestResources NO-SOURCE
+00:54:11  > Task :services:circleguard-notification-service:testClasses
+00:54:37  > Task :services:circleguard-file-service:test
+00:54:37  > Task :services:circleguard-dashboard-service:test
+00:54:40  > Task :services:circleguard-gateway-service:test
+00:54:40  > Task :services:circleguard-form-service:test
+00:54:40  > Task :services:circleguard-auth-service:test
+00:54:41  > Task :services:circleguard-identity-service:test
+00:54:41  > Task :services:circleguard-notification-service:test
+00:54:51  
+00:54:51  ExposureNotificationListenerTest > shouldHandleStatusChangeEventWithoutError() FAILED
+00:54:51      java.lang.IllegalStateException at DefaultCacheAwareContextLoaderDelegate.java:180
+00:54:51          Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException at ConstructorResolver.java:795
+00:54:51              Caused by: org.springframework.beans.factory.BeanCreationException at ConstructorResolver.java:648
+00:54:51                  Caused by: org.springframework.beans.BeanInstantiationException at SimpleInstantiationStrategy.java:177
+00:54:51                      Caused by: java.lang.IllegalArgumentException at Assert.java:455
+00:54:57  
+00:54:57  2026-06-11T05:54:56.917Z  INFO 7638 --- [ionShutdownHook] [                                                 ] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+00:54:57  Hibernate: drop table if exists identity_mappings cascade 
+00:55:09  
+00:55:09  > Task :services:circleguard-notification-service:test
+00:55:09  
+00:55:09  NotificationRetryTest > testEmailRetryLogic() FAILED
+00:55:09      java.lang.IllegalStateException at DefaultCacheAwareContextLoaderDelegate.java:180
+00:55:09          Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException at ConstructorResolver.java:795
+00:55:09              Caused by: org.springframework.beans.factory.BeanCreationException at ConstructorResolver.java:648
+00:55:09                  Caused by: org.springframework.beans.BeanInstantiationException at SimpleInstantiationStrategy.java:177
+00:55:09                      Caused by: java.lang.IllegalArgumentException at Assert.java:455
+00:55:10  
+00:55:10  2026-06-11T05:55:10.131Z  INFO 7628 --- [circleguard-notification-service] [ntainer#2-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-priority-group-1, groupId=notification-priority-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.131Z  INFO 7628 --- [circleguard-notification-service] [ntainer#1-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-3, groupId=notification-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.132Z  INFO 7628 --- [circleguard-notification-service] [ntainer#2-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-priority-group-1, groupId=notification-priority-group] Request joining group due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.132Z  INFO 7628 --- [circleguard-notification-service] [ntainer#1-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-3, groupId=notification-group] Request joining group due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.132Z  INFO 7628 --- [circleguard-notification-service] [ntainer#2-0-C-1] [                                                 ] fkaConsumerFactory$ExtendedKafkaConsumer : [Consumer clientId=consumer-notification-priority-group-1, groupId=notification-priority-group] Unsubscribed all topics or patterns and assigned partitions
+00:55:10  2026-06-11T05:55:10.132Z  INFO 7628 --- [circleguard-notification-service] [ntainer#1-0-C-1] [                                                 ] fkaConsumerFactory$ExtendedKafkaConsumer : [Consumer clientId=consumer-notification-group-3, groupId=notification-group] Unsubscribed all topics or patterns and assigned partitions
+00:55:10  2026-06-11T05:55:10.131Z  INFO 7628 --- [circleguard-notification-service] [ntainer#0-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-2, groupId=notification-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.134Z  INFO 7628 --- [circleguard-notification-service] [ntainer#2-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-priority-group-1, groupId=notification-priority-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.135Z  INFO 7628 --- [circleguard-notification-service] [ntainer#0-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-2, groupId=notification-group] Request joining group due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.135Z  INFO 7628 --- [circleguard-notification-service] [ntainer#2-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-priority-group-1, groupId=notification-priority-group] Request joining group due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.135Z  INFO 7628 --- [circleguard-notification-service] [ntainer#0-0-C-1] [                                                 ] fkaConsumerFactory$ExtendedKafkaConsumer : [Consumer clientId=consumer-notification-group-2, groupId=notification-group] Unsubscribed all topics or patterns and assigned partitions
+00:55:10  2026-06-11T05:55:10.136Z  INFO 7628 --- [circleguard-notification-service] [ntainer#0-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-2, groupId=notification-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.137Z  INFO 7628 --- [circleguard-notification-service] [ntainer#0-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-2, groupId=notification-group] Request joining group due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.138Z  INFO 7628 --- [circleguard-notification-service] [ntainer#1-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-3, groupId=notification-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.140Z  INFO 7628 --- [circleguard-notification-service] [ntainer#1-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-3, groupId=notification-group] Request joining group due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.141Z  INFO 7628 --- [circleguard-notification-service] [ntainer#2-0-C-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+00:55:10  2026-06-11T05:55:10.141Z  INFO 7628 --- [circleguard-notification-service] [ntainer#2-0-C-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+00:55:10  2026-06-11T05:55:10.141Z  INFO 7628 --- [circleguard-notification-service] [ntainer#2-0-C-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+00:55:10  2026-06-11T05:55:10.147Z  INFO 7628 --- [circleguard-notification-service] [ntainer#1-0-C-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+00:55:10  2026-06-11T05:55:10.147Z  INFO 7628 --- [circleguard-notification-service] [ntainer#1-0-C-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+00:55:10  2026-06-11T05:55:10.147Z  INFO 7628 --- [circleguard-notification-service] [ntainer#1-0-C-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+00:55:10  2026-06-11T05:55:10.149Z  INFO 7628 --- [circleguard-notification-service] [ntainer#0-0-C-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+00:55:10  2026-06-11T05:55:10.149Z  INFO 7628 --- [circleguard-notification-service] [ntainer#0-0-C-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+00:55:10  2026-06-11T05:55:10.149Z  INFO 7628 --- [circleguard-notification-service] [ntainer#0-0-C-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+00:55:10  2026-06-11T05:55:10.162Z  INFO 7628 --- [circleguard-notification-service] [ntainer#0-0-C-1] [                                                 ] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-notification-group-2 unregistered
+00:55:10  2026-06-11T05:55:10.164Z  INFO 7628 --- [circleguard-notification-service] [ntainer#0-0-C-1] [                                                 ] o.s.k.l.KafkaMessageListenerContainer    : notification-group: Consumer stopped
+00:55:10  2026-06-11T05:55:10.167Z  INFO 7628 --- [circleguard-notification-service] [ntainer#1-0-C-1] [                                                 ] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-notification-group-3 unregistered
+00:55:10  2026-06-11T05:55:10.168Z  INFO 7628 --- [circleguard-notification-service] [ntainer#1-0-C-1] [                                                 ] o.s.k.l.KafkaMessageListenerContainer    : notification-group: Consumer stopped
+00:55:10  2026-06-11T05:55:10.170Z  INFO 7628 --- [circleguard-notification-service] [ntainer#2-0-C-1] [                                                 ] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-notification-priority-group-1 unregistered
+00:55:10  2026-06-11T05:55:10.172Z  INFO 7628 --- [circleguard-notification-service] [ntainer#2-0-C-1] [                                                 ] o.s.k.l.KafkaMessageListenerContainer    : notification-priority-group: Consumer stopped
+00:55:10  2026-06-11T05:55:10.201Z  INFO 7628 --- [circleguard-notification-service] [ntainer#0-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-5, groupId=notification-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.202Z  INFO 7628 --- [circleguard-notification-service] [ntainer#0-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-5, groupId=notification-group] Request joining group due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.202Z  INFO 7628 --- [circleguard-notification-service] [ntainer#0-0-C-1] [                                                 ] fkaConsumerFactory$ExtendedKafkaConsumer : [Consumer clientId=consumer-notification-group-5, groupId=notification-group] Unsubscribed all topics or patterns and assigned partitions
+00:55:10  2026-06-11T05:55:10.202Z  INFO 7628 --- [circleguard-notification-service] [ntainer#0-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-5, groupId=notification-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.202Z  INFO 7628 --- [circleguard-notification-service] [ntainer#0-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-5, groupId=notification-group] Request joining group due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.200Z  INFO 7628 --- [circleguard-notification-service] [ntainer#2-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-priority-group-4, groupId=notification-priority-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.203Z  INFO 7628 --- [circleguard-notification-service] [ntainer#2-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-priority-group-4, groupId=notification-priority-group] Request joining group due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.203Z  INFO 7628 --- [circleguard-notification-service] [ntainer#2-0-C-1] [                                                 ] fkaConsumerFactory$ExtendedKafkaConsumer : [Consumer clientId=consumer-notification-priority-group-4, groupId=notification-priority-group] Unsubscribed all topics or patterns and assigned partitions
+00:55:10  2026-06-11T05:55:10.203Z  INFO 7628 --- [circleguard-notification-service] [ntainer#2-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-priority-group-4, groupId=notification-priority-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.204Z  INFO 7628 --- [circleguard-notification-service] [ntainer#2-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-priority-group-4, groupId=notification-priority-group] Request joining group due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.201Z  INFO 7628 --- [circleguard-notification-service] [ntainer#1-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.204Z  INFO 7628 --- [circleguard-notification-service] [ntainer#1-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Request joining group due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.204Z  INFO 7628 --- [circleguard-notification-service] [ntainer#1-0-C-1] [                                                 ] fkaConsumerFactory$ExtendedKafkaConsumer : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Unsubscribed all topics or patterns and assigned partitions
+00:55:10  2026-06-11T05:55:10.204Z  INFO 7628 --- [circleguard-notification-service] [ntainer#1-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.204Z  INFO 7628 --- [circleguard-notification-service] [ntainer#1-0-C-1] [                                                 ] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Request joining group due to: consumer pro-actively leaving the group
+00:55:10  2026-06-11T05:55:10.206Z  INFO 7628 --- [circleguard-notification-service] [ntainer#0-0-C-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+00:55:10  2026-06-11T05:55:10.207Z  INFO 7628 --- [circleguard-notification-service] [ntainer#1-0-C-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+00:55:10  2026-06-11T05:55:10.207Z  INFO 7628 --- [circleguard-notification-service] [ntainer#0-0-C-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+00:55:10  2026-06-11T05:55:10.207Z  INFO 7628 --- [circleguard-notification-service] [ntainer#1-0-C-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+00:55:10  2026-06-11T05:55:10.207Z  INFO 7628 --- [circleguard-notification-service] [ntainer#0-0-C-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+00:55:10  2026-06-11T05:55:10.207Z  INFO 7628 --- [circleguard-notification-service] [ntainer#1-0-C-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+00:55:10  2026-06-11T05:55:10.208Z  INFO 7628 --- [circleguard-notification-service] [ntainer#2-0-C-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+00:55:10  2026-06-11T05:55:10.209Z  INFO 7628 --- [circleguard-notification-service] [ntainer#2-0-C-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+00:55:10  2026-06-11T05:55:10.209Z  INFO 7628 --- [circleguard-notification-service] [ntainer#2-0-C-1] [                                                 ] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+00:55:10  2026-06-11T05:55:10.214Z  INFO 7628 --- [circleguard-notification-service] [ntainer#0-0-C-1] [                                                 ] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-notification-group-5 unregistered
+00:55:10  2026-06-11T05:55:10.215Z  INFO 7628 --- [circleguard-notification-service] [ntainer#0-0-C-1] [                                                 ] o.s.k.l.KafkaMessageListenerContainer    : notification-group: Consumer stopped
+00:55:10  2026-06-11T05:55:10.219Z  INFO 7628 --- [circleguard-notification-service] [ntainer#1-0-C-1] [                                                 ] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-notification-group-6 unregistered
+00:55:10  2026-06-11T05:55:10.220Z  INFO 7628 --- [circleguard-notification-service] [ntainer#1-0-C-1] [                                                 ] o.s.k.l.KafkaMessageListenerContainer    : notification-group: Consumer stopped
+00:55:10  2026-06-11T05:55:10.221Z  INFO 7628 --- [circleguard-notification-service] [ntainer#2-0-C-1] [                                                 ] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-notification-priority-group-4 unregistered
+00:55:10  2026-06-11T05:55:10.222Z  INFO 7628 --- [circleguard-notification-service] [ntainer#2-0-C-1] [                                                 ] o.s.k.l.KafkaMessageListenerContainer    : notification-priority-group: Consumer stopped
+00:55:10  
+00:55:10  > Task :services:circleguard-notification-service:test FAILED
+00:55:10  
+00:55:10  11 tests completed, 2 failed
+00:55:12  2026-06-11T05:55:12.064Z  INFO 7604 --- [ionShutdownHook] [                                                 ] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+00:55:12  2026-06-11T05:55:12.075Z  INFO 7604 --- [ionShutdownHook] [                                                 ] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+00:55:12  2026-06-11T05:55:12.078Z  INFO 7604 --- [ionShutdownHook] [                                                 ] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+00:55:12  2026-06-11T05:55:12.094Z  INFO 7604 --- [ionShutdownHook] [                                                 ] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+00:55:12  2026-06-11T05:55:12.096Z  INFO 7604 --- [ionShutdownHook] [                                                 ] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+00:55:12  2026-06-11T05:55:12.099Z  INFO 7604 --- [ionShutdownHook] [                                                 ] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+00:55:12  2026-06-11T05:55:12.811Z  INFO 7595 --- [circleguard-form-service] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+00:55:12  2026-06-11T05:55:12.819Z  INFO 7595 --- [circleguard-form-service] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+00:55:12  2026-06-11T05:55:12.821Z  INFO 7595 --- [circleguard-form-service] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+00:55:12  2026-06-11T05:55:12.827Z  INFO 7595 --- [circleguard-form-service] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+00:55:12  2026-06-11T05:55:12.828Z  INFO 7595 --- [circleguard-form-service] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+00:55:12  2026-06-11T05:55:12.829Z  INFO 7595 --- [circleguard-form-service] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+00:55:12  2026-06-11T05:55:12.838Z  INFO 7595 --- [circleguard-form-service] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+00:55:12  2026-06-11T05:55:12.840Z  INFO 7595 --- [circleguard-form-service] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+00:55:12  2026-06-11T05:55:12.840Z  INFO 7595 --- [circleguard-form-service] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+00:55:13  
+00:55:13  [Incubating] Problems report is available at: file:///var/jenkins_home/workspace/CircleGuard%20Pipeline/build/reports/problems/problems-report.html
+00:55:13  
+00:55:13  FAILURE: Build failed with an exception.
+00:55:13  
+00:55:13  * What went wrong:
+00:55:13  Execution failed for task ':services:circleguard-notification-service:test'.
+00:55:13  > There were failing tests. See the report at: file:///var/jenkins_home/workspace/CircleGuard%20Pipeline/services/circleguard-notification-service/build/reports/tests/test/index.html
+00:55:13  
+00:55:13  * Try:
+00:55:13  > Run with --scan to get full insights.
+00:55:13  
+00:55:13  Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+00:55:13  
+00:55:13  You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+00:55:13  
+00:55:13  For more on this, please refer to https://docs.gradle.org/8.14/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+00:55:13  
+00:55:13  BUILD FAILED in 1m 21s
+00:55:13  48 actionable tasks: 39 executed, 7 from cache, 2 up-to-date
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (SonarQube Analysis)
+Stage "SonarQube Analysis" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build artifacts)
+Stage "Build artifacts" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Docker images)
+Stage "Build Docker images" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Security Scan (Trivy))
+Stage "Security Scan (Trivy)" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Push Docker images)
+Stage "Push Docker images" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy to dev)
+Stage "Deploy to dev" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy to stage)
+Stage "Deploy to stage" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy to master)
+Stage "Deploy to master" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Generate Release Notes)
+Stage "Generate Release Notes" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Smoke tests)
+Stage "Smoke tests" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] archiveArtifacts
+00:55:14  Archiving artifacts
+00:55:14  Recording fingerprints
+[Pipeline] sh
+[Pipeline] echo
+00:55:14  ❌ Build 6 fallido. Revisar logs en: http://localhost:8080/job/CircleGuard%20Pipeline/6/console
+[Pipeline] script
+[Pipeline] {
+[Pipeline] mail
+[Pipeline] echo
+00:55:14  Email notification skipped (SMTP not configured): Couldn't connect to host, port: localhost, 25; timeout 60000
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+ERROR: script returned exit code 1
+Finished: FAILURE

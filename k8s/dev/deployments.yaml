@@ -20,8 +20,8 @@ spec:
       - name: ghcr-credentials
       containers:
       - name: circleguard-auth-service
-        image: circleguard-auth-service:dev
-        imagePullPolicy: IfNotPresent  # Use local image
+        image: ghcr.io/nicoarchery/circleguard/circleguard-auth-service:v1.0.8
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
           name: http
@@ -36,7 +36,7 @@ spec:
         resources:
           requests:
             memory: "256Mi"
-            cpu: "100m"
+            cpu: "200m"
           limits:
             memory: "512Mi"
             cpu: "500m"
@@ -44,14 +44,16 @@ spec:
           httpGet:
             path: /actuator/health
             port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 10
+          initialDelaySeconds: 90
+          periodSeconds: 15
+          timeoutSeconds: 5
         readinessProbe:
           httpGet:
             path: /actuator/health
             port: 8080
-          initialDelaySeconds: 20
-          periodSeconds: 5
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          timeoutSeconds: 5
 ---
 apiVersion: v1
 kind: Service
@@ -90,7 +92,7 @@ spec:
       - name: ghcr-credentials
       containers:
       - name: circleguard-identity-service
-        image: circleguard-identity-service:dev
+        image: ghcr.io/nicoarchery/circleguard/circleguard-identity-service:v1.0.8
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
@@ -103,7 +105,7 @@ spec:
         resources:
           requests:
             memory: "256Mi"
-            cpu: "100m"
+            cpu: "200m"
           limits:
             memory: "512Mi"
             cpu: "500m"
@@ -111,14 +113,16 @@ spec:
           httpGet:
             path: /actuator/health
             port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 10
+          initialDelaySeconds: 90
+          periodSeconds: 15
+          timeoutSeconds: 5
         readinessProbe:
           httpGet:
             path: /actuator/health
             port: 8080
-          initialDelaySeconds: 20
-          periodSeconds: 5
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          timeoutSeconds: 5
 ---
 apiVersion: v1
 kind: Service
@@ -157,7 +161,7 @@ spec:
       - name: ghcr-credentials
       containers:
       - name: circleguard-gateway-service
-        image: circleguard-gateway-service:dev
+        image: ghcr.io/nicoarchery/circleguard/circleguard-gateway-service:v1.0.8
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
@@ -170,7 +174,7 @@ spec:
         resources:
           requests:
             memory: "256Mi"
-            cpu: "100m"
+            cpu: "200m"
           limits:
             memory: "512Mi"
             cpu: "500m"
@@ -178,14 +182,16 @@ spec:
           httpGet:
             path: /actuator/health
             port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 10
+          initialDelaySeconds: 90
+          periodSeconds: 15
+          timeoutSeconds: 5
         readinessProbe:
           httpGet:
             path: /actuator/health
             port: 8080
-          initialDelaySeconds: 20
-          periodSeconds: 5
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          timeoutSeconds: 5
 ---
 apiVersion: v1
 kind: Service
@@ -224,7 +230,7 @@ spec:
       - name: ghcr-credentials
       containers:
       - name: circleguard-form-service
-        image: circleguard-form-service:dev
+        image: ghcr.io/nicoarchery/circleguard/circleguard-form-service:v1.0.8
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
@@ -237,7 +243,7 @@ spec:
         resources:
           requests:
             memory: "256Mi"
-            cpu: "100m"
+            cpu: "200m"
           limits:
             memory: "512Mi"
             cpu: "500m"
@@ -245,14 +251,16 @@ spec:
           httpGet:
             path: /actuator/health
             port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 10
+          initialDelaySeconds: 90
+          periodSeconds: 15
+          timeoutSeconds: 5
         readinessProbe:
           httpGet:
             path: /actuator/health
             port: 8080
-          initialDelaySeconds: 20
-          periodSeconds: 5
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          timeoutSeconds: 5
 ---
 apiVersion: v1
 kind: Service
@@ -291,7 +299,7 @@ spec:
       - name: ghcr-credentials
       containers:
       - name: circleguard-promotion-service
-        image: circleguard-promotion-service:dev
+        image: ghcr.io/nicoarchery/circleguard/circleguard-promotion-service:v1.0.8
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
@@ -304,7 +312,7 @@ spec:
         resources:
           requests:
             memory: "256Mi"
-            cpu: "100m"
+            cpu: "200m"
           limits:
             memory: "512Mi"
             cpu: "500m"
@@ -312,14 +320,16 @@ spec:
           httpGet:
             path: /actuator/health
             port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 10
+          initialDelaySeconds: 90
+          periodSeconds: 15
+          timeoutSeconds: 5
         readinessProbe:
           httpGet:
             path: /actuator/health
             port: 8080
-          initialDelaySeconds: 20
-          periodSeconds: 5
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          timeoutSeconds: 5
 ---
 apiVersion: v1
 kind: Service
@@ -358,7 +368,7 @@ spec:
       - name: ghcr-credentials
       containers:
       - name: circleguard-notification-service
-        image: circleguard-notification-service:dev
+        image: ghcr.io/nicoarchery/circleguard/circleguard-notification-service:v1.0.8
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
@@ -371,7 +381,7 @@ spec:
         resources:
           requests:
             memory: "256Mi"
-            cpu: "100m"
+            cpu: "200m"
           limits:
             memory: "512Mi"
             cpu: "500m"
@@ -379,14 +389,16 @@ spec:
           httpGet:
             path: /actuator/health
             port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 10
+          initialDelaySeconds: 90
+          periodSeconds: 15
+          timeoutSeconds: 5
         readinessProbe:
           httpGet:
             path: /actuator/health
             port: 8080
-          initialDelaySeconds: 20
-          periodSeconds: 5
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          timeoutSeconds: 5
 ---
 apiVersion: v1
 kind: Service

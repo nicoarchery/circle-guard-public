@@ -5,29 +5,39 @@ metadata:
   namespace: circleguard-dev
 data:
   # Database
-  SPRING_DATASOURCE_URL: "jdbc:postgresql://postgresql:5432/circleguard"
+  SPRING_DATASOURCE_URL: "jdbc:postgresql://postgresql-service:5432/circleguard"
   SPRING_DATASOURCE_USERNAME: "circleguard"
   SPRING_DATASOURCE_DRIVER_CLASS_NAME: "org.postgresql.Driver"
-  SPRING_JPA_HIBERNATE_DDL_AUTO: "validate"
+  SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
   
   # Redis
-  SPRING_REDIS_HOST: "redis"
+  SPRING_REDIS_HOST: "redis-service"
   SPRING_REDIS_PORT: "6379"
+  SPRING_DATA_REDIS_HOST: "redis-service"
+  SPRING_DATA_REDIS_PORT: "6379"
   
   # Neo4j
-  SPRING_NEO4J_URI: "neo4j://neo4j:7687"
+  SPRING_NEO4J_URI: "neo4j://neo4j-service:7687"
   SPRING_NEO4J_AUTHENTICATION_USERNAME: "neo4j"
   
   # Kafka
-  KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+  KAFKA_BOOTSTRAP_SERVERS: "kafka-service:9092"
   
   # LDAP
-  LDAP_HOST: "ldap"
+  SPRING_LDAP_URLS: "ldap://ldap-service:389"
+  LDAP_URL: "ldap://ldap-service:389"
+  LDAP_BASE: "dc=circleguard,dc=edu"
+  LDAP_USERNAME: "cn=admin,dc=circleguard,dc=edu"
+  LDAP_HOST: "ldap-service"
   LDAP_PORT: "389"
-  LDAP_BASE_DN: "dc=example,dc=com"
+  LDAP_BASE_DN: "dc=circleguard,dc=edu"
   
   # Application settings
   SPRING_PROFILES_ACTIVE: "dev"
   SERVER_PORT: "8080"
+  SPRING_FLYWAY_REPAIR_ON_MIGRATE: "true"
+  SPRING_FLYWAY_VALIDATE_ON_MIGRATE: "false"
   MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "health,metrics,info,prometheus,resilience4j"
+  MANAGEMENT_HEALTH_LDAP_ENABLED: "false"
+  MANAGEMENT_HEALTH_MAIL_ENABLED: "false"
   MANAGEMENT_METRICS_TAGS_APPLICATION: "${spring.application.name}"
