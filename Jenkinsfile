@@ -305,35 +305,52 @@ pipeline {
                     set -euo pipefail
                     echo "Generating release notes for build ${BUILD_NUMBER}..."
                     mkdir -p build/release-notes
-                    cat > build/release-notes/RELEASE_${BUILD_NUMBER}.md << 'EOF'
-# Release Notes - Build ${BUILD_NUMBER}
+
+                    # Get changes since last tag (or initial commit if no tags yet)
+                    LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || git rev-list --max-parents=0 HEAD)
+                    echo "Changes since: ${LAST_TAG}"
+                    git log --oneline --no-decorate "${LAST_TAG}..HEAD" > build/release-notes/CHANGES_${BUILD_NUMBER}.txt || echo "(no previous tag, showing full log)" > build/release-notes/CHANGES_${BUILD_NUMBER}.txt
+
+                    # Get list of contributors
+                    git log --format="%an" "${LAST_TAG}..HEAD" 2>/dev/null | sort -u > build/release-notes/CONTRIBUTORS_${BUILD_NUMBER}.txt || echo "N/A" > build/release-notes/CONTRIBUTORS_${BUILD_NUMBER}.txt
+
+                    CHANGES=$(cat build/release-notes/CHANGES_${BUILD_NUMBER}.txt 2>/dev/null)
+                    CONTRIBUTORS=$(cat build/release-notes/CONTRIBUTORS_${BUILD_NUMBER}.txt 2>/dev/null | tr '\\n' ', ' | sed 's/,$//')
+
+                    cat > build/release-notes/RELEASE_${BUILD_NUMBER}.md << EOF
+# Release Notes - v1.0.${BUILD_NUMBER}
 
 ## Deployment Information
+- **Version**: v1.0.${BUILD_NUMBER}
 - **Build Number**: ${BUILD_NUMBER}
 - **Git Commit**: ${GIT_COMMIT}
+- **Branch**: ${GIT_BRANCH}
 - **Build Timestamp**: $(date -u +"%Y-%m-%dT%H:%M:%SZ")
 - **Services Deployed**: ${SERVICE_LIST}
 
-## What's Included
-- All microservices built and deployed to production
-- E2E tests executed on dev environment
-- Unit and integration tests passed
-- Docker images pushed to registry
+## Changes in this Release
+${CHANGES}
+
+## Contributors
+${CONTRIBUTORS}
 
 ## Deployment Steps
 1. Built all services via Gradle
 2. Created Docker images for each service
-3. Pushed images to registry
+3. Pushed images to GHCR
 4. Applied Kubernetes manifests to prod namespace
 
-## Recommended Post-Deployment Checks
-- Verify services are running: `kubectl get pods -n circleguard-prod`
-- Check service endpoints: `kubectl get svc -n circleguard-prod`
-- Run smoke tests for critical endpoints
-- Monitor logs: `kubectl logs -n circleguard-prod -l app=<service-name>`
+## Rollback Instructions
+See [ROLLBACK_PLAN.md](../docs/ROLLBACK_PLAN.md)
 
-## Contact
-For issues or questions, contact the DevOps team.
+## Post-Deployment Checks
+- Verify services: \`kubectl get pods -n circleguard-prod\`
+- Check endpoints: \`kubectl get svc -n circleguard-prod\`
+- Run smoke tests for critical endpoints
+- Monitor logs: \`kubectl logs -n circleguard-prod -l app=<service-name>\`
+
+## Build URL
+${BUILD_URL}
 EOF
                     cat build/release-notes/RELEASE_${BUILD_NUMBER}.md
                 '''
@@ -385,6 +402,19 @@ View build: ${env.BUILD_URL}
                 if (env.DISCORD_WEBHOOK) {
                     sh "curl -X POST -H 'Content-Type: application/json' -d '{\"content\": \"✅ Build ${BUILD_NUMBER} for ${env.JOB_NAME} SUCCEEDED\"}' ${env.DISCORD_WEBHOOK}"
                 }
+                // Create git tag for this release
+                try {
+                    sh """#!/usr/bin/env bash
+                        set -euo pipefail
+                        git config user.email "cicd@circleguard.edu"
+                        git config user.name "CircleGuard CI/CD"
+                        git tag -a "v1.0.${BUILD_NUMBER}" -m "Release v1.0.${BUILD_NUMBER}"
+                        git push origin "v1.0.${BUILD_NUMBER}" 2>/dev/null || echo "Git tag push skipped (no credentials)"
+                        echo "✅ Git tag v1.0.${BUILD_NUMBER} created and pushed"
+                    """
+                } catch (Exception tagEx) {
+                    echo "Git tagging skipped: ${tagEx.message}"
+                }
             }
         }
         failure {
@@ -422,6 +452,13 @@ Failed Stage: ${currentBuild.currentResult}
             archiveArtifacts artifacts: 'services/**/build/libs/*.jar,build/release-notes/**', fingerprint: true, allowEmptyArchive: true
             sh '''#!/usr/bin/env bash
                     set -euo pipefail
+                    # Commit release notes if they exist
+                    if [ -d build/release-notes ] && [ "$(ls -A build/release-notes/ 2>/dev/null)" ]; then
+                        git add build/release-notes/ -A 2>/dev/null || true
+                        git commit -m "docs: add release notes for v1.0.${BUILD_NUMBER}" 2>/dev/null || true
+                        git push origin HEAD:${GIT_BRANCH} 2>/dev/null || echo "Release notes push skipped"
+                    fi
+                    # Tear down local infra
                     if [ -f docker-compose.dev.yml ]; then
                         if command -v docker-compose >/dev/null 2>&1; then
                             docker-compose -f docker-compose.dev.yml down || true
