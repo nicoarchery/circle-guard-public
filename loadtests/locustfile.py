@@ -48,7 +48,19 @@ class CircleGuardUser(HttpUser):
 
     @task(2)
     def health_center_report_flow(self):
-        anonymous_id = str(uuid4())
+        login = self.client.post(
+            f"{AUTH_URL}/api/v1/auth/login",
+            json={"username": "health_user", "password": "password"},
+            name="auth_login_health",
+        )
+        if login.status_code != 200:
+            return
+
+        token = login.json().get("token")
+        anonymous_id = login.json().get("anonymousId")
+        if not token or not anonymous_id:
+            return
+
         payload = {
             "anonymousId": anonymous_id,
             "status": random.choice(["POTENTIAL", "CONFIRMED"]),
@@ -57,13 +69,14 @@ class CircleGuardUser(HttpUser):
         self.client.post(
             f"{PROMOTION_URL}/api/v1/health/report",
             json=payload,
+            headers={"Authorization": f"Bearer {token}"},
             name="promotion_report_status",
         )
 
     @task(1)
     def login_smoke_flow(self):
-        username = os.getenv("CIRCLEGUARD_USERNAME", "e2e-user")
-        password = os.getenv("CIRCLEGUARD_PASSWORD", "password123")
+        username = os.getenv("CIRCLEGUARD_USERNAME", "super_admin")
+        password = os.getenv("CIRCLEGUARD_PASSWORD", "password")
         self.client.post(
             f"{AUTH_URL}/api/v1/auth/login",
             json={"username": username, "password": password},
