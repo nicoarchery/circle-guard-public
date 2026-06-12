@@ -72,7 +72,7 @@ pipeline {
                         withCredentials([string(credentialsId: env.SONAR_CREDENTIALS_ID, variable: 'SONAR_AUTH_TOKEN')]) {
                             sh """#!/usr/bin/env bash
                                 set -euo pipefail
-                                ./gradlew sonar -Dsonar.token=${SONAR_AUTH_TOKEN} -Dsonar.projectKey=circleguard -Dsonar.host.url=${env.SONAR_HOST_URL ?: 'http://sonarqube:9000'} -Dsonar.java.binaries="services/*/build/classes"
+                                ./gradlew sonar -Dsonar.token=\$SONAR_AUTH_TOKEN -Dsonar.projectKey=circleguard -Dsonar.host.url=${env.SONAR_HOST_URL ?: 'http://sonarqube:9000'} -Dsonar.java.binaries="services/*/build/classes"
                             """
                         }
                     } catch (Exception ex) {
