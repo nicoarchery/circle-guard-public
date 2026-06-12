@@ -20,7 +20,7 @@ spec:
       - name: ghcr-credentials
       containers:
       - name: circleguard-auth-service
-        image: ghcr.io/nicoarchery/circleguard/circleguard-auth-service:v1.0.8
+        image: ghcr.io/nicoarchery/circleguard/circleguard-auth-service:dev
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
@@ -92,7 +92,7 @@ spec:
       - name: ghcr-credentials
       containers:
       - name: circleguard-identity-service
-        image: ghcr.io/nicoarchery/circleguard/circleguard-identity-service:v1.0.8
+        image: ghcr.io/nicoarchery/circleguard/circleguard-identity-service:dev
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
@@ -157,7 +157,7 @@ spec:
       - name: ghcr-credentials
       containers:
       - name: circleguard-gateway-service
-        image: ghcr.io/nicoarchery/circleguard/circleguard-gateway-service:v1.0.8
+        image: ghcr.io/nicoarchery/circleguard/circleguard-gateway-service:dev
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
@@ -226,7 +226,7 @@ spec:
       - name: ghcr-credentials
       containers:
       - name: circleguard-form-service
-        image: ghcr.io/nicoarchery/circleguard/circleguard-form-service:v1.0.8
+        image: ghcr.io/nicoarchery/circleguard/circleguard-form-service:dev
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
@@ -295,7 +295,7 @@ spec:
       - name: ghcr-credentials
       containers:
       - name: circleguard-promotion-service
-        image: ghcr.io/nicoarchery/circleguard/circleguard-promotion-service:v1.0.8
+        image: ghcr.io/nicoarchery/circleguard/circleguard-promotion-service:dev
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
@@ -360,7 +360,7 @@ spec:
       - name: ghcr-credentials
       containers:
       - name: circleguard-notification-service
-        image: ghcr.io/nicoarchery/circleguard/circleguard-notification-service:v1.0.8
+        image: ghcr.io/nicoarchery/circleguard/circleguard-notification-service:dev
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
