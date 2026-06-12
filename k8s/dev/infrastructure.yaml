@@ -10,6 +10,19 @@ stringData:
   POSTGRES_PASSWORD: password
   POSTGRES_DB: circleguard
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgresql-data
+  namespace: circleguard-dev
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: default
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -34,19 +47,24 @@ spec:
         image: postgres:16-alpine
         ports:
         - containerPort: 5432
+        env:
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
         envFrom:
         - secretRef:
             name: postgres-credentials
         volumeMounts:
+        - name: postgresql-data
+          mountPath: /var/lib/postgresql/data
         - name: initdb
           mountPath: /docker-entrypoint-initdb.d
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "50m"
+            memory: "256Mi"
+            cpu: "200m"
           limits:
-            memory: "128Mi"
-            cpu: "100m"
+            memory: "512Mi"
+            cpu: "500m"
         livenessProbe:
           exec:
             command: ["pg_isready", "-U", "admin", "-d", "circleguard"]
@@ -58,6 +76,9 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 5
       volumes:
+      - name: postgresql-data
+        persistentVolumeClaim:
+          claimName: postgresql-data
       - name: initdb
         configMap:
           name: initdb-sql
@@ -84,6 +105,7 @@ metadata:
   namespace: circleguard-dev
 data:
   init-db.sql: |
+    CREATE EXTENSION IF NOT EXISTS pgcrypto;
     CREATE USER circleguard WITH PASSWORD 'circleguard-password';
     GRANT ALL PRIVILEGES ON DATABASE circleguard TO circleguard;
     GRANT ALL ON SCHEMA public TO circleguard;
@@ -97,6 +119,7 @@ data:
     GRANT ALL PRIVILEGES ON DATABASE circleguard_promotion TO circleguard;
     GRANT ALL PRIVILEGES ON DATABASE circleguard_dashboard TO circleguard;
     GRANT ALL PRIVILEGES ON DATABASE circleguard_form TO circleguard;
+    ALTER SCHEMA public OWNER TO circleguard;
 ---
 apiVersion: apps/v1
 kind: Deployment
