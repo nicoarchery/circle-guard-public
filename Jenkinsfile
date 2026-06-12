@@ -317,8 +317,6 @@ pipeline {
                     CHANGES=$(cat build/release-notes/CHANGES_${BUILD_NUMBER}.txt 2>/dev/null)
                     CONTRIBUTORS=$(cat build/release-notes/CONTRIBUTORS_${BUILD_NUMBER}.txt 2>/dev/null | tr '\n' ', ' | sed 's/,$//')
 
-                    # Shell variable for backtick (avoids Groovy parsing issues)
-                    BT=$(printf '\x60')
                     cat > build/release-notes/RELEASE_${BUILD_NUMBER}.md << EOF
 # Release Notes - v1.0.${BUILD_NUMBER}
 
@@ -346,10 +344,10 @@ ${CONTRIBUTORS}
 See [ROLLBACK_PLAN.md](../docs/ROLLBACK_PLAN.md)
 
 ## Post-Deployment Checks
-- Verify services: ${BT}kubectl get pods -n circleguard-prod${BT}
-- Check endpoints: ${BT}kubectl get svc -n circleguard-prod${BT}
+- Verify services: kubectl get pods -n circleguard-prod
+- Check endpoints: kubectl get svc -n circleguard-prod
 - Run smoke tests for critical endpoints
-- Monitor logs: ${BT}kubectl logs -n circleguard-prod -l app=<service-name>${BT}
+- Monitor logs: kubectl logs -n circleguard-prod -l app=<service-name>
 
 ## Build URL
 ${BUILD_URL}
