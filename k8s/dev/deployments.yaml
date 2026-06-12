@@ -110,19 +110,15 @@ spec:
             memory: "512Mi"
             cpu: "500m"
         livenessProbe:
-          httpGet:
-            path: /actuator/health
+          tcpSocket:
             port: 8080
           initialDelaySeconds: 90
           periodSeconds: 15
-          timeoutSeconds: 5
         readinessProbe:
-          httpGet:
-            path: /actuator/health
+          tcpSocket:
             port: 8080
           initialDelaySeconds: 60
           periodSeconds: 10
-          timeoutSeconds: 5
 ---
 apiVersion: v1
 kind: Service
@@ -317,19 +313,15 @@ spec:
             memory: "512Mi"
             cpu: "500m"
         livenessProbe:
-          httpGet:
-            path: /actuator/health
+          tcpSocket:
             port: 8080
           initialDelaySeconds: 90
           periodSeconds: 15
-          timeoutSeconds: 5
         readinessProbe:
-          httpGet:
-            path: /actuator/health
+          tcpSocket:
             port: 8080
           initialDelaySeconds: 60
           periodSeconds: 10
-          timeoutSeconds: 5
 ---
 apiVersion: v1
 kind: Service
