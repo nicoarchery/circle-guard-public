@@ -22,6 +22,7 @@ data:
   
   # Kafka
   KAFKA_BOOTSTRAP_SERVERS: "kafka-service:9092"
+  SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka-service:9092"
   
   # LDAP
   SPRING_LDAP_URLS: "ldap://ldap-service:389"
@@ -35,8 +36,7 @@ data:
   # Application settings
   SPRING_PROFILES_ACTIVE: "dev"
   SERVER_PORT: "8080"
-  SPRING_FLYWAY_REPAIR_ON_MIGRATE: "true"
-  SPRING_FLYWAY_VALIDATE_ON_MIGRATE: "false"
+  SPRING_FLYWAY_ENABLED: "false"
   MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "health,metrics,info,prometheus,resilience4j"
   MANAGEMENT_HEALTH_LDAP_ENABLED: "false"
   MANAGEMENT_HEALTH_MAIL_ENABLED: "false"

@@ -1,0 +1,434 @@
+{
+  "info": {
+    "name": "CircleGuard Demo",
+    "description": "Collection for CircleGuard microservices demo. Run Login first to auto-set token and anonymousId.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "localhost"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "anonymousId",
+      "value": ""
+    },
+    {
+      "key": "qrToken",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "🔐 Auth",
+      "item": [
+        {
+          "name": "POST Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    var json = pm.response.json();",
+                  "    pm.collectionVariables.set('token', json.token);",
+                  "    pm.collectionVariables.set('anonymousId', json.anonymousId);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"staff_guard\",\n    \"password\": \"password\"\n}"
+            },
+            "url": {
+              "raw": "http://{{baseUrl}}:8180/api/v1/auth/login",
+              "protocol": "http",
+              "host": ["{{baseUrl}}"],
+              "port": "8180",
+              "path": ["api", "v1", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "GET Generate QR",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://{{baseUrl}}:8180/api/v1/auth/qr/generate",
+              "protocol": "http",
+              "host": ["{{baseUrl}}"],
+              "port": "8180",
+              "path": ["api", "v1", "auth", "qr", "generate"]
+            }
+          }
+        },
+        {
+          "name": "POST Visitor Handoff",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"anonymousId\": \"{{anonymousId}}\"\n}"
+            },
+            "url": {
+              "raw": "http://{{baseUrl}}:8180/api/v1/auth/visitor/handoff",
+              "protocol": "http",
+              "host": ["{{baseUrl}}"],
+              "port": "8180",
+              "path": ["api", "v1", "auth", "visitor", "handoff"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "🆔 Identity",
+      "item": [
+        {
+          "name": "POST Map Identity",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"realIdentity\": \"student@circleguard.edu\"\n}"
+            },
+            "url": {
+              "raw": "http://{{baseUrl}}:8083/api/v1/identities/map",
+              "protocol": "http",
+              "host": ["{{baseUrl}}"],
+              "port": "8083",
+              "path": ["api", "v1", "identities", "map"]
+            }
+          }
+        },
+        {
+          "name": "POST Register Visitor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@external.com\",\n    \"reason_for_visit\": \"Conference\"\n}"
+            },
+            "url": {
+              "raw": "http://{{baseUrl}}:8083/api/v1/identities/visitor",
+              "protocol": "http",
+              "host": ["{{baseUrl}}"],
+              "port": "8083",
+              "path": ["api", "v1", "identities", "visitor"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "🚪 Gateway",
+      "item": [
+        {
+          "name": "POST Validate Gate",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"token\": \"{{qrToken}}\"\n}"
+            },
+            "url": {
+              "raw": "http://{{baseUrl}}:8087/api/v1/gate/validate",
+              "protocol": "http",
+              "host": ["{{baseUrl}}"],
+              "port": "8087",
+              "path": ["api", "v1", "gate", "validate"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "📋 Form",
+      "item": [
+        {
+          "name": "GET Active Questionnaire",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{baseUrl}}:8086/api/v1/questionnaires/active",
+              "protocol": "http",
+              "host": ["{{baseUrl}}"],
+              "port": "8086",
+              "path": ["api", "v1", "questionnaires", "active"]
+            }
+          }
+        },
+        {
+          "name": "POST Submit Survey",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"anonymousId\": \"{{anonymousId}}\",\n    \"hasFever\": false,\n    \"hasCough\": false,\n    \"otherSymptoms\": \"\",\n    \"exposureDate\": null,\n    \"responses\": {}\n}"
+            },
+            "url": {
+              "raw": "http://{{baseUrl}}:8086/api/v1/surveys",
+              "protocol": "http",
+              "host": ["{{baseUrl}}"],
+              "port": "8086",
+              "path": ["api", "v1", "surveys"]
+            }
+          }
+        },
+        {
+          "name": "GET Pending Certificates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{baseUrl}}:8086/api/v1/certificates/pending",
+              "protocol": "http",
+              "host": ["{{baseUrl}}"],
+              "port": "8086",
+              "path": ["api", "v1", "certificates", "pending"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "🎟️ Promotion",
+      "item": [
+        {
+          "name": "GET Health Stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{baseUrl}}:8088/api/v1/health-status/stats",
+              "protocol": "http",
+              "host": ["{{baseUrl}}"],
+              "port": "8088",
+              "path": ["api", "v1", "health-status", "stats"]
+            }
+          }
+        },
+        {
+          "name": "POST Create Circle",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"CS Class Group\",\n    \"locationId\": \"00000000-0000-0000-0000-000000000000\"\n}"
+            },
+            "url": {
+              "raw": "http://{{baseUrl}}:8088/api/v1/circles",
+              "protocol": "http",
+              "host": ["{{baseUrl}}"],
+              "port": "8088",
+              "path": ["api", "v1", "circles"]
+            }
+          }
+        },
+        {
+          "name": "POST Report Health",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"anonymousId\": \"{{anonymousId}}\",\n    \"status\": \"GREEN\"\n}"
+            },
+            "url": {
+              "raw": "http://{{baseUrl}}:8088/api/v1/health/report",
+              "protocol": "http",
+              "host": ["{{baseUrl}}"],
+              "port": "8088",
+              "path": ["api", "v1", "health", "report"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "🔄 Flujo Completo Demo",
+      "item": [
+        {
+          "name": "1. Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    var json = pm.response.json();",
+                  "    pm.collectionVariables.set('token', json.token);",
+                  "    pm.collectionVariables.set('anonymousId', json.anonymousId);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"staff_guard\",\n    \"password\": \"password\"\n}"
+            },
+            "url": {
+              "raw": "http://{{baseUrl}}:8180/api/v1/auth/login",
+              "protocol": "http",
+              "host": ["{{baseUrl}}"],
+              "port": "8180",
+              "path": ["api", "v1", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "2. Generate QR",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://{{baseUrl}}:8180/api/v1/auth/qr/generate",
+              "protocol": "http",
+              "host": ["{{baseUrl}}"],
+              "port": "8180",
+              "path": ["api", "v1", "auth", "qr", "generate"]
+            }
+          }
+        },
+        {
+          "name": "3. Validate Gate",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"token\": \"{{qrToken}}\"\n}"
+            },
+            "url": {
+              "raw": "http://{{baseUrl}}:8087/api/v1/gate/validate",
+              "protocol": "http",
+              "host": ["{{baseUrl}}"],
+              "port": "8087",
+              "path": ["api", "v1", "gate", "validate"]
+            }
+          }
+        },
+        {
+          "name": "4. Submit Health Survey",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"anonymousId\": \"{{anonymousId}}\",\n    \"hasFever\": false,\n    \"hasCough\": true,\n    \"otherSymptoms\": \"Mild headache\",\n    \"exposureDate\": null,\n    \"responses\": {}\n}"
+            },
+            "url": {
+              "raw": "http://{{baseUrl}}:8086/api/v1/surveys",
+              "protocol": "http",
+              "host": ["{{baseUrl}}"],
+              "port": "8086",
+              "path": ["api", "v1", "surveys"]
+            }
+          }
+        },
+        {
+          "name": "5. View Health Stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{baseUrl}}:8088/api/v1/health-status/stats",
+              "protocol": "http",
+              "host": ["{{baseUrl}}"],
+              "port": "8088",
+              "path": ["api", "v1", "health-status", "stats"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
