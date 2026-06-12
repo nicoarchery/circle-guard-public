@@ -42,5 +42,8 @@ data:
   MANAGEMENT_HEALTH_MAIL_ENABLED: "false"
   MANAGEMENT_METRICS_TAGS_APPLICATION: "${spring.application.name}"
 
+  # Service URLs
+  IDENTITY_SERVICE_URL: "http://circleguard-identity-service:8080"
+
   # Tracing
   MANAGEMENT_OTLP_TRACING_ENDPOINT: "http://jaeger:4318/v1/traces"
